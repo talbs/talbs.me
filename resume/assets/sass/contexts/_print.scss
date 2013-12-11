@@ -1,0 +1,9 @@
+// contexts: print
+// ====================
+
+@media print {
+
+  nav, .nav {
+    display: none !important;
+  }
+}
