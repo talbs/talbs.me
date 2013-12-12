@@ -1,0 +1,385 @@
+// view: resume
+// ====================
+
+.view--resume {
+
+  // general
+  .wrapper--view {
+    border-top: $baseline-v solid $gray-l5;
+    border-bottom: $baseline-v solid $gray-l6;
+    background: $view__bg url(..images/bg-noise-fff-t.png) 0 0 repeat;
+  }
+
+  .view {
+    margin: ($baseline-v*2) $baseline-h;
+  }
+
+  .wrapper--grid {
+    @include outer-container();
+  }
+
+  .nav--global {
+    @extend %text-sr;
+  }
+
+  // --------------------
+
+  // general
+  .title--section {
+    @extend %hd--delta;
+    margin-bottom: $baseline-v;
+    border-bottom: double 4px $gray-l4;
+    padding-bottom: ($baseline-v/2);
+  }
+
+  .list--temporal {
+    @extend %no-list;
+  }
+
+  .list--temporal__item .label {
+    @extend %text-sr;
+  }
+
+
+  // basic layout
+  .wrapper--content {
+    @include row();
+  }
+
+  @include reset-all;
+
+  .content--main {
+    @extend %trans-size;
+
+    @include media($bp-dm) {
+      @include span-columns(12 of 12);
+    }
+
+    @include media($bp-dl) {
+      @include span-columns(8 of 12);
+    }
+  }
+
+  .content--supplemental {
+    @extend %trans-size;
+
+    @include media($bp-dm) {
+      @include span-columns(12 of 12);
+    }
+
+    @include media($bp-dl) {
+      @include shift(1);
+      @include span-columns(3 of 12);
+    }
+  }
+
+  .content--elsewhere {
+
+  }
+
+  // --------------------
+
+  // summary
+  .content--summary {
+    margin-bottom: ($baseline-v*2);
+
+    .title {
+      @extend %text-sr;
+    }
+
+    .copy {
+      @extend %trans-color;
+      @extend %copy--lead;
+
+      @include media($bp-m) {
+        @include font-size(18); // NOTE: needed since neat doesn't support extends in MQs
+        @include lh(18);
+      }
+    }
+
+    a {
+      @extend %link-copy;
+    }
+
+    // STATE: hover/focus
+    &:focus, &:hover {
+
+      .copy {
+        color: $copy__color--focus;
+      }
+    }
+  }
+
+  // --------------------
+
+  // education
+  .content--education {
+    margin-bottom: ($baseline-v*3);
+
+    a {
+      @extend %link-copy;
+    }
+
+    .content--education__degree {
+      @extend %wipe-last-child;
+      margin-bottom: ($baseline-v*1.5);
+      border-bottom: 1px solid $gray-l4;
+      padding-bottom: ($baseline-v*1.5);
+
+      .title {
+        @extend %hd--charlie;
+
+        .degree:after {
+          content: ", ";
+          margin-right: ($baseline-h/10);
+        }
+      }
+
+      .list--temporal {
+        @extend %hd--epsilon;
+      }
+    }
+  }
+
+  // --------------------
+
+  // experience
+  .content--experience {
+    margin-bottom: ($baseline-v*3);
+
+    a {
+      @extend %link-copy;
+    }
+  }
+
+  .content--experience__position {
+    @extend %wipe-last-child;
+    margin-bottom: ($baseline-v*1.5);
+    border-bottom: 1px solid $gray-l4;
+    padding-bottom: ($baseline-v*1.5);
+
+    .wrapper--glance {
+      @include clearfix();
+      display: block;
+      margin-bottom: ($baseline-v/2);
+    }
+
+    .title {
+      @extend %hd--bravo;
+
+      .role:after {
+        content: ", ";
+        margin-right: ($baseline-h/10);
+      }
+
+      @include media($bp-dm) {
+        @include span-columns(5 of 8);
+      }
+
+      @include media($bp-dl) {
+        @include span-columns(5 of 8);
+      }
+    }
+
+    .list--temporal {
+      @extend %hd--epsilon;
+      margin-bottom: ($baseline-v/2);
+
+      @include media($bp-dm) {
+        @include span-columns(3 of 8);
+        @include omega();
+        text-align: right;
+      }
+
+      @include media($bp-dl) {
+        @include span-columns(3 of 8);
+        @include omega();
+        text-align: right;
+      }
+    }
+
+    .list--temporal__item {
+      @extend %wipe-last-child;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: ($baseline-h/4);
+    }
+
+    .copy {
+      @extend %trans-color;
+      @extend %copy--showcase;
+
+
+      @include media($bp-m) {
+        @include font-size(16); // NOTE: needed since neat doesn't support extends in MQs
+        @include lh(16);
+      }
+    }
+
+    // STATE: hover/focus
+    &:focus, &:hover {
+
+      .copy {
+        color: $copy__color--focus;
+      }
+    }
+  }
+
+
+  // --------------------
+
+  // highlights
+  .content--highlights {
+    margin-bottom: ($baseline-v*2);
+
+    a {
+      @extend %link-copy;
+    }
+
+    .list--projects, .list--noteworthy {
+      @extend %no-list;
+    }
+
+    .list--projects {
+
+      @include media($bp-dm) {
+        @include span-columns(6 of 12);
+      }
+    }
+
+    .list--noteworthy {
+
+      @include media($bp-dm) {
+        @include shift(1);
+        @include span-columns(5 of 12);
+      }
+    }
+
+    .list--projects_item, .list--noteworthy_item {
+      margin-bottom: ($baseline-v*1.5);
+      border-bottom: 1px solid $gray-l4;
+      padding-bottom: ($baseline-v*1.5);
+
+      .title {
+        @extend %hd--charlie;
+      }
+
+      .copy {
+        @extend %trans-color;
+      }
+
+      // STATE: hover/focus
+      &:focus, &:hover {
+
+        .copy {
+          color: $copy__color--focus;
+        }
+      }
+    }
+
+    .list--noteworthy_item {
+      @extend %wipe-last-child;
+    }
+  }
+
+  // --------------------
+
+  // elsewhere
+  .content--elsewhere {
+    @include row();
+    margin-bottom: ($baseline-v*3);
+
+    a {
+      @extend %link-copy;
+    }
+  }
+
+  .elsewhere__offclock {
+    margin-bottom: $baseline-v;
+
+    .elsewhere__offclock__title {
+      @extend %text-sr;
+    }
+
+    .copy {
+      @extend %trans-color;
+      @extend %copy--showcase;
+    }
+
+    // STATE: hover/focus
+    &:focus, &:hover {
+
+      .copy {
+        color: $copy__color--focus;
+      }
+    }
+  }
+
+  .elsewhere__online {
+
+    .elsewhere__online__title {
+      @extend %text-sr;
+    }
+
+    .elsewhere__online__copy {
+      @extend %trans-color;
+      @extend %copy--showcase;
+      margin-bottom: $baseline-v;
+    }
+
+    .list--nav__item {
+      margin-bottom: $baseline-v;
+
+      @include media($bp-ds) {
+        @include span-columns(6 of 12);
+        @include omega(2n);
+      }
+
+      @include media($bp-dm) {
+        @include span-columns(6 of 12);
+        @include omega(2n);
+      }
+
+      @include media($bp-dl) {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+      }
+
+      .title {
+        @extend %hd--charlie;
+        margin-bottom: ($baseline-v/4);  // NOTE: not clean, but needed
+      }
+
+      .ico {
+        @extend %trans-color;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: ($baseline-h/4);
+        border-right: 1px solid $gray-l5;
+        padding-right: ($baseline-h/4);
+        color: $copy--supplemental__color;
+      }
+
+      .action {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .copy {
+        margin-left: ($baseline-h);
+      }
+
+      // STATE: hover
+      &:hover {
+
+        .ico {
+          color: $copy__color--focus;
+        }
+
+        .copy {
+          color: $copy__color--focus;
+        }
+      }
+    }
+  }
+}

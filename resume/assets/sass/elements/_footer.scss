@@ -1,0 +1,14 @@
+// elements: footer
+// ====================
+
+.footer--global {
+  @include row();
+}
+
+.footer--global__legal {
+  @extend %hd--epsilon;
+
+  @include media($bp-m) {
+    text-align: center;
+  }
+}

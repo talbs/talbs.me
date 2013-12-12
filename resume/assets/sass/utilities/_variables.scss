@@ -1,0 +1,174 @@
+// utilities: variables
+// ====================
+
+// units
+$baseline-v: 20px;                                                  // vertical baseline
+$baseline-h: 40px;                                                  // horizontal baseline
+
+// --------------------
+
+// colors - basic
+$black: rgb(10,10,10);                                              // system black
+$black-t: rgb(0,0,0);
+$black-t0: rgba($black,0.125);
+$black-t1: rgba($black,0.25);
+$black-t2: rgba($black,0.50);
+$black-t3: rgba($black,0.75);
+
+$white: rgb(252, 252, 252);                                           // system white
+$white-t: rgb(255,255,255);
+$white-t0: rgba($white,0.125);
+$white-t1: rgba($white,0.25);
+$white-t2: rgba($white,0.50);
+$white-t3: rgba($white,0.75);
+
+$gray: rgb(127.5, 127.5, 127.5);
+$gray-l1: tint($gray,20%);
+$gray-l2: tint($gray,40%);
+$gray-l3: tint($gray,60%);
+$gray-l4: tint($gray,80%);
+$gray-l5: tint($gray,90%);
+$gray-l6: tint($gray,95%);
+$gray-d1: shade($gray,20%);
+$gray-d2: shade($gray,40%);
+$gray-d3: shade($gray,60%);
+$gray-d4: shade($gray,80%);
+$gray-d5: shade($gray,90%);
+$gray-d6: shade($gray,95%);
+$gray-t0: rgba($gray,0.125);
+$gray-t1: rgba($gray,0.25);
+$gray-t2: rgba($gray,0.50);
+$gray-t3: rgba($gray,0.75);
+
+// shadows
+$shadow: rgba($black-t,0.2);
+$shadow-l1: rgba($black-t,0.1);
+$shadow-l2: rgba($black-t,0.05);
+$shadow-d1: rgba($black-t,0.4);
+$shadow-d2: rgba($black-t,0.6);
+
+// colors - default
+$blue: rgb(58, 162, 224);
+$blue-l1: tint($blue,20%);
+$blue-l2: tint($blue,40%);
+$blue-l3: tint($blue,60%);
+$blue-l4: tint($blue,80%);
+$blue-l5: tint($blue,90%);
+$blue-d1: shade($blue,20%);
+$blue-d2: shade($blue,40%);
+$blue-d3: shade($blue,60%);
+$blue-d4: shade($blue,80%);
+$blue-d5: shade($blue,90%);
+$blue-s1: saturate($blue,15%);
+$blue-s2: saturate($blue,30%);
+$blue-s3: saturate($blue,45%);
+$blue-u1: desaturate($blue,15%);
+$blue-u2: desaturate($blue,30%);
+$blue-u3: desaturate($blue,45%);
+$blue-t0: rgba($blue,0.125);
+$blue-t1: rgba($blue,0.25);
+$blue-t2: rgba($blue,0.50);
+$blue-t3: rgba($blue,0.75);
+
+// --------------------
+
+// fonts
+$f-serif: 'Poly', Cambria, Georgia, 'Times New Roman', Times, serif;
+$f-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$f-monospace: 'Bitstream Vera Sans Mono', Consolas, Courier, monospace;
+
+$f-title: $f-sans-serif;
+$f-copy: $f-serif;
+
+// --------------------
+
+// grid (neat-based)
+@import "neat/neat-helpers";
+$max-width: 1040px;                                                 // http://gridcalculator.dk/#/1040/12/20/20
+$grid-columns: 12;                                                  // make grid 12 columns
+$column: $baseline-v;                                               // column width
+$gutter: $baseline-v;                                               // gutter b/t columns
+// $visual-grid: true;
+// $visual-grid-index: front;
+
+// grid (neat-based) - responsive
+$bp-m: new-breakpoint(max-width 529px 4);                           // mobile devices - make grid 4 columns
+$bp-ds: new-breakpoint(min-width 530px max-width 759px 6);          // small displays - make grid 6 columns
+$bp-dm: new-breakpoint(min-width 760px max-width 899px 12);         // medium displays - make grid 12 columns
+$bp-dl: new-breakpoint(min-width 900px 12);                         // large displays - make grid 12 columns
+
+// --------------------
+
+// timing - used for animation/transition mixin syncing
+$tmg-s3: 3.0s;
+$tmg-s2: 2.0s;
+$tmg-s1: 1.0s;
+$tmg-avg: 0.75s;
+$tmg-f1: 0.50s;
+$tmg-f2: 0.25s;
+$tmg-f3: 0.125s;
+
+// animation-based settings
+$anim-distance-offviewport: ($baseline-h*100);                      // for larger/page-level animations
+
+// --------------------
+
+// general actions
+$color-primary: $blue;
+$color-secondary: $blue-l1;
+$color-teritary: $blue-l3;
+
+// --------------------
+
+// views
+$view__bg: $white-t;
+
+// --------------------
+
+// application: general links
+$link__color: $blue-u1;
+$link__color--focus: $blue-s1;
+$link__color--active: $blue;
+$link__color--visited: $blue-d1;
+
+// --------------------
+
+// application: actions & links (button and control-focused)
+$action--primary__color: $color-primary;
+$action--primary__color--focus: $color-primary;
+
+$action--secondary__color: $color-secondary;
+$action--secondary__color--focus: $color-secondary;
+
+$action--tertiary__color: $color-teritary;
+$action--tertiary__color--focus: $color-teritary;
+
+// --------------------
+
+// copy & headings
+$heading__color: $black;
+$heading--primary__color: $black;
+$heading--secondary__color: $gray-l3;
+$heading--tertiary__color: $gray-l3;
+
+$copy__color: $gray;
+$copy__color--focus: $gray-d4;
+
+$copy--lead__color: $gray;
+$copy--lead__color--focus: $gray-d4;
+
+$copy--supplemental__color: $gray-l2;
+$copy--supplemental__color--focus: $gray;
+
+// --------------------
+
+// states
+$selected__bg: $blue-t1;
+$selected__color: $blue-s1;
+
+// --------------------
+
+// visual rows
+$row__bg: $white;
+$row--focus__bg: $blue-l5;
+$row--alt__bg: $gray-l5;

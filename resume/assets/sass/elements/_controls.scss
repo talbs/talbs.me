@@ -1,0 +1,15 @@
+// elements: controls
+// ====================
+
+// links - copy
+%link-copy {
+  @include transition(color $tmg-f1 ease-in-out, border $tmg-f1 ease-in-out);
+  border-bottom: 1px solid transparent;
+  color: $link__color;
+  text-decoration: none;
+
+  &:hover, &:focus, &:active {
+    color: $link__color--focus;
+    border-color: $link__color--focus;
+  }
+}
