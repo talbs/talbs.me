@@ -262,6 +262,7 @@
   @extend %t-weight2;
   margin: 0 0 ($baseline-v/2) 0;
   color: $heading--tertiary__color;
+  text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
 
