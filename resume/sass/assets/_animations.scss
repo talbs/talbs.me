@@ -1,6 +1,22 @@
 // assets: animations
 // ====================
 
+// visual loading of page elements
+.anim--load {
+  opacity: 0.0;
+  @include animation(fadeIn $tmg-avg ease-in 1);
+  @include animation-fill-mode(forwards);
+}
+
+@for $i from 1 through 10 {
+
+  .anim--load__el--#{$i} {
+    @include animation-delay(#{$i}s);
+  }
+}
+
+// --------------------
+
 // fade in
 @include keyframes(fadeIn) {
   0% {

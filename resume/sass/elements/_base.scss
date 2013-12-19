@@ -88,3 +88,13 @@ strong {
 .list--actions, .list--nav, .list--docs, .list--steps, .list--controls, .list--fields, .list--help, .nav--wizard, .list--tips, .field--group {
   @extend %no-list;
 }
+
+// --------------------
+
+// STATE: before window loads
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
