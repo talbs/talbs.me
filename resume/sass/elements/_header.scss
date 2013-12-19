@@ -1,0 +1,111 @@
+// elements: header
+// ====================
+
+.header--global {
+  @include row();
+  margin-bottom: $baseline-v;
+
+  a {
+    @extend %link-copy;
+  }
+}
+
+.header--global__title {
+  @extend %hd--alpha;
+
+  @include media($bp-m) {
+    @include font-size(36); // NOTE: needed since neat doesn't support extends in MQs
+    @include lh(36);
+    margin-bottom: $baseline-v;
+  }
+
+  @include media($bp-ds) {
+    margin-bottom: $baseline-v;
+  }
+
+  @include media($bp-dm) {
+    @include span-columns(12 of 12);
+    margin-bottom: $baseline-v;
+  }
+
+  @include media($bp-dl) {
+    @include span-columns(6 of 12);
+  }
+
+  @include media($bp-dx) {
+    @include span-columns(6 of 12);
+  }
+}
+
+.header--global__contact {
+
+  @include media($bp-dm) {
+    @include span-columns(12 of 12);
+  }
+
+  @include media($bp-dl) {
+    @include span-columns(6 of 12);
+    margin-top: $baseline-v;
+  }
+
+  @include media($bp-dx) {
+    @include span-columns(6 of 12);
+    margin-top: $baseline-v;
+  }
+
+  .list--contact {
+    @extend %no-list;
+  }
+
+  .list--contact__item {
+    @extend %hd--epsilon;
+    margin-bottom: ($baseline-v/4);
+
+    @include media($bp-ds) {
+      @include span-columns(3 of 6);
+      @include omega(2n);
+    }
+
+    @include media($bp-dm) {
+      @include span-columns(3 of 6);
+      @include omega(2n);
+    }
+
+    @include media($bp-dl) {
+      @include span-columns(3 of 6);
+      @include omega(2n);
+    }
+
+    @include media($bp-dx) {
+      @include span-columns(3 of 6);
+      @include omega(2n);
+    }
+
+    .ico {
+      @extend %trans-color;
+      display: inline-block;
+      vertical-align: middle;
+      width: ($baseline-h/4);
+    }
+
+    .label {
+      @extend %text-sr;
+    }
+
+    .value {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: ($baseline-h/4);
+      border-left: 1px solid $gray-l5;
+      padding-left: ($baseline-h/4);
+    }
+
+    // STATE: hover
+    &:hover, &:focus {
+
+      .ico {
+        color: $copy__color--focus;
+      }
+    }
+  }
+}
