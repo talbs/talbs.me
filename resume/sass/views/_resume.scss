@@ -50,7 +50,7 @@
     left: -($baseline-h*10);
     width: ($baseline-h*3.5);
     border: 1px solid $gray-l5;
-    background: $white;
+    background: $white-t;
 
     @include media($bp-dx) {
       left: -($baseline-h/10);
