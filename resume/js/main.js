@@ -1,3 +1,4 @@
+
 function $linkNewWindow(e) {
   window.open($(e.target).attr('href'));
   e.preventDefault();
@@ -9,6 +10,9 @@ jQuery(document).ready(function($) {
 
   // removing no-js, accessibility/modernizr marker
   $('html').removeClass('no-js');
+
+  // removing preload class - holds up load-based animations
+  $("body").removeClass("preload");
 
   // general link management - new window/tab
   $('a[data-rel="external"]').bind('click', $linkNewWindow);

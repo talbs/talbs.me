@@ -3,7 +3,6 @@
 
 .view--resume {
 
-
   // resume-specific re-usable bits
   %section--alpha {
     @extend %wipe-last-child;
@@ -52,7 +51,6 @@
     width: ($baseline-h*3.5);
     border: 1px solid $gray-l5;
     background: $white;
-    opacity: 0.0;
 
     @include media($bp-dx) {
       left: -($baseline-h/10);
@@ -448,6 +446,7 @@
     }
 
     .list--nav__item {
+      @extend %copy--focusable;
       margin-bottom: $baseline-v;
 
       @include media($bp-ds) {
