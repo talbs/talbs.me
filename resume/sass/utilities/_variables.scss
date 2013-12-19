@@ -79,6 +79,7 @@ $f-monospace: 'Bitstream Vera Sans Mono', Consolas, Courier, monospace;
 
 $f-title: $f-sans-serif;
 $f-copy: $f-serif;
+$f-action: $f-sans-serif;
 
 // --------------------
 
@@ -95,7 +96,8 @@ $gutter: $baseline-v;                                               // gutter b/
 $bp-m: new-breakpoint(max-width 529px 4);                           // mobile devices - make grid 4 columns
 $bp-ds: new-breakpoint(min-width 530px max-width 759px 6);          // small displays - make grid 6 columns
 $bp-dm: new-breakpoint(min-width 760px max-width 899px 12);         // medium displays - make grid 12 columns
-$bp-dl: new-breakpoint(min-width 900px 12);                         // large displays - make grid 12 columns
+$bp-dl: new-breakpoint(min-width 900px max-width 1349px 12);         // large displays - make grid 12 columns
+$bp-dx: new-breakpoint(min-width 1350px 12);                         // large displays - make grid 12 columns
 
 // --------------------
 

@@ -1,0 +1,31 @@
+// elements: controls
+// ====================
+
+// links - copy
+%link-copy {
+  @include transition(color $tmg-f1 ease-in-out, border $tmg-f1 ease-in-out);
+  border-bottom: 1px solid transparent;
+  color: $link__color;
+  text-decoration: none;
+
+  &:hover, &:focus, &:active {
+    color: $link__color--focus;
+    border-color: $link__color--focus;
+  }
+}
+
+// links - copy
+%link-nav-page {
+  @include transition(color $tmg-f1 ease-in-out, border $tmg-f1 ease-in-out);
+  display: block;
+  border-radius: ($baseline-v/10);
+  border-left: ($baseline-h/4) solid $gray-l5;
+  padding: ($baseline-v/2) ($baseline-h/4);
+  color: $gray-l3;
+  text-decoration: none;
+
+  &:hover, &:active {
+    border-left-color: $link__color--focus;
+    color: $link__color--focus;
+  }
+}
