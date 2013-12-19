@@ -3,10 +3,35 @@
 
 .view--resume {
 
-  // general
+
+  // resume-specific re-usable bits
+  %section--alpha {
+    @extend %wipe-last-child;
+    @include row();
+    margin-bottom: ($baseline-v*3);
+  }
+
+  %copy--focusable {
+
+    .title, .copy {
+      @extend %trans-color;
+    }
+
+    // STATE: hover/focus
+    &:focus, &:hover {
+
+      .title, .copy {
+        color: $copy__color--focus;
+      }
+    }
+  }
+
+  // --------------------
+
+  // layout
   .wrapper--view {
     border-top: $baseline-v solid $gray-l5;
-    border-bottom: $baseline-v solid $gray-l6;
+    border-bottom: $baseline-v solid $gray-l5;
     background: $view__bg url(../images/bg-noise-fff.png) 0 0 repeat;
   }
 
@@ -19,7 +44,91 @@
   }
 
   .nav--global {
-    @extend %text-sr;
+    @extend %state-disabled;
+    @include transition(opacity $tmg-s1 ease-in-out, left $tmg-s1 ease-in-out);
+    position: fixed;
+    top: ($baseline-v*4);
+    left: -($baseline-h*10);
+    width: ($baseline-h*3.5);
+    border: 1px solid $gray-l5;
+    background: $white;
+    opacity: 0.0;
+
+    @include media($bp-dx) {
+      left: -($baseline-h/10);
+      // @extend %state-enabled; NOTE: can't be used now
+      pointer-events: auto; // NOTE: needed now since extends aren't supported in neat media mixins
+      outline: invert none medium; // NOTE: needed now since extends aren't supported in neat media mixins
+      opacity: 1.0;
+    }
+
+    .title {
+      @extend %text-sr;
+    }
+
+    .list--nav {
+
+    }
+
+    .list--nav__item {
+      border-bottom: 1px solid $gray-l5;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      // STATE: current nav item
+      &.is--current {
+
+        .action {
+          color: $gray;
+          border-left-color: $gray;
+        }
+      }
+    }
+
+    .ico {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: ($baseline-h/10);
+    }
+
+    .label {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .action {
+      @extend %link-nav-page;
+      @extend %action--nav--page;
+    }
+  }
+
+  .content--primary {
+    @extend %section--alpha;
+  }
+
+  .content--secondary {
+    @extend %section--alpha;
+  }
+
+
+  .wrapper--main-other {
+    @extend %trans-size;
+
+    @include media($bp-dm) {
+      @include span-columns(12 of 12);
+    }
+
+    @include media($bp-dl) {
+      @include shift(1);
+      @include span-columns(3 of 12);
+    }
+
+    @include media($bp-dx) {
+      @include shift(1);
+      @include span-columns(3 of 12);
+    }
   }
 
   // --------------------
@@ -40,55 +149,18 @@
     @extend %text-sr;
   }
 
-
-  // basic layout
-  .wrapper--content {
-    @include row();
-  }
-
-  @include reset-all;
-
-  .content--main {
-    @extend %trans-size;
-
-    @include media($bp-dm) {
-      @include span-columns(12 of 12);
-    }
-
-    @include media($bp-dl) {
-      @include span-columns(8 of 12);
-    }
-  }
-
-  .content--supplemental {
-    @extend %trans-size;
-
-    @include media($bp-dm) {
-      @include span-columns(12 of 12);
-    }
-
-    @include media($bp-dl) {
-      @include shift(1);
-      @include span-columns(3 of 12);
-    }
-  }
-
-  .content--elsewhere {
-
-  }
-
   // --------------------
 
   // summary
   .content--summary {
-    margin-bottom: ($baseline-v*2);
+    @extend %section--alpha;
+    @extend %copy--focusable;
 
     .title {
       @extend %text-sr;
     }
 
     .copy {
-      @extend %trans-color;
       @extend %copy--lead;
 
       @include media($bp-m) {
@@ -100,52 +172,29 @@
     a {
       @extend %link-copy;
     }
-
-    // STATE: hover/focus
-    &:focus, &:hover {
-
-      .copy {
-        color: $copy__color--focus;
-      }
-    }
-  }
-
-  // --------------------
-
-  // education
-  .content--education {
-    margin-bottom: ($baseline-v*3);
-
-    a {
-      @extend %link-copy;
-    }
-
-    .content--education__degree {
-      @extend %wipe-last-child;
-      margin-bottom: ($baseline-v*1.5);
-      border-bottom: 1px solid $gray-l4;
-      padding-bottom: ($baseline-v*1.5);
-
-      .title {
-        @extend %hd--charlie;
-
-        .degree:after {
-          content: ", ";
-          margin-right: ($baseline-h/10);
-        }
-      }
-
-      .list--temporal {
-        @extend %hd--epsilon;
-      }
-    }
   }
 
   // --------------------
 
   // experience
   .content--experience {
-    margin-bottom: ($baseline-v*3);
+    @extend %trans-size;
+    margin-bottom: ($baseline-v*2);
+
+    @include media($bp-dm) {
+      @include span-columns(12 of 12);
+      margin-bottom: 0;
+    }
+
+    @include media($bp-dl) {
+      @include span-columns(8 of 12);
+      margin-bottom: 0;
+    }
+
+    @include media($bp-dx) {
+      @include span-columns(8 of 12);
+      margin-bottom: 0;
+    }
 
     a {
       @extend %link-copy;
@@ -154,6 +203,7 @@
 
   .content--experience__position {
     @extend %wipe-last-child;
+    @extend %copy--focusable;
     margin-bottom: ($baseline-v*1.5);
     border-bottom: 1px solid $gray-l4;
     padding-bottom: ($baseline-v*1.5);
@@ -179,6 +229,10 @@
       @include media($bp-dl) {
         @include span-columns(5 of 8);
       }
+
+      @include media($bp-dx) {
+        @include span-columns(5 of 8);
+      }
     }
 
     .list--temporal {
@@ -196,6 +250,12 @@
         @include omega();
         text-align: right;
       }
+
+      @include media($bp-dx) {
+        @include span-columns(3 of 8);
+        @include omega();
+        text-align: right;
+      }
     }
 
     .list--temporal__item {
@@ -206,7 +266,6 @@
     }
 
     .copy {
-      @extend %trans-color;
       @extend %copy--showcase;
 
 
@@ -215,69 +274,135 @@
         @include lh(16);
       }
     }
+  }
 
-    // STATE: hover/focus
-    &:focus, &:hover {
+  // --------------------
 
-      .copy {
-        color: $copy__color--focus;
+  // education
+  .content--education {
+    margin-bottom: ($baseline-v*4);
+
+    @include media($bp-ds) {
+      margin-bottom: ($baseline-v*2);
+    }
+
+    @include media($bp-m) {
+      margin-bottom: ($baseline-v*2);
+    }
+
+    a {
+      @extend %link-copy;
+    }
+
+    .content--education__degree {
+      @extend %wipe-last-child;
+      margin-bottom: ($baseline-v*0.75);
+      border-bottom: 1px solid $gray-l4;
+      padding-bottom: ($baseline-v*0.75);
+
+      .title {
+        @extend %hd--charlie;
+
+        .degree:after {
+          content: ", ";
+          margin-right: ($baseline-h/10);
+        }
+      }
+
+      .list--temporal {
+        @extend %hd--epsilon;
       }
     }
   }
 
-
-  // --------------------
-
-  // highlights
-  .content--highlights {
+  // highlighted partners/projects
+  .content--partners {
     margin-bottom: ($baseline-v*2);
 
     a {
       @extend %link-copy;
     }
 
-    .list--projects, .list--noteworthy {
+    .list--partners {
       @extend %no-list;
     }
 
-    .list--projects {
+    .list--partners_item {
+      @extend %wipe-last-child;
+      margin-bottom: ($baseline-v*0.75);
+      border-bottom: 1px solid $gray-l4;
+      padding-bottom: ($baseline-v*0.75);
 
       @include media($bp-dm) {
         @include span-columns(6 of 12);
+        @include omega(2n);
+      }
+
+      @include media($bp-ds) {
+        @include span-columns(6 of 12);
+        @include omega(2n);
+      }
+
+      .ico {
+        @extend %trans-color;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: ($baseline-h/4);
+      }
+
+      .title {
+        @extend %hd--foxtrot;
+      }
+
+      // CASE: featured
+      &.is-featured {
+
+        .title {
+          color: $copy--supplemental__color--focus;
+        }
       }
     }
+  }
 
-    .list--noteworthy {
+  // --------------------
+
+  // activities
+  .content--activities {
+    @extend %section--alpha;
+
+    a {
+      @extend %link-copy;
+    }
+
+    .list--activities {
+      @extend %no-list;
+    }
+
+    .list--activiites_item {
+      @extend %copy--focusable;
+      margin-bottom: $baseline-v;
 
       @include media($bp-dm) {
-        @include shift(1);
-        @include span-columns(5 of 12);
+        @include span-columns(4 of 12);
+        @include omega(4n);
       }
-    }
 
-    .list--projects_item, .list--noteworthy_item {
-      margin-bottom: ($baseline-v*1.5);
-      border-bottom: 1px solid $gray-l4;
-      padding-bottom: ($baseline-v*1.5);
+      @include media($bp-dl) {
+        @include span-columns(4 of 12);
+        @include omega(4n);
+      }
+
+      @include media($bp-dx) {
+        @include span-columns(4 of 12);
+        @include omega(4n);
+      }
 
       .title {
         @extend %hd--charlie;
       }
-
-      .copy {
-        @extend %trans-color;
-      }
-
-      // STATE: hover/focus
-      &:focus, &:hover {
-
-        .copy {
-          color: $copy__color--focus;
-        }
-      }
     }
 
-    .list--noteworthy_item {
+    .list--activiites_item {
       @extend %wipe-last-child;
     }
   }
@@ -286,32 +411,27 @@
 
   // elsewhere
   .content--elsewhere {
-    @include row();
-    margin-bottom: ($baseline-v*3);
+    @extend %section--alpha;
 
     a {
       @extend %link-copy;
     }
+
+    em {
+      @extend %emphasis--bravo;
+    }
   }
 
   .elsewhere__offclock {
-    margin-bottom: $baseline-v;
+    @extend %copy--focusable;
+    margin-bottom: ($baseline-v*1.5);
 
     .elsewhere__offclock__title {
       @extend %text-sr;
     }
 
     .copy {
-      @extend %trans-color;
       @extend %copy--showcase;
-    }
-
-    // STATE: hover/focus
-    &:focus, &:hover {
-
-      .copy {
-        color: $copy__color--focus;
-      }
     }
   }
 
@@ -341,8 +461,13 @@
       }
 
       @include media($bp-dl) {
-        @include span-columns(4 of 12);
-        @include omega(3n);
+        @include span-columns(3 of 12);
+        @include omega(4n);
+      }
+
+      @include media($bp-dx) {
+        @include span-columns(3 of 12);
+        @include omega(4n);
       }
 
       .title {
@@ -366,6 +491,7 @@
       }
 
       .copy {
+        @extend %copy--detail;
         margin-left: ($baseline-h);
       }
 

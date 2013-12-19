@@ -31,18 +31,18 @@
 
       <ol class="list list--nav">
         <li class="list--nav__item">
-          <a class="action" href="#content-primary">this page's main content</a>
+          <a class="action" href="#content--primary">this page's main content</a>
         </li>
         <li class="list--nav__item">
-          <a class="action" href="#content-secondary">this page's supplemental content</a>
+          <a class="action" href="#content--secondary">this page's supplemental content</a>
         </li>
       </ol>
     </nav>
 
-    <div class="wrapper--view">
+    <div class="wrapper--view" id="top">
       <section class="view">
         <div class="wrapper--grid">
-          <header class="header--global" role="banner">
+          <header class="header--global" role="banner" id="mast">
             <h1 class="header--global__title">Brian Talbot</h1>
 
             <div class="header--global__contact">
@@ -84,27 +84,43 @@
 
           <hr class="divider" />
 
-          <nav class="nav--global">
+          <nav class="nav--global" id="nav--global">
             <h2 class="title">Main Navigation</h2>
 
             <ol class="list list--nav">
               <li class="list--nav__item nav--global__summary">
-                <a class="action" href="#summary">Summary</a>
-              </li>
-
-              <li class="list--nav__item nav--global__education">
-                <a class="action" href="#education">Education</a>
+                <a class="action" href="#top">
+                  <span class="ico"><i class="fa fa-info-circle"></i></span>
+                  <span class="label">Summary</span>
+                </a>
               </li>
 
               <li class="list--nav__item nav--global__experience">
-                <a class="action" href="#experience">Experience</a>
+                <a class="action" href="#experience">
+                <span class="ico"><i class="fa fa-road"></i></span>
+                <span class="label">Experience</span>
+                </a>
               </li>
 
-              <li class="list--nav__item nav--global__highlights">
-                <a class="action" href="#highlights">Highlights</a>
+              <li class="list--nav__item nav--global__partners">
+                <a class="action" href="#partners">
+                  <span class="ico"><i class="fa fa-group"></i></span>
+                  <span class="label">Clients</span>
+                </a>
               </li>
-              <li class="list--nav__item nav--global__availability">
-                <a class="action" href="#availabilty">Availability</a>
+
+              <li class="list--nav__item nav--global__activities">
+                <a class="action" href="#activities">
+                  <span class="ico"><i class="fa fa-comments"></i></span>
+                  <span class="label">Activities</span>
+                </a>
+              </li>
+
+              <li class="list--nav__item nav--global__elsewhere">
+                <a class="action" href="#elsewhere">
+                  <span class="ico"><i class="fa fa-external-link-square"></i></span>
+                  <span class="label">Elsewhere</span>
+                </a>
               </li>
             </ol>
           </nav>
@@ -120,9 +136,7 @@
 
           <hr class="divider" />
 
-          <div class="wrapper--content">
-
-            <div class="content--main" role="main" id="content-primary">
+            <div class="content--primary" role="main" id="content--primary">
               <section class="content--experience" id="experience">
                 <h2 class="title title--section">Experience</h2>
 
@@ -276,11 +290,11 @@
                   </div>
                 </article>
               </section>
-            </div>
 
             <hr class="divider" />
 
-            <div class="content--supplemental" role="complementary" id="content-secondary">
+            <div class="wrapper--main-other">
+
               <section class="content--education" id="education">
                 <h2 class="title title--section">Education</h2>
 
@@ -323,131 +337,182 @@
                 </article>
               </section>
 
-              <section class="content--highlights" id="highlights">
-                <h2 class="title title--section">Highlights</h2>
+              <section class="content--partners" id="partners">
+                <h2 class="title title--section">Notable Clients &amp; Partners</h2>
 
-                <div class="highlights__projects">
-                  <ul class="list list--projects">
-                    <li class="list--projects_item projects__puma">
-                      <h3 class="title">PUMA</h3>
-                      <div class="copy">
-                        <p>Working alongside <a href="http://www.puma.com" data-rel="external">PUMA</a>'s marketing team, I re- architected the company's sports/lifestyle-driven sites with a flexible, but consistent design library that can focus on each site's individual goals, visual brand, content and consumer relationships. While doing so, I've set standards in global navigation, account-driven interaction and eCommerce. PUMA's redesigned "categories" have enjoyed a three-fold increase in traffic with their visitors an average of much longer time on-site.</p>
-                      </div>
+                  <ul class="list list--partners">
+                    <li class="list--partners_item partners__choicehotels">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> Choice Hotels</h3>
                     </li>
 
-                    <li class="list--projects_item projects__sundance">
-                      <h3 class="title">Sundance Film Festival</h3>
-                      <div class="copy">
-                        <p>The team responsible for the annual popular film festival wanted an expert review of the ticketing portion of the festival's website. After performing a competitive analysis as well as a content/ functionality inventory, and heuristic analysis of their current solution, I designed and delivered a presentation summarizing the findings and recommending changes to content strategy, information architecture and information design. Sundance circulated the report throughout the organization as a source for best practices and guidelines.</p>
-                      </div>
+                    <li class="list--partners_item partners__holycross">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> College of the Holy Cross</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__compassion">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> Compassion International</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__earthecho">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> Earth Echo International</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__edxstudio is-featured">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> MIT</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__heritage">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> The Heritage Foundation</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__lafayette">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> Lafayette College</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__natgeo is-featured">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> National Geographic</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__natgeochannel">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> National Geographic Channel</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__puma is-featured">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> PUMA</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__sundance is-featured">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> Sundance Institute</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__thinkgeek">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span>ThinkGeek</h3>
+                    </li>
+
+                    <li class="list--partners_item partners__wp">
+                      <h3 class="title"><span class="ico"><i class="fa fa-building-o"></i></span> The Washington Post</h3>
                     </li>
                   </ul>
-                </div>
-
-                <div class="highlights__noteworthy">
-                  <ul class="list list--noteworthy">
-                    <li class="list--noteworthy_item noteworthy__sxsw">
-                      <h3 class="title">Public Speaking &amp; Teaching</h3>
-                      <div class="copy">
-                        <p>I've spoken and facilitated workshops at a number of events and venues about UX and web design-related topics including presenting at the SXSW Interactive Conference.</p>
-                      </div>
-                    </li>
-
-                    <li class="list--noteworthy_item noteworthy__net">
-                      <h3 class="title">Sharing Work</h3>
-                      <div class="copy">
-                        <p>My work has been published in .Net Magazine, an internationally popular web design and standards magazine and has also helped towards open source projects, such as edX's Open edX</p>
-                      </div>
-                    </li>
-
-                    <li class="list--noteworthy_item noteworthy__organizing">
-                      <h3 class="title">Community Organization</h3>
-                      <div class="copy">
-                        <p>I've helped organize several design-related events in the Washington, DC and Boston, MA-Area including UX Show and Tell and UXCamp DC.</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
               </section>
+
             </div>
           </div>
 
           <hr class="divider" />
 
-          <section class="content--elsewhere" id="elsewhere">
-            <h2 class="title title--section">Elsewhere</h2>
+          <div class="content--secondary" role="complementary" id="content--secondary">
 
-            <div class="elsewhere__offclock">
-              <h3 class="elsewhere__offclock__title title">Interests &amp; On a Personal Note</h3>
+            <section class="content--activities" id="activities">
+              <h2 class="title title--section">Other Activities &amp; Interests</h2>
 
-              <div class="copy">
-                <p>When I'm not busy planning or pushing pixels, you can find me knee deep in <a href="http://www.flickr.com/photos/b-tal/" data-rel="external">photography</a>, volunteering, playing squash, speaking in analogies, gaming, <a href="http://pinterest.com/talbs/prints-illustrations/" data-rel="external">pining over beautiful posters</a>, reading <a href="http://www.good.is/" data-rel="external">various</a> <a href="http://www.americastestkitchen.com/" data-rel="external">periodicals</a> and <a href="https://www.goodreads.com/talbs" data-rel="external">books</a>, scheming about the next set of travel plans with <a href="http://pinterest.com/melistocrat/travel/" data-rel="external">my partner in crime</a>, and <a href="http://pinterest.com/talbs/recipes-food/" data-rel="external">experimenting with recipes</a> in order to keep me busy and off the streets.</p>
+                <ul class="list list--activities">
+                  <li class="list--activiites_item activiites__teching">
+                    <h3 class="title">Teaching</h3>
+                    <div class="copy">
+                      <p>In addition to my work as an adjunct faculty member at Boston University's CDIA, I've developed and facilitated workshops for companies on software, web design, and front end development.</p>
+                    </div>
+                  </li>
+
+                  <li class="list--activiites_item activiites__speaking">
+                    <h3 class="title">Speaking &amp; Sharing</h3>
+                    <div class="copy">
+                      <p>I've spoken at a number of events and venues about UX and web design-related topics including <a href="http://www.slideshare.net/whafro/sxsw-specialist-generalist-3448651" data-rel="external">presenting</a> at the <a href="http://sxsw.com/interactive" data-rel="external">SXSW Interactive Conference</a>. My work has also been published in <a href="http://www.creativebloq.com/net-magazine" data-rel="external">Net Magazine</a>, an internationally popular web design and standards magazine and has also helped towards open source projects.</p>
+                    </div>
+                  </li>
+
+                  <li class="list--activiites_item activiites__organizing">
+                    <h3 class="title">Community Organization</h3>
+                    <div class="copy">
+                      <p>I've helped organize several design-related events in the Washington, DC and Boston, MA-Area including Refresh DC/Boston, <a href="http://uxshowandtell.org/showandtell/index.html" data-rel="external">UX Show and Tell</a> and <a href="http://uxcampdc.com/" data-rel="external">UXCamp DC</a>.</p>
+                    </div>
+                  </li>
+                </ul>
+            </section>
+
+            <hr class="divider" />
+
+            <section class="content--elsewhere" id="elsewhere">
+              <h2 class="title title--section">Elsewhere</h2>
+
+              <div class="elsewhere__offclock">
+                <h3 class="elsewhere__offclock__title title">Interests &amp; On a Personal Note</h3>
+
+                <div class="copy">
+                  <p>When I'm not busy planning or pushing pixels, you can find me knee deep in <a href="http://www.flickr.com/photos/b-tal/" data-rel="external">photography</a>, volunteering, playing squash, speaking in analogies, gaming, <a href="http://pinterest.com/talbs/prints-illustrations/" data-rel="external">pining over beautiful posters</a>, reading <a href="http://www.good.is/" data-rel="external">various</a> <a href="http://www.americastestkitchen.com/" data-rel="external">periodicals</a> and <a href="https://www.goodreads.com/talbs" data-rel="external">books</a>, scheming about the next set of travel plans with <a href="http://pinterest.com/melistocrat/travel/" data-rel="external">my partner in crime</a>, and <a href="http://pinterest.com/talbs/recipes-food/" data-rel="external">experimenting with recipes</a> in order to keep me busy and off the streets. <em>You can also find more from and about me in the following places</em>:</p>
+                </div>
               </div>
-            </div>
 
-            <nav class="elsewhere__online">
-              <h3 class="elsewhere__online__title title">More About Me Elsewhere Online</h3>
-              <div class="elsewhere__online__copy copy">
-                <p>You can also find more from and about me in the following places:</p>
-              </div>
+              <nav class="elsewhere__online">
+                <h3 class="elsewhere__online__title title">More About Me Elsewhere Online</h3>
 
-              <ol class="list list--nav">
-                <li class="list--nav__item nav--elsewhere__twitter">
-                  <h4 class="title">
-                    <span class="ico"><i class="fa fa-twitter"></i></span>
-                    <a class="action" href="http://twitter.com/talbs" data-rel="external">Twitter</a>
-                  </h4>
+                <ol class="list list--nav">
+                  <li class="list--nav__item nav--elsewhere__twitter">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-twitter"></i></span>
+                      <a class="action" href="http://twitter.com/talbs" data-rel="external">Twitter</a>
+                    </h4>
 
-                  <p class="copy">Professional thoughts and personal meaderings about video games, pop culture, and current events</p>
-                </li>
+                    <p class="copy">Professional thoughts and personal meaderings about video games, pop culture, and current events</p>
+                  </li>
 
-                <li class="list--nav__item nav--elsewhere__flickr">
-                  <h4 class="title">
-                    <span class="ico"><i class="fa fa-flickr"></i></span>
-                    <a class="action" href="http://www.flickr.com/photos/b-tal/" data-rel="external">Flickr</a>
-                  </h4>
+                  <li class="list--nav__item nav--elsewhere__flickr">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-flickr"></i></span>
+                      <a class="action" href="http://www.flickr.com/photos/b-tal/" data-rel="external">Flickr</a>
+                    </h4>
 
-                  <p class="copy">The home for my photography hobby and all related adventures</p>
-                </li>
+                    <p class="copy">The home for my photography hobby and all related adventures</p>
+                  </li>
 
-                <li class="list--nav__item nav--elsewhere__linkedin">
-                  <h4 class="title">
-                    <span class="ico"><i class="fa fa-linkedin"></i></span>
-                    <a class="action" href="http://www.linkedin.com/in/briantalbot" data-rel="external">LinkedIn</a>
-                  </h4>
+                  <li class="list--nav__item nav--elsewhere__linkedin">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-linkedin"></i></span>
+                      <a class="action" href="http://www.linkedin.com/in/briantalbot" data-rel="external">LinkedIn</a>
+                    </h4>
 
-                  <p class="copy">Professional history, references, and more career-related information</p>
-                </li>
+                    <p class="copy">Professional history, references, and more career-related information</p>
+                  </li>
 
-                <li class="list--nav__item nav--elsewhere__dribbble">
-                  <h4 class="title">
-                    <span class="ico"><i class="fa fa-dribbble"></i></span>
-                    <a class="action" href="http://dribbble.com/talbs" data-rel="external">Dribbble</a>
-                  </h4>
+                  <li class="list--nav__item nav--elsewhere__dribbble">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-dribbble"></i></span>
+                      <a class="action" href="http://dribbble.com/talbs" data-rel="external">Dribbble</a>
+                    </h4>
 
-                  <p class="copy">Sharing in-progress design work and cataloguing inspiration for projects</p>
-                </li>
+                    <p class="copy">Sharing in-progress design work and cataloguing inspiration for projects</p>
+                  </li>
 
-                <li class="list--nav__item nav--elsewhere__github">
-                  <h4 class="title">
-                    <span class="ico"><i class="fa fa-github"></i></span>
-                    <a class="action" href="http://github.com/talbs" data-rel="external">Github</a>
-                  </h4>
+                  <li class="list--nav__item nav--elsewhere__github">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-github"></i></span>
+                      <a class="action" href="http://github.com/talbs" data-rel="external">Github</a>
+                    </h4>
 
-                  <p class="copy">Personal projects, code inspiration/catalog, and technical history of contributions to open source projects</p>
-                </li>
+                    <p class="copy">Personal projects, code inspiration/catalog, and technical history of contributions to open source projects</p>
+                  </li>
 
-                <li class="list--nav__item nav--elsewhere__rdio">
-                  <h4 class="title">
-                    <span class="ico"><i class="fa fa-music"></i></span>
-                    <a class="action" href="http://www.rdio.com/people/talbs/" data-rel="external">Rdio</a>
-                  </h4>
+                  <li class="list--nav__item nav--elsewhere__rdio">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-music"></i></span>
+                      <a class="action" href="http://www.rdio.com/people/talbs/" data-rel="external">Rdio</a>
+                    </h4>
 
-                  <p class="copy">Music listening habits and personal catalog - complete with OCD-level playlists</p>
-                </li>
-              </ol>
-            </nav>
-          </section>
+                    <p class="copy">Music listening habits and personal catalog - complete with OCD-level playlists</p>
+                  </li>
+
+                  <li class="list--nav__item nav--elsewhere__pinterest">
+                    <h4 class="title">
+                      <span class="ico"><i class="fa fa-pinterest"></i></span>
+                      <a class="action" href="http://www.pinterest.com/talbs" data-rel="external">Pinterest</a>
+                    </h4>
+
+                    <p class="copy">Personal lists ranging from culinary recipes to design inspiration to wishlists</p>
+                  </li>
+                </ol>
+              </nav>
+            </section>
+
+          </div>
 
           <hr class="divider" />
 

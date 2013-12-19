@@ -96,6 +96,11 @@
   outline: none;
 }
 
+%state-enabled {
+  pointer-events: auto;
+  outline: invert none medium;
+}
+
 // --------------------
 
 // depth levels
