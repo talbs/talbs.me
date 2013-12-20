@@ -42,66 +42,6 @@
     @include outer-container();
   }
 
-  .nav--global {
-    @extend %state-disabled;
-    @include transition(opacity $tmg-s1 ease-in-out, left $tmg-s1 ease-in-out);
-    position: fixed;
-    top: ($baseline-v*4);
-    left: -($baseline-h*10);
-    width: ($baseline-h*3.5);
-    border: 1px solid $gray-l5;
-    background: $white-t;
-
-    @include media($bp-dx) {
-      left: -($baseline-h/10);
-      // @extend %state-enabled; NOTE: can't be used now
-      pointer-events: auto; // NOTE: needed now since extends aren't supported in neat media mixins
-      outline: invert none medium; // NOTE: needed now since extends aren't supported in neat media mixins
-      opacity: 1.0;
-    }
-
-    .title {
-      @extend %text-sr;
-    }
-
-    .list--nav {
-
-    }
-
-    .list--nav__item {
-      border-bottom: 1px solid $gray-l5;
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      // STATE: current nav item
-      &.is--current {
-
-        .action {
-          color: $gray;
-          border-left-color: $gray;
-        }
-      }
-    }
-
-    .ico {
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: ($baseline-h/10);
-    }
-
-    .label {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .action {
-      @extend %link-nav-page;
-      @extend %action--nav--page;
-    }
-  }
-
   .content--primary {
     @extend %section--alpha;
   }
@@ -112,7 +52,6 @@
 
 
   .wrapper--main-other {
-    @extend %trans-size;
 
     @include media($bp-dm) {
       @include span-columns(12 of 12);
@@ -126,6 +65,32 @@
     @include media($bp-dx) {
       @include shift(1);
       @include span-columns(3 of 12);
+    }
+  }
+
+  // --------------------
+
+  // visual loading of page elements
+  .anim--load {
+    opacity: 0.0;
+    @include animation(fadeIn $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--1, .anim--load__el--3 {
+    @include animation(fadeInLeft $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--2 {
+    @include animation(fadeInRight $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  @for $i from 1 through 10 {
+
+    .anim--load__el--#{$i} {
+      @include animation-delay(#{$i/2}s);
     }
   }
 
@@ -176,7 +141,6 @@
 
   // experience
   .content--experience {
-    @extend %trans-size;
     margin-bottom: ($baseline-v*2);
 
     @include media($bp-dm) {
@@ -397,6 +361,10 @@
 
       .title {
         @extend %hd--charlie;
+      }
+
+      .copy {
+        @extend %copy--showcase;
       }
     }
 

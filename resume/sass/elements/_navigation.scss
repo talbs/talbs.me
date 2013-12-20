@@ -1,2 +1,64 @@
 // elements: navigation
 // ====================
+
+.nav--global {
+  @extend %state-disabled;
+  @include transition(opacity $tmg-s1 ease-in-out, left $tmg-s1 ease-in-out);
+  position: fixed;
+  top: ($baseline-v*4);
+  left: -($baseline-h*10);
+  border: 1px solid $gray-l5;
+  background: $white-t;
+
+  @include media($bp-dx) {
+    left: ($baseline-h/2);
+    // @extend %state-enabled; NOTE: can't be used now
+    pointer-events: auto; // NOTE: needed now since extends aren't supported in neat media mixins
+    outline: invert none medium; // NOTE: needed now since extends aren't supported in neat media mixins
+    opacity: 1.0;
+  }
+
+  .title {
+    @extend %text-sr;
+  }
+
+  .list--nav {
+
+  }
+
+  .list--nav__item {
+    border-bottom: 1px solid $gray-l5;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    // STATE: current nav item
+    &.is--current {
+
+      .action {
+        color: $gray;
+        border-left-color: $gray;
+      }
+    }
+  }
+
+  .action {
+    @extend %link-nav-page;
+    @extend %action--nav--page;
+    text-align: center;
+  }
+
+  .ico {
+    display: block;
+  }
+
+  .fa {
+    @extend %t-icon-m;
+    margin-bottom: ($baseline-v/4);
+  }
+
+  .label {
+    text-align: center;
+  }
+}
