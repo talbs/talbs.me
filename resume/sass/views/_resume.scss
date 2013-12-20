@@ -52,7 +52,6 @@
 
 
   .wrapper--main-other {
-    @extend %trans-size;
 
     @include media($bp-dm) {
       @include span-columns(12 of 12);
@@ -66,6 +65,32 @@
     @include media($bp-dx) {
       @include shift(1);
       @include span-columns(3 of 12);
+    }
+  }
+
+  // --------------------
+
+  // visual loading of page elements
+  .anim--load {
+    opacity: 0.0;
+    @include animation(fadeIn $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--1, .anim--load__el--3 {
+    @include animation(fadeInLeft $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--2 {
+    @include animation(fadeInRight $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  @for $i from 1 through 10 {
+
+    .anim--load__el--#{$i} {
+      @include animation-delay(#{$i/2}s);
     }
   }
 
@@ -116,7 +141,6 @@
 
   // experience
   .content--experience {
-    @extend %trans-size;
     margin-bottom: ($baseline-v*2);
 
     @include media($bp-dm) {
@@ -337,6 +361,10 @@
 
       .title {
         @extend %hd--charlie;
+      }
+
+      .copy {
+        @extend %copy--showcase;
       }
     }
 
