@@ -3,12 +3,117 @@
 
 .footer--global {
   @include row();
+
+  .title {
+    @extend %hd--epsilon;
+    margin-bottom: ($baseline-v/4);
+  }
+
+  .copy {
+    @extend %copy--detail;
+  }
+
+  a {
+    @extend %link-copy;
+  }
 }
 
 .footer--global__legal {
-  @extend %hd--epsilon;
+
+  @include media($bp-m) {
+    margin-bottom: ($baseline-v*1.5);
+    text-align: center;
+  }
+
+  @include media($bp-ds) {
+    @include span-columns(3 of 6);
+  }
+
+  @include media($bp-dm) {
+    @include span-columns(5 of 12);
+    @include shift(1);
+  }
+
+  @include media($bp-dl) {
+    @include span-columns(5 of 12);
+    @include shift(1);
+  }
+
+  @include media($bp-dx) {
+    @include span-columns(5 of 12);
+    @include shift(1);
+  }
+}
+
+.footer--global__colophon {
+  position: relative;
 
   @include media($bp-m) {
     text-align: center;
+  }
+
+  @include media($bp-ds) {
+    @include span-columns(3 of 6);
+    top: -($baseline-v/4);
+  }
+
+  @include media($bp-dm) {
+    @include span-columns(5 of 12);
+    @include shift(1);
+    top: -($baseline-v/4);
+  }
+
+  @include media($bp-dl) {
+    @include span-columns(5 of 12);
+    @include shift(1);
+    top: -($baseline-v/4);
+  }
+
+  @include media($bp-dx) {
+    @include span-columns(5 of 12);
+    @include shift(1);
+    top: -($baseline-v/4);
+  }
+}
+
+.list--colophon {
+  @extend %no-list;
+}
+
+.list--colophon__item {
+  @extend %wipe-last-child;
+  @extend %copy--detail;
+
+  @include media($bp-m) {
+    margin-bottom: ($baseline-h/4);
+    border-bottom: 1px solid $gray-l5;
+    padding-bottom: ($baseline-h/4);
+  }
+
+  @include media($bp-ds) {
+    margin-bottom: ($baseline-h/4);
+    border-bottom: 1px solid $gray-l5;
+    padding-bottom: ($baseline-h/4);
+  }
+
+  @include media($bp-dm) {
+    display: block;
+    margin-bottom: ($baseline-h/4);
+    border-bottom: 1px solid $gray-l5;
+    padding-bottom: ($baseline-h/4);
+  }
+
+  @include media($bp-dl) {
+    display: inline-block;
+    margin-right: ($baseline-h/4);
+    border-right: 1px solid $gray-l5;
+    padding-right: ($baseline-h/4);
+  }
+
+  @include media($bp-dx) {
+    display: inline-block;
+    margin-right: ($baseline-h/4);
+    border-right: 1px solid $gray-l5;
+    padding-right: ($baseline-h/4);
   }
 }
