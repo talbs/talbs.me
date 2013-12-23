@@ -216,7 +216,7 @@
     @extend %wipe-last-child;
     @extend %copy--focusable;
     margin-bottom: ($baseline-v*1.5);
-    border-bottom: 1px solid $gray-l4;
+    border-bottom: 1px solid $decorative__color--secondary;
     padding-bottom: ($baseline-v*1.5);
 
     .wrapper--glance {
@@ -308,7 +308,7 @@
     .content--education__degree {
       @extend %wipe-last-child;
       margin-bottom: ($baseline-v*0.75);
-      border-bottom: 1px solid $gray-l4;
+      border-bottom: 1px solid $decorative__color--secondary;
       padding-bottom: ($baseline-v*0.75);
 
       .title {
@@ -339,9 +339,10 @@
     }
 
     .list--partners_item {
+      @extend %copy--focusable;
       @extend %wipe-last-child;
       margin-bottom: ($baseline-v*0.75);
-      border-bottom: 1px solid $gray-l4;
+      border-bottom: 1px solid $decorative__color--secondary;
       padding-bottom: ($baseline-v*0.75);
 
       @include media($bp-dm) {
@@ -365,11 +366,11 @@
         @extend %hd--foxtrot;
       }
 
-      // CASE: featured
-      &.is-featured {
+      // CASE: alternating
+      &:nth-of-type(even) {
 
         .title {
-          color: $copy--supplemental__color--focus;
+          color: $copy--supplemental__color--alt;
         }
       }
     }
