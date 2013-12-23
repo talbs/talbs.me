@@ -11,16 +11,13 @@
 }
 
 .header--global__title {
-  @extend %hd--alpha;
 
   @include media($bp-m) {
-    @include font-size(36); // NOTE: needed since neat doesn't support extends in MQs
-    @include lh(36);
-    margin-bottom: $baseline-v;
+    margin-bottom: ($baseline-v/2);
   }
 
   @include media($bp-ds) {
-    margin-bottom: $baseline-v;
+    margin-bottom: ($baseline-v*1.5);
   }
 
   @include media($bp-dm) {
@@ -30,10 +27,40 @@
 
   @include media($bp-dl) {
     @include span-columns(6 of 12);
+
   }
 
   @include media($bp-dx) {
     @include span-columns(6 of 12);
+  }
+
+  .super {
+    @extend %hd--alpha;
+    display: block;
+
+    @include media($bp-m) {
+      @include font-size(36); // NOTE: needed since neat doesn't support extends in MQs
+      @include lh(36);
+    }
+  }
+
+  .sub {
+    @extend %hd--delta;
+    display: block;
+    margin-top: -($baseline-v/4);
+
+    @include media($bp-m) {
+      display: none;
+    }
+  }
+
+  .role {
+    @extend %wipe-last-child;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: ($baseline-h/4);
+    border-right: 1px solid $gray-l5;
+    padding-right: ($baseline-h/4);
   }
 }
 
