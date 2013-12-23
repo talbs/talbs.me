@@ -82,6 +82,7 @@
 
   .list--contact {
     @extend %no-list;
+    @include clearfix();
   }
 
   .list--contact__item {

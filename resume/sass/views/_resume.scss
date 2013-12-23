@@ -29,6 +29,7 @@
 
   // layout
   .wrapper--view {
+    position: relative;
     border-top: $baseline-v solid $gray-l5;
     border-bottom: $baseline-v solid $gray-l5;
     background: $view__bg url(../images/bg-noise-fff.png) 0 0 repeat;
@@ -86,6 +87,34 @@
       @include shift(1);
       @include span-columns(3 of 12);
     }
+  }
+
+  // --------------------
+
+  // decorative bits
+  .wainscoting {
+    position: relative;
+    top: -($baseline-v);
+    display: block;
+    height: $baseline-v;
+    overflow: hidden;
+    border-top: 1px solid $blue-l5;
+    text-align: center;
+    color: $blue-l5;
+
+    .fa {
+      @extend %t-icon-l;
+      position: relative;
+      top: -($baseline-v/10);
+    }
+  }
+
+  .wainscoting--1 {
+    margin-top: $baseline-v;
+  }
+
+  .wainscoting--2, .wainscoting--3, .wainscoting--4 {
+    margin-bottom: $baseline-v;
   }
 
   // --------------------
