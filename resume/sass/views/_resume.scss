@@ -98,9 +98,9 @@
     display: block;
     height: $baseline-v;
     overflow: hidden;
-    border-top: 1px solid $blue-l5;
+    border-top: 1px solid $decorative__color--secondary;
     text-align: center;
-    color: $blue-l5;
+    color: $decorative__color--secondary;
 
     .fa {
       @extend %t-icon-l;
