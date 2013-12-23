@@ -32,6 +32,26 @@
     border-top: $baseline-v solid $gray-l5;
     border-bottom: $baseline-v solid $gray-l5;
     background: $view__bg url(../images/bg-noise-fff.png) 0 0 repeat;
+
+    &:before, &:after {
+      position: relative;
+      display: block;
+      height: $baseline-v;
+      overflow: hidden;
+      background: $blue-l2;
+      opacity: 0.0;
+      @include animation(fadeOut $tmg-avg ease-in 1);
+      @include animation-fill-mode(both);
+      @include animation-delay($tmg-s3);
+    }
+
+    &:before {
+      top: -($baseline-v);
+    }
+
+    &:after {
+      bottom: -($baseline-v);
+    }
   }
 
   .view {
