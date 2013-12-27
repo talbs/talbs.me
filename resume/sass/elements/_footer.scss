@@ -26,22 +26,20 @@
   }
 
   @include media($bp-ds) {
-    @include span-columns(3 of 6);
+    margin-bottom: ($baseline-v*1.5);
+    text-align: center;
   }
 
   @include media($bp-dm) {
-    @include span-columns(5 of 12);
-    @include shift(1);
+    @include span-columns(6 of 12);
   }
 
   @include media($bp-dl) {
-    @include span-columns(5 of 12);
-    @include shift(1);
+    @include span-columns(6 of 12);
   }
 
   @include media($bp-dx) {
-    @include span-columns(5 of 12);
-    @include shift(1);
+    @include span-columns(6 of 12);
   }
 }
 
@@ -53,25 +51,21 @@
   }
 
   @include media($bp-ds) {
-    @include span-columns(3 of 6);
-    top: -($baseline-v/4);
+    text-align: center;
   }
 
   @include media($bp-dm) {
-    @include span-columns(5 of 12);
-    @include shift(1);
+    @include span-columns(6 of 12);
     top: -($baseline-v/4);
   }
 
   @include media($bp-dl) {
-    @include span-columns(5 of 12);
-    @include shift(1);
+    @include span-columns(6 of 12);
     top: -($baseline-v/4);
   }
 
   @include media($bp-dx) {
-    @include span-columns(5 of 12);
-    @include shift(1);
+    @include span-columns(6 of 12);
     top: -($baseline-v/4);
   }
 }
