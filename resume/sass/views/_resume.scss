@@ -192,11 +192,6 @@
   .content--experience {
     margin-bottom: ($baseline-v*2);
 
-    @include media($bp-dm) {
-      @include span-columns(12 of 12);
-      margin-bottom: 0;
-    }
-
     @include media($bp-dl) {
       @include span-columns(8 of 12);
       margin-bottom: 0;
