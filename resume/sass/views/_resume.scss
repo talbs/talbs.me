@@ -30,28 +30,20 @@
   // layout
   .wrapper--view {
     position: relative;
-    border-top: $baseline-v solid $gray-l5;
-    border-bottom: $baseline-v solid $gray-l5;
+    border: ($baseline-v/2) solid $gray-l5;
+    border-radius: ($baseline-v/10);
     background: $view__bg url(../images/bg-noise-fff.png) 0 0 repeat;
 
-    &:before, &:after {
-      position: relative;
-      display: block;
-      height: $baseline-v;
-      overflow: hidden;
-      background: $blue-l2;
-      opacity: 0.0;
-      @include animation(fadeOut $tmg-avg ease-in 1);
-      @include animation-fill-mode(both);
-      @include animation-delay($tmg-s3);
+    @include media($bp-dm) {
+      border-width: $baseline-v;
     }
 
-    &:before {
-      top: -($baseline-v);
+    @include media($bp-dl) {
+      border-width: $baseline-v;
     }
 
-    &:after {
-      bottom: -($baseline-v);
+    @include media($bp-dx) {
+      border-width: $baseline-v;
     }
   }
 
@@ -340,6 +332,16 @@
       border-bottom: 1px solid $decorative__color--secondary;
       padding-bottom: ($baseline-v*0.75);
 
+      @include media($bp-m) {
+        // CASE: alternating
+        &:nth-of-type(even) {
+
+          .title {
+            color: $copy--supplemental__color--alt;
+          }
+        }
+      }
+
       @include media($bp-dm) {
         @include span-columns(6 of 12);
         @include omega(2n);
@@ -348,6 +350,26 @@
       @include media($bp-ds) {
         @include span-columns(6 of 12);
         @include omega(2n);
+      }
+
+      @include media($bp-dl) {
+        // CASE: alternating
+        &:nth-of-type(even) {
+
+          .title {
+            color: $copy--supplemental__color--alt;
+          }
+        }
+      }
+
+      @include media($bp-dx) {
+        // CASE: alternating
+        &:nth-of-type(even) {
+
+          .title {
+            color: $copy--supplemental__color--alt;
+          }
+        }
       }
 
       .ico {
@@ -359,14 +381,6 @@
 
       .title {
         @extend %hd--foxtrot;
-      }
-
-      // CASE: alternating
-      &:nth-of-type(even) {
-
-        .title {
-          color: $copy--supplemental__color--alt;
-        }
       }
     }
   }

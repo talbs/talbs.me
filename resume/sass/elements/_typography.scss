@@ -28,207 +28,6 @@
 
 // --------------------
 
-// headings/titles
-%t-title {
-  font-family: $f-title;
-}
-
-%t-title-0 {
-  @extend %t-title;
-  @include font-size(72);
-  @include lh(72);
-}
-
-%t-title-1 {
-  @extend %t-title;
-  @include font-size(60);
-  @include lh(60);
-}
-
-%t-title-2 {
-  @extend %t-title;
-  @include font-size(48);
-  @include lh(48);
-}
-
-%t-title-3 {
-  @extend %t-title;
-  @include font-size(36);
-  @include lh(36);
-}
-
-%t-title-4 {
-  @extend %t-title;
-  @include font-size(24);
-  @include lh(24);
-}
-
-%t-title-5 {
-  @extend %t-title;
-  @include font-size(20);
-  @include lh(20);
-}
-
-%t-title-6 {
-  @extend %t-title;
-  @include font-size(18);
-  @include lh(18);
-}
-
-%t-title-7 {
-  @extend %t-title;
-  @include font-size(16);
-  @include lh(16);
-}
-
-%t-title-8 {
-  @extend %t-title;
-  @include font-size(14);
-  @include lh(14);
-}
-
-%t-title-9 {
-  @extend %t-title;
-  @include font-size(12);
-  @include lh(12);
-}
-
-%t-title-10 {
-  @extend %t-title;
-  @include font-size(10);
-  @include lh(10);
-}
-
-// --------------------
-
-// copy
-%t-copy {
-  font-family: $f-copy;
-}
-
-%t-copy-alt {
-  font-family: $f-sans-serif;
-}
-
-%t-copy-base {
-  @extend %t-copy;
-  @include font-size(16);
-  @include lh(16);
-}
-
-%t-copy-lead1 {
-  @extend %t-copy;
-  @include font-size(18);
-  @include lh(18);
-}
-
-%t-copy-lead2 {
-  @extend %t-copy;
-  @include font-size(20);
-  @include lh(20);
-}
-
-%t-copy-lead3 {
-  @extend %t-copy;
-  @include font-size(24);
-  @include lh(24);
-}
-
-%t-copy-sub1 {
-  @extend %t-copy;
-  @include font-size(14);
-  @include lh(14);
-}
-
-%t-copy-alt-sub1 {
-  @extend %t-copy-alt;
-  @include font-size(14);
-  @include lh(14);
-}
-
-%t-copy-sub2 {
-  @extend %t-copy;
-  @include font-size(12);
-  @include lh(12);
-}
-
-
-%t-copy-sub3 {
-  @extend %t-copy;
-  @include font-size(10);
-  @include lh(10);
-}
-
-// --------------------
-
-// code
-%t-code {
-  font-family: $f-monospace;
-}
-
-%t-code-base {
-  @extend %t-code;
-  @include font-size(16);
-  @include lh(16);
-}
-
-%t-code-lead1 {
-  @extend %t-code;
-  @include font-size(18);
-  @include lh(18);
-}
-
-%t-code-sub1 {
-  @extend %t-code;
-  @include font-size(14);
-  @include lh(14);
-}
-
-// --------------------
-
-// actions/labels
-%t-action {
-  font-family: $f-action;
-}
-
-%t-action1 {
-  @extend %t-action;
-  @include font-size(36);
-  @include lh(36);
-}
-
-%t-action2 {
-  @extend %t-action;
-  @include font-size(24);
-  @include lh(24);
-}
-
-%t-action3 {
-  @extend %t-action;
-  @include font-size(18);
-  @include lh(18);
-}
-
-%t-action4 {
-  @extend %t-action;
-  @include font-size(16);
-  @include lh(16);
-}
-
-%t-action5 {
-  @extend %t-action;
-  @include font-size(14);
-  @include lh(14);
-}
-
-%t-action6 {
-  @extend %t-action;
-  @include font-size(12);
-  @include lh(12);
-}
-
-// --------------------
-
 // icons
 %t-icon-s {
   @include font-size(12);
@@ -250,46 +49,70 @@
 
 // site: canned headings
 %hd--alpha {
-  @extend %t-title-1;
+  @include font-size(48);
+  @include lh(48);
   @extend %t-weight4;
+  text-transform: uppercase;
+  font-family: $f-title-alt;
+  letter-spacing: 0.50rem;
   color: $heading--primary__color;
-  letter-spacing: 0.1rem;
 }
 
 %hd--bravo {
-  @extend %t-title-4;
   @extend %t-weight2;
+  @include font-size(24);
+  @include lh(24);
   margin: 0 0 ($baseline-v/4) 0;
+  font-family: $f-title;
   color: $heading--primary__color;
 }
 
 %hd--charlie {
-  @extend %t-title-6;
   @extend %t-weight2;
+  @include font-size(18);
+  @include lh(18);
   margin: 0 0 ($baseline-v/2) 0;
+  font-family: $f-title;
   color: $heading--primary__color;
 }
 
 %hd--delta {
-  @extend %t-title-7;
-  @extend %t-weight2;
+  @extend %t-weight1;
+  @include font-size(16);
+  @include lh(16);
   margin: 0 0 ($baseline-v/2) 0;
-  color: $heading--tertiary__color;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
+  font-family: $f-title-alt;
+  letter-spacing: 0.125rem;
+  color: $heading--tertiary__color;
 }
 
 %hd--epsilon {
-  @extend %t-title-7;
   @extend %t-weight1;
+  @include font-size(16);
+  @include lh(16);
+  font-family: $f-title;
   color: $heading--secondary__color;
 }
 
 %hd--foxtrot {
-  @extend %t-title-7;
   @extend %t-weight1;
+  @include font-size(16);
+  @include lh(16);
   margin: 0 0 ($baseline-v/10) 0;
+  font-family: $f-title;
   color: $heading--secondary__color;
+}
+
+%hd--golf {
+  @extend %t-weight1;
+  @include font-size(14);
+  @include lh(14);
+  margin: 0 0 ($baseline-v/10) 0;
+  text-transform: uppercase;
+  font-family: $f-title-alt;
+  letter-spacing: 0.25rem;
+  color: $heading--tertiary__color;
 }
 
 
@@ -297,29 +120,39 @@
 
 // site: canned copy
 %copy--base {
-  @extend %t-copy-base;
   @extend %t-weight1;
+  @include font-size(16);
+  @include lh(16);
+  font-family: $f-copy;
   color: $copy__color;
-  // text-justify: auto;
 }
 
 %copy--lead {
-  @extend %t-copy-lead3;
-  color: $copy--lead__color;
-}
-
-%copy--showcase {
-  @extend %t-copy-lead1;
+  @extend %t-weight0;
+  @include font-size(24);
+  @include lh(24);
+  font-family: $f-copy;
   color: $copy__color;
 }
 
+%copy--showcase {
+  @include font-size(18);
+  @include lh(18);
+  color: $copy__color;
+  font-family: $f-copy;
+}
+
 %copy--detail {
-  @extend %t-copy-alt-sub1;
+  @include font-size(14);
+  @include lh(14);
+  font-family: $f-copy-alt;
   color: $copy__color;
 }
 
 %copy--metadata {
-  @extend %t-copy-sub2;
+  @include font-size(12);
+  @include lh(12);
+  font-family: $f-copy-alt;
   color: $copy--supplemental__color;
 }
 
@@ -327,10 +160,12 @@
 
 // site: canned actions
 %action--nav--page {
-  @extend %t-weight2;
-  @extend %t-action6;
+  @extend %t-weight1;
+  @include font-size(12);
+  @include lh(12);
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
+  font-family: $f-action;
+  letter-spacing: 0.1em;
 }
 
 // --------------------
