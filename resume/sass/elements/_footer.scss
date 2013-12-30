@@ -5,7 +5,7 @@
   @include row();
 
   .title {
-    @extend %hd--epsilon;
+    @extend %hd--golf;
     margin-bottom: ($baseline-v/4);
   }
 
@@ -31,15 +31,15 @@
   }
 
   @include media($bp-dm) {
-    @include span-columns(6 of 12);
+    @include span-columns(5 of 12);
   }
 
   @include media($bp-dl) {
-    @include span-columns(6 of 12);
+    @include span-columns(5 of 12);
   }
 
   @include media($bp-dx) {
-    @include span-columns(6 of 12);
+    @include span-columns(5 of 12);
   }
 }
 
@@ -55,16 +55,19 @@
   }
 
   @include media($bp-dm) {
+    @include shift(1);
     @include span-columns(6 of 12);
     top: -($baseline-v/4);
   }
 
   @include media($bp-dl) {
+    @include shift(1);
     @include span-columns(6 of 12);
     top: -($baseline-v/4);
   }
 
   @include media($bp-dx) {
+    @include shift(1);
     @include span-columns(6 of 12);
     top: -($baseline-v/4);
   }

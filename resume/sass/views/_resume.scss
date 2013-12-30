@@ -30,9 +30,21 @@
   // layout
   .wrapper--view {
     position: relative;
-    border-top: $baseline-v solid $gray-l5;
-    border-bottom: $baseline-v solid $gray-l5;
+    border: ($baseline-v/2) solid $gray-l5;
+    border-radius: ($baseline-v/10);
     background: $view__bg url(../images/bg-noise-fff.png) 0 0 repeat;
+
+    @include media($bp-dm) {
+      border-width: $baseline-v;
+    }
+
+    @include media($bp-dl) {
+      border-width: $baseline-v;
+    }
+
+    @include media($bp-dx) {
+      border-width: $baseline-v;
+    }
 
     &:before, &:after {
       position: relative;

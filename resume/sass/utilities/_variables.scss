@@ -75,11 +75,14 @@ $blue-t3: rgba($blue,0.75);
 // fonts
 $f-serif: 'Poly', Cambria, Georgia, 'Times New Roman', Times, serif;
 $f-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$f-sans-serif-slab: Montserrat, Futura, 'Trebuchet MS',  Arial, sans-serif;
 $f-monospace: 'Bitstream Vera Sans Mono', Consolas, Courier, monospace;
 
 $f-title: $f-sans-serif;
+$f-title-alt: $f-sans-serif-slab;
 $f-copy: $f-serif;
-$f-action: $f-sans-serif;
+$f-copy-alt: $f-sans-serif;
+$f-action: $f-sans-serif-slab;
 
 // --------------------
 
