@@ -64,12 +64,14 @@
     @include shift(1);
     @include span-columns(6 of 12);
     top: -($baseline-v/4);
+    text-align: right;
   }
 
   @include media($bp-dx) {
     @include shift(1);
     @include span-columns(6 of 12);
     top: -($baseline-v/4);
+    text-align: right;
   }
 }
 
