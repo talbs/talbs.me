@@ -332,6 +332,16 @@
       border-bottom: 1px solid $decorative__color--secondary;
       padding-bottom: ($baseline-v*0.75);
 
+      @include media($bp-m) {
+        // CASE: alternating
+        &:nth-of-type(even) {
+
+          .title {
+            color: $copy--supplemental__color--alt;
+          }
+        }
+      }
+
       @include media($bp-dm) {
         @include span-columns(6 of 12);
         @include omega(2n);
@@ -340,6 +350,26 @@
       @include media($bp-ds) {
         @include span-columns(6 of 12);
         @include omega(2n);
+      }
+
+      @include media($bp-dl) {
+        // CASE: alternating
+        &:nth-of-type(even) {
+
+          .title {
+            color: $copy--supplemental__color--alt;
+          }
+        }
+      }
+
+      @include media($bp-dx) {
+        // CASE: alternating
+        &:nth-of-type(even) {
+
+          .title {
+            color: $copy--supplemental__color--alt;
+          }
+        }
       }
 
       .ico {
@@ -351,14 +381,6 @@
 
       .title {
         @extend %hd--foxtrot;
-      }
-
-      // CASE: alternating
-      &:nth-of-type(even) {
-
-        .title {
-          color: $copy--supplemental__color--alt;
-        }
       }
     }
   }
