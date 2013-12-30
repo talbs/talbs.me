@@ -5,6 +5,10 @@
   @include row();
   margin-bottom: $baseline-v;
 
+  @include media($bp-ds) {
+    margin-bottom: ($baseline-v*1.5);
+  }
+
   a {
     @extend %link-copy;
   }
@@ -17,18 +21,24 @@
 
   @include media($bp-m) {
     @include font-size(36); // NOTE: needed since neat doesn't support extends in MQs
-    @include lh(36);
+    @include lh(32);
     margin-bottom: ($baseline-v/2);
+  }
+
+  @include media($bp-ds) {
+    @include font-size(48); // NOTE: needed since neat doesn't support extends in MQs
+    @include lh(48);
+    margin-top: ($baseline-v*0.75);
   }
 
   @include media($bp-dm) {
     @include span-columns(12 of 12);
+    margin-top: ($baseline-v*0.75);
   }
 
   @include media($bp-dl) {
     @include span-columns(6 of 12);
     margin-top: ($baseline-v*0.75);
-
   }
 
   @include media($bp-dx) {

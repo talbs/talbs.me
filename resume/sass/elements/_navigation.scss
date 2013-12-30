@@ -1,15 +1,15 @@
 // elements: navigation
 // ====================
-
 .nav--global {
-  @extend %depth2;
+  @extend %depth1;
   @extend %state-disabled;
-  @include transition(opacity $tmg-s1 ease-in-out, left $tmg-s1 ease-in-out);
+  @include transition(opacity $tmg-s1 ease-in-out);
   position: fixed;
   top: ($baseline-v*4);
   left: -($baseline-h*10);
   border: 1px solid $gray-l5;
   background: $white-t;
+  opacity: 0.0;
 
   @include media($bp-dx) {
     left: -($baseline-h/20);
