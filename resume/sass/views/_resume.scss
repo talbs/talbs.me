@@ -246,21 +246,38 @@
       @include media($bp-dl) {
         @include span-columns(3 of 8);
         @include omega();
+        margin-top: ($baseline-v/4);
         text-align: right;
       }
 
       @include media($bp-dx) {
         @include span-columns(3 of 8);
         @include omega();
+        margin-top: ($baseline-v/4);
         text-align: right;
       }
     }
 
     .list--temporal__item {
       @extend %wipe-last-child;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: ($baseline-h/4);
+
+      @include media($bp-m) {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: ($baseline-h/4);
+      }
+
+      @include media($bp-ds) {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: ($baseline-h/4);
+      }
+
+      @include media($bp-dx) {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: ($baseline-h/4);
+      }
     }
 
     .copy {
@@ -525,7 +542,7 @@
       &:hover {
 
         .ico {
-          color: $copy__color--focus;
+          color: $action--primary__color--focus;
         }
 
         .copy {
