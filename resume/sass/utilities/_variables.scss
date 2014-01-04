@@ -7,68 +7,94 @@ $baseline-h: 40px;                                                  // horizonta
 
 // --------------------
 
-// colors - basic
-$black: rgb(10,10,10);                                              // system black
-$black-t: rgb(0,0,0);
-$black-t0: rgba($black,0.125);
-$black-t1: rgba($black,0.25);
-$black-t2: rgba($black,0.50);
-$black-t3: rgba($black,0.75);
-
-$white: rgb(252, 252, 252);                                           // system white
-$white-t: rgb(255,255,255);
-$white-t0: rgba($white,0.125);
-$white-t1: rgba($white,0.25);
-$white-t2: rgba($white,0.50);
-$white-t3: rgba($white,0.75);
-
-$gray: rgb(127.5, 127.5, 127.5);
+$gray: rgb(55, 59, 68);
 $gray-l1: tint($gray,20%);
 $gray-l2: tint($gray,40%);
 $gray-l3: tint($gray,60%);
 $gray-l4: tint($gray,80%);
 $gray-l5: tint($gray,90%);
 $gray-l6: tint($gray,95%);
+$gray-l7: tint($gray,99.50%);
 $gray-d1: shade($gray,20%);
 $gray-d2: shade($gray,40%);
 $gray-d3: shade($gray,60%);
 $gray-d4: shade($gray,80%);
 $gray-d5: shade($gray,90%);
 $gray-d6: shade($gray,95%);
+$gray-d7: shade($gray,99%);
 $gray-t0: rgba($gray,0.125);
 $gray-t1: rgba($gray,0.25);
 $gray-t2: rgba($gray,0.50);
 $gray-t3: rgba($gray,0.75);
 
+// colors - basic
+$black: $gray-d6;                                                   // system black
+$black-t: $gray-d7;
+$black-t0: rgba($black,0.125);
+$black-t1: rgba($black,0.25);
+$black-t2: rgba($black,0.50);
+$black-t3: rgba($black,0.75);
+
+$white: $gray-l6;                                                   // system white
+$white-t: $gray-l7;
+$white-t0: rgba($white,0.125);
+$white-t1: rgba($white,0.25);
+$white-t2: rgba($white,0.50);
+$white-t3: rgba($white,0.75);
+
 // shadows
-$shadow: rgba($black-t,0.2);
-$shadow-l1: rgba($black-t,0.1);
-$shadow-l2: rgba($black-t,0.05);
-$shadow-d1: rgba($black-t,0.4);
-$shadow-d2: rgba($black-t,0.6);
+$shadow: rgba($black,0.2);
+$shadow-l1: rgba($black,0.1);
+$shadow-l2: rgba($black,0.05);
+$shadow-d1: rgba($black,0.4);
+$shadow-d2: rgba($black,0.6);
 
 // colors - default
-$blue: rgb(58, 162, 224);
-$blue-l1: tint($blue,20%);
-$blue-l2: tint($blue,40%);
-$blue-l3: tint($blue,60%);
-$blue-l4: tint($blue,80%);
-$blue-l5: tint($blue,90%);
-$blue-d1: shade($blue,20%);
-$blue-d2: shade($blue,40%);
-$blue-d3: shade($blue,60%);
-$blue-d4: shade($blue,80%);
-$blue-d5: shade($blue,90%);
-$blue-s1: saturate($blue,15%);
-$blue-s2: saturate($blue,30%);
-$blue-s3: saturate($blue,45%);
-$blue-u1: desaturate($blue,15%);
-$blue-u2: desaturate($blue,30%);
-$blue-u3: desaturate($blue,45%);
-$blue-t0: rgba($blue,0.125);
-$blue-t1: rgba($blue,0.25);
-$blue-t2: rgba($blue,0.50);
-$blue-t3: rgba($blue,0.75);
+$cyan: rgb(115, 200, 169);
+$cyan-l1: tint($cyan,20%);
+$cyan-l2: tint($cyan,40%);
+$cyan-l3: tint($cyan,60%);
+$cyan-l4: tint($cyan,80%);
+$cyan-l5: tint($cyan,90%);
+$cyan-d1: shade($cyan,20%);
+$cyan-d2: shade($cyan,40%);
+$cyan-d3: shade($cyan,60%);
+$cyan-d4: shade($cyan,80%);
+$cyan-d5: shade($cyan,90%);
+$cyan-s1: saturate($cyan,15%);
+$cyan-s2: saturate($cyan,30%);
+$cyan-s3: saturate($cyan,45%);
+$cyan-u1: desaturate($cyan,15%);
+$cyan-u2: desaturate($cyan,30%);
+$cyan-u3: desaturate($cyan,45%);
+$cyan-t0: rgba($cyan,0.125);
+$cyan-t1: rgba($cyan,0.25);
+$cyan-t2: rgba($cyan,0.50);
+$cyan-t3: rgba($cyan,0.75);
+
+$orange: rgb(189, 85, 50);
+$orange-l1: tint($orange,20%);
+$orange-l2: tint($orange,40%);
+$orange-l3: tint($orange,60%);
+$orange-l4: tint($orange,80%);
+$orange-l5: tint($orange,90%);
+$orange-d1: shade($orange,20%);
+$orange-d2: shade($orange,40%);
+$orange-d3: shade($orange,60%);
+$orange-d4: shade($orange,80%);
+$orange-d5: shade($orange,90%);
+$orange-s1: saturate($orange,15%);
+$orange-s2: saturate($orange,30%);
+$orange-s3: saturate($orange,45%);
+$orange-u1: desaturate($orange,15%);
+$orange-u2: desaturate($orange,30%);
+$orange-u3: desaturate($orange,45%);
+$orange-t0: rgba($orange,0.125);
+$orange-t1: rgba($orange,0.25);
+$orange-t2: rgba($orange,0.50);
+$orange-t3: rgba($orange,0.75);
+
+
 
 // --------------------
 
@@ -99,8 +125,8 @@ $gutter: $baseline-v;                                               // gutter b/
 $bp-m: new-breakpoint(max-width 529px 4);                           // mobile devices - make grid 4 columns
 $bp-ds: new-breakpoint(min-width 530px max-width 759px 6);          // small displays - make grid 6 columns
 $bp-dm: new-breakpoint(min-width 760px max-width 924px 12);         // medium displays - make grid 12 columns
-$bp-dl: new-breakpoint(min-width 925px max-width 1374px 12);         // large displays - make grid 12 columns
-$bp-dx: new-breakpoint(min-width 1375px 12);                         // large displays - make grid 12 columns
+$bp-dl: new-breakpoint(min-width 925px max-width 1374px 12);        // large displays - make grid 12 columns
+$bp-dx: new-breakpoint(min-width 1375px 12);                        // large displays - make grid 12 columns
 
 // --------------------
 
@@ -119,9 +145,9 @@ $anim-distance-offviewport: ($baseline-h*10);                      // for larger
 // --------------------
 
 // general actions
-$color-primary: $blue;
-$color-secondary: $blue-l1;
-$color-teritary: $blue-l3;
+$color-primary: $orange;
+$color-secondary: $cyan;
+$color-teritary: $cyan-l2;
 
 // --------------------
 
@@ -130,34 +156,32 @@ $view__bg: $white-t;
 
 // --------------------
 
-// application: general links
-$link__color: $blue-u1;
-$link__color--focus: $blue-s1;
-$link__color--active: $blue;
-$link__color--visited: $blue-d1;
+// application: actions & links (button and control-focused)
+$action--primary__color: tint($color-primary,20%);
+$action--primary__color--focus: saturate($color-primary,15%);
+$action--primary__color--active: $color-primary;
+$action--primary__color--visited: shade($color-primary,20%);
+
+$action--secondary__color: $color-secondary;
+$action--secondary__color--focus: saturate($color-secondary,15%);
+$action--secondary__color--active: $color-secondary;
+$action--secondary__color--visited: shade($color-secondary,20%);
+
+$action--tertiary__color: tint($color-teritary,20%);
+$action--tertiary__color--focus: saturate($color-teritary,15%);
+$action--tertiary__color--active: $color-teritary;
+$action--tertiary__color--visited: shade($color-teritary,20%);
 
 // --------------------
 
 // application: decorative elements
-$decorative__color--primary: $blue-l3;
-$decorative__color--secondary: $blue-l5;
-
-// --------------------
-
-// application: actions & links (button and control-focused)
-$action--primary__color: $color-primary;
-$action--primary__color--focus: $color-primary;
-
-$action--secondary__color: $color-secondary;
-$action--secondary__color--focus: $color-secondary;
-
-$action--tertiary__color: $color-teritary;
-$action--tertiary__color--focus: $color-teritary;
+$decorative__color--primary: $cyan-l1;
+$decorative__color--secondary: $cyan-l3;
 
 // --------------------
 
 // copy & headings
-$heading__color: $black;
+$heading__color: $gray-d5;
 $heading--primary__color: $black;
 $heading--secondary__color: $gray-l3;
 $heading--tertiary__color: $gray-l3;
@@ -177,12 +201,12 @@ $copy--supplemental__color--focus: $gray-d1;
 // --------------------
 
 // states
-$selected__bg: $blue-t1;
-$selected__color: $blue-s1;
+$selected__bg: $orange-t1;
+$selected__color: $orange-s1;
 
 // --------------------
 
 // visual rows
 $row__bg: $white;
-$row--focus__bg: $blue-l5;
+$row--focus__bg: $orange-l5;
 $row--alt__bg: $gray-l5;

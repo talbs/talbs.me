@@ -7,7 +7,7 @@
   position: fixed;
   top: ($baseline-v*4);
   left: -($baseline-h*10);
-  border: 1px solid $gray-l5;
+  border: 1px solid $white;
   background: $white-t;
   opacity: 0.0;
 
@@ -28,7 +28,7 @@
   }
 
   .list--nav__item {
-    border-bottom: 1px solid $gray-l5;
+    border-bottom: 1px solid $white;
 
     &:last-child {
       border-bottom: none;
