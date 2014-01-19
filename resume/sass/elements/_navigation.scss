@@ -1,18 +1,18 @@
 // elements: navigation
 // ====================
+
+// global navigation
 .nav--global {
   @extend %depth1;
   @extend %state-disabled;
   @include transition(opacity $tmg-s1 ease-in-out);
   position: fixed;
-  top: ($baseline-v*4);
-  left: -($baseline-h*10);
-  border: 1px solid $white;
-  background: $white-t;
+  top: -($anim-distance-offviewport);
+  left: $baseline-h;
   opacity: 0.0;
 
   @include media($bp-dx) {
-    left: -($baseline-h/20);
+    top: ($baseline-v*2);
     // @extend %state-enabled; NOTE: can't be used now
     pointer-events: auto; // NOTE: needed now since extends aren't supported in neat media mixins
     outline: invert none medium; // NOTE: needed now since extends aren't supported in neat media mixins
@@ -20,7 +20,9 @@
   }
 
   .title {
-    @extend %text-sr;
+    @extend %hd--hotel;
+    text-align: center;
+    padding: ($baseline-v/2) ($baseline-h/4);
   }
 
   .list--nav {
@@ -28,7 +30,7 @@
   }
 
   .list--nav__item {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid $gray-l5;
 
     &:last-child {
       border-bottom: none;
@@ -63,3 +65,4 @@
     text-align: center;
   }
 }
+

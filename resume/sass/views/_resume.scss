@@ -30,25 +30,75 @@
   // layout
   .wrapper--view {
     position: relative;
-    border: ($baseline-v/2) solid $white;
-    border-radius: ($baseline-v/10);
-    background: $view__bg url(../images/bg-noise-fff.png) 0 0 repeat;
-
-    @include media($bp-dm) {
-      border-width: $baseline-v;
-    }
-
-    @include media($bp-dl) {
-      border-width: $baseline-v;
-    }
-
-    @include media($bp-dx) {
-      border-width: $baseline-v;
-    }
+    background: $view__bg;
   }
 
   .view {
-    margin: $baseline-v $baseline-h;
+    margin: $baseline-v ($baseline-h*0.75) 0 0;
+
+    @include media($bp-dm) {
+      margin: ($baseline-v*2) $baseline-h 0 0;
+    }
+
+    @include media($bp-dl) {
+      margin: ($baseline-v*2) $baseline-h 0 0;
+    }
+
+    @include media($bp-dx) {
+      margin: ($baseline-v*2) $baseline-h 0 0;
+    }
+  }
+
+  // page
+  .wrapper--page {
+    max-width: $page__maxwidth;
+    position: relative;
+    margin: 0 auto;
+    padding: ($baseline-v*2) $baseline-h;
+    background: $page__bg;
+    border-top: ($baseline-v/20) solid $page__border;
+    border-right: ($baseline-v/20) solid $page__border;
+
+    // page's dogear
+    &:after {
+      @include triangle(($baseline-v*1.5), $page__dogear, down-left);
+      content: "";
+      position: absolute;
+      top: -1px;
+      right: 0;
+
+      @include media($bp-dm) {
+        @include triangle(($baseline-v*3), $page__dogear, down-left);
+      }
+
+      @include media($bp-dl) {
+        @include triangle(($baseline-v*3), $page__dogear, down-left);
+      }
+
+      @include media($bp-dx) {
+        @include triangle(($baseline-v*3), $page__dogear, down-left);
+      }
+    }
+
+    &:before {
+      @include triangle(($baseline-v*1.5), $view__bg, up-right);
+      content: "";
+      position: absolute;
+      top: -1px;
+      right: 0;
+
+      @include media($bp-dm) {
+        @include triangle(($baseline-v*3), $view__bg, up-right);
+      }
+
+      @include media($bp-dl) {
+        @include triangle(($baseline-v*3), $view__bg, up-right);
+      }
+
+      @include media($bp-dx) {
+        @include triangle(($baseline-v*3), $view__bg, up-right);
+      }
+    }
   }
 
   .wrapper--grid {
@@ -90,7 +140,7 @@
     display: block;
     height: $baseline-v;
     overflow: hidden;
-    border-top: 1px solid $decorative__color--secondary;
+    border-top: ($baseline-v/20) solid $decorative__color--secondary;
     text-align: center;
     color: $decorative__color--secondary;
 
