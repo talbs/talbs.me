@@ -94,7 +94,27 @@ $orange-t1: rgba($orange,0.25);
 $orange-t2: rgba($orange,0.50);
 $orange-t3: rgba($orange,0.75);
 
-
+$blue: rgb(128, 169, 204);
+$blue-l1: tint($blue,20%);
+$blue-l2: tint($blue,40%);
+$blue-l3: tint($blue,60%);
+$blue-l4: tint($blue,80%);
+$blue-l5: tint($blue,90%);
+$blue-d1: shade($blue,20%);
+$blue-d2: shade($blue,40%);
+$blue-d3: shade($blue,60%);
+$blue-d4: shade($blue,80%);
+$blue-d5: shade($blue,90%);
+$blue-s1: saturate($blue,15%);
+$blue-s2: saturate($blue,30%);
+$blue-s3: saturate($blue,45%);
+$blue-u1: desaturate($blue,15%);
+$blue-u2: desaturate($blue,30%);
+$blue-u3: desaturate($blue,45%);
+$blue-t0: rgba($blue,0.125);
+$blue-t1: rgba($blue,0.25);
+$blue-t2: rgba($blue,0.50);
+$blue-t3: rgba($blue,0.75);
 
 // --------------------
 
@@ -145,38 +165,42 @@ $anim-distance-offviewport: ($baseline-h*10);                      // for larger
 // --------------------
 
 // general actions
-$color-primary: $orange;
-$color-secondary: $cyan;
-$color-teritary: $cyan-l2;
+$color-primary: $blue-s2;
+$color-secondary: $blue;
+$color-teritary: $blue-u2;
 
 // --------------------
 
 // views
-$view__bg: $white-t;
+$view__bg: $white;
+$page__bg: $white-t;
+$page__border: $gray-l5;
+$page__dogear: shade($page__bg, 10%);
+$page__maxwidth: 1375px;
 
 // --------------------
 
 // application: actions & links (button and control-focused)
-$action--primary__color: tint($color-primary,20%);
-$action--primary__color--focus: saturate($color-primary,15%);
+$action--primary__color: tint($color-primary,10%);
+$action--primary__color--focus: saturate($color-primary,25%);
 $action--primary__color--active: $color-primary;
 $action--primary__color--visited: shade($color-primary,20%);
 
 $action--secondary__color: $color-secondary;
-$action--secondary__color--focus: saturate($color-secondary,15%);
+$action--secondary__color--focus: saturate($color-secondary,25%);
 $action--secondary__color--active: $color-secondary;
 $action--secondary__color--visited: shade($color-secondary,20%);
 
-$action--tertiary__color: tint($color-teritary,20%);
-$action--tertiary__color--focus: saturate($color-teritary,15%);
+$action--tertiary__color: tint($color-teritary,10%);
+$action--tertiary__color--focus: saturate($color-teritary,25%);
 $action--tertiary__color--active: $color-teritary;
 $action--tertiary__color--visited: shade($color-teritary,20%);
 
 // --------------------
 
 // application: decorative elements
-$decorative__color--primary: $cyan-l1;
-$decorative__color--secondary: $cyan-l3;
+$decorative__color--primary: $blue-s1;
+$decorative__color--secondary: $blue-l4;
 
 // --------------------
 
@@ -184,9 +208,9 @@ $decorative__color--secondary: $cyan-l3;
 $heading__color: $gray-d5;
 $heading--primary__color: $black;
 $heading--secondary__color: $gray-l3;
-$heading--tertiary__color: $gray-l3;
+$heading--tertiary__color: $gray-l4;
 
-$copy__color: $gray;
+$copy__color: $gray-l2;
 $copy__color--alt: $gray-d1;
 $copy__color--focus: $gray-d4;
 
