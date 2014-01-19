@@ -115,6 +115,16 @@
   color: $heading--tertiary__color;
 }
 
+%hd--hotel {
+  @include font-size(24);
+  @include lh(24);
+  @extend %t-weight4;
+  text-transform: uppercase;
+  font-family: $f-title-alt;
+  letter-spacing: 0.25rem;
+  color: $heading--tertiary__color;
+}
+
 
 // --------------------
 

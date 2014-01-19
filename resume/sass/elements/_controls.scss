@@ -41,8 +41,7 @@
 %link-nav-page {
   @include transition(color $tmg-f1 ease-in-out, border $tmg-f1 ease-in-out);
   display: block;
-  border-radius: ($baseline-v/10);
-  border-left: ($baseline-h/2) solid $gray-l5;
+  border-right: 1px solid solid $gray-l5;
   padding: ($baseline-v/2) ($baseline-h/4);
   color: $gray-l3;
   font-family: $f-action;

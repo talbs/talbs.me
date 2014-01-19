@@ -48,6 +48,7 @@
 }
 
 .header--global__contact {
+  margin-bottom: $baseline-v;
 
   @include media($bp-dm) {
     @include span-columns(12 of 12);
@@ -56,11 +57,13 @@
   @include media($bp-dl) {
     @include span-columns(6 of 12);
     margin-top: $baseline-v;
+    margin-bottom: 0;
   }
 
   @include media($bp-dx) {
     @include span-columns(6 of 12);
     margin-top: $baseline-v;
+    margin-bottom: 0;
   }
 
   .list--contact {

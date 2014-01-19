@@ -61,19 +61,43 @@
 
     // page's dogear
     &:after {
-      @include triangle(($baseline-v*3), $page__dogear, down-left);
+      @include triangle(($baseline-v*1.5), $page__dogear, down-left);
       content: "";
       position: absolute;
       top: -1px;
       right: 0;
+
+      @include media($bp-dm) {
+        @include triangle(($baseline-v*3), $page__dogear, down-left);
+      }
+
+      @include media($bp-dl) {
+        @include triangle(($baseline-v*3), $page__dogear, down-left);
+      }
+
+      @include media($bp-dx) {
+        @include triangle(($baseline-v*3), $page__dogear, down-left);
+      }
     }
 
     &:before {
-      @include triangle(($baseline-v*3), $view__bg, up-right);
+      @include triangle(($baseline-v*1.5), $view__bg, up-right);
       content: "";
       position: absolute;
       top: -1px;
       right: 0;
+
+      @include media($bp-dm) {
+        @include triangle(($baseline-v*3), $view__bg, up-right);
+      }
+
+      @include media($bp-dl) {
+        @include triangle(($baseline-v*3), $view__bg, up-right);
+      }
+
+      @include media($bp-dx) {
+        @include triangle(($baseline-v*3), $view__bg, up-right);
+      }
     }
   }
 
@@ -116,7 +140,7 @@
     display: block;
     height: $baseline-v;
     overflow: hidden;
-    border-top: 1px solid $decorative__color--secondary;
+    border-top: ($baseline-v/20) solid $decorative__color--secondary;
     text-align: center;
     color: $decorative__color--secondary;
 
