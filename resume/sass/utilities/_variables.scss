@@ -42,6 +42,12 @@ $white-t1: rgba($white,0.25);
 $white-t2: rgba($white,0.50);
 $white-t3: rgba($white,0.75);
 
+$off-white: rgb(250, 250, 246);
+$off-white-t0: rgba($off-white,0.125);
+$off-white-t1: rgba($off-white,0.25);
+$off-white-t2: rgba($off-white,0.50);
+$off-white-t3: rgba($off-white,0.75);
+
 // shadows
 $shadow: rgba($black,0.2);
 $shadow-l1: rgba($black,0.1);
@@ -129,9 +135,9 @@ $color-teritary: $blue-u2;
 
 // views
 $view__bg: $white;
-$page__bg: $white-t;
-$page__border: $gray-l5;
-$page__dogear: shade($page__bg, 10%);
+$page__bg: $off-white;
+$page__border: shade($page__bg, 10%);
+$page__dogear: shade($page__bg, 15%);
 $page__maxwidth: 1200px;
 
 // --------------------
