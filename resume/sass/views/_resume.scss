@@ -168,13 +168,28 @@
     @include animation-fill-mode(both);
   }
 
-  .anim--load__el--1, .anim--load__el--3 {
-    @include animation(fadeInLeft $tmg-avg ease-in 1);
+  .anim--load__el--1 {
+    @include animation(fadeInUp $tmg-avg ease-in 1);
     @include animation-fill-mode(both);
   }
 
   .anim--load__el--2 {
-    @include animation(fadeInRight $tmg-avg ease-in 1);
+    @include animation(fadeInUp $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--3 {
+    @include animation(fadeInUp $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--4 {
+    @include animation(fadeInDown $tmg-avg ease-in 1);
+    @include animation-fill-mode(both);
+  }
+
+  .anim--load__el--5 {
+    @include animation(fadeIn $tmg-avg ease-in 1);
     @include animation-fill-mode(both);
   }
 
@@ -263,12 +278,6 @@
     }
 
     .title {
-      @extend %hd--bravo;
-
-      .role:after {
-        content: ", ";
-        margin-right: ($baseline-h/10);
-      }
 
       @include media($bp-dm) {
         @include span-columns(5 of 8);
@@ -281,6 +290,23 @@
       @include media($bp-dx) {
         @include span-columns(5 of 8);
       }
+    }
+
+    .role, .org {
+      display: block;
+    }
+
+    .role {
+     @extend %hd--bravo;
+
+      &:after {
+        content: ", ";
+        margin-right: ($baseline-h/10);
+      }
+    }
+
+    .org {
+      @extend %hd--bravo;
     }
 
     .list--temporal {
@@ -365,13 +391,21 @@
       border-bottom: 1px solid $decorative__color--secondary;
       padding-bottom: ($baseline-v*0.75);
 
-      .title {
-        @extend %hd--charlie;
+      .degree, .org {
+        display: block;
+      }
 
-        .degree:after {
-          content: ", ";
-          margin-right: ($baseline-h/10);
-        }
+      .degree {
+        @extend %hd--charlie--alt;
+
+        &:after {
+        content: ", ";
+        margin-right: ($baseline-h/10);
+      }
+      }
+
+      .org {
+        @extend %hd--charlie;
       }
 
       .list--temporal {
