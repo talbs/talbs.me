@@ -427,7 +427,6 @@
     }
 
     .list--partners_item {
-      @extend %copy--focusable;
       @extend %wipe-last-child;
       margin-bottom: ($baseline-v*0.75);
       border-bottom: 1px solid $decorative__color--secondary;
