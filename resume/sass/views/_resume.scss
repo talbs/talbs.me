@@ -499,7 +499,7 @@
       @extend %no-list;
     }
 
-    .list--activiites_item {
+    .list--activities_item {
       @extend %copy--focusable;
       margin-bottom: $baseline-v;
 
@@ -527,7 +527,7 @@
       }
     }
 
-    .list--activiites_item {
+    .list--activities_item {
       @extend %wipe-last-child;
     }
   }
