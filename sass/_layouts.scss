@@ -1,0 +1,117 @@
+// ------------------------------
+// Layouts
+
+// About: styling for generic layouts and responsive support.
+
+// #CONFIG
+// #GLOBAL
+// #UTILITY
+
+
+// ------------------------------
+// #CONFIG
+// ------------------------------
+// susy-based configuration (see http://susydocs.oddbird.net/en/latest/settings/)
+$susy: (
+    use-custom: (
+        background-options: false,
+        box-sizing: false,
+        breakpoint: true,
+        clearfix: true,
+        rem: true
+    ),
+    debug: (
+        color: $grid-debug-color,
+    ),
+    math: fluid,
+    output: float
+);
+
+// LAYOUT: set default susy settings
+// (gutters are handled outside of elements - by default)
+$susy-default: (
+    flow: $grid-direction-default,
+    column-width: $grid-column-width,
+    columns: $grid-column-count,
+    container-position: $grid-container-position,
+    container: $grid-max-width,
+    global-box-sizing: border-box,
+    gutters: $grid-gutter-width,
+    gutter-position: $grid-gutter-position
+);
+
+
+// ----------------------------
+// #GLOBAL
+// ----------------------------
+// set basic grid settings for app
+@include layout($susy-default);
+
+
+// ----------------------------
+// #UTILITY
+// ----------------------------
+%grid-container {
+    @include container();
+}
+
+// grid rows - set visual break and document flow clear (clearfix)
+%grid-row {
+    @include break();
+    @include clearfix();
+}
+
+%grid-gallery {
+    @include break();
+    @include clearfix();
+}
+
+%grid-fill-col {
+    display: block;
+    width: 100%;
+}
+
+.grid-container {
+    @extend %grid-container;
+
+    .col.col-first {
+        @include first();
+    }
+
+    .col.col-last {
+        @include last();
+    }
+
+    .col.col-break {
+        @include break();
+    }
+
+    .col.col-omega {
+        @include omega();
+    }
+    .col.col-full {
+        @include full();
+    }
+
+    .col {
+
+        // make an object span the entirety of its col
+        .fill-col {
+            @extend %grid-fill-col;
+        }
+    }
+}
+
+.row {
+    @extend %grid-row;
+}
+
+// break grid's columns to a new line
+.grid-break {
+    @include break();
+}
+
+// don't break the columns to a new line
+.grid-unbreak {
+    @include nobreak();
+}

@@ -1,0 +1,26 @@
+# talbs.me: Overall Config
+
+title:                  Brian Talbot
+tagline:                "UX Designer, Photographer, All-around Nerd"
+
+author:
+    name:               Brian Talbot
+    url:                http://www.talbs.me
+    email:              hi.talbs@gmail.com
+
+url:                    http://www.talbs.me
+url_work:               /work/
+url_contact:            /contact/
+
+baseurl:                /
+permalink:              /:categories/:title/
+
+exclude:                [
+                            "node_modules",
+                            "gulp",
+                            "gulpfile.js",
+                            "package.json",
+                            "bower.json",
+                            "sass",
+                            "bower_components"
+                        ]
