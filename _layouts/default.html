@@ -1,0 +1,15 @@
+{% assign post = page %}
+{% assign body = content %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+{% include head.html %}
+
+<body class="talbs {{ page.viewclass }}">
+
+  {{ content }}
+
+  {% include assets-secondary.html %}
+</body>
+</html>

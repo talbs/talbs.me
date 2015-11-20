@@ -1,0 +1,26 @@
+{% assign post = page %}
+{% assign body = content %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+{% include head.html %}
+
+<body class="talbs{% if page.section %} {{ page.section }}{% endif %}{% if page.slug %} {{ page.slug }}{% endif %}">
+  <div class="nav--skip sr">
+    <a class="action--skip" href="#content--main">Skip to the main content</a>
+  </div>
+
+  <div class="wrapper--view">
+    {% include work-header.html %}
+
+    <div class="wrapper--content" id="content-top" aria-label="Content">
+      {{ content }}
+    </div>
+
+    {% include work-footer.html %}
+  </div>
+
+  {% include assets-secondary.html %}
+</body>
+</html>

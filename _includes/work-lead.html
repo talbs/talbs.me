@@ -1,0 +1,16 @@
+<div class="work-lead">
+  <a class="work-lead__link" href="{{ post.url }}">
+    <figure class="work-lead__image">
+      <img src="http://placehold.it/1200x900" alt="sample of {{ post.title }}">
+      <span class="image__overlay">
+        <i class="image__overlay__icon icon fa fa-search" aria-hidden="true"></i>
+      </span>
+    </figure>
+
+    <h2 class="work-lead__title">
+      <span class="work-lead__client">{{ post.client }}</span>
+      {{ post.title }}
+    </h2>
+    <p class="work-lead__copy">{{ post.lead }}</p>
+  </a>
+</div>

@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+title: Home
+viewclass:  home
+---
+<div class="wrapper--view">
+  <span class="deco--stripe"></span>
 
-  <title>Talbs</title>
+  <div class="wrapper--content">
+    <span class="deco--avatar"></span>
 
-  <meta name="description" content="Brian Talbot, also known as 'Talbs', is a Boston-based web designer who enjoys teaching, photography, and commanding analogies in his spare time">
-  <meta name="author" content="Brian Talbot" />
-</head>
+    <main class="content--main">
+      <h1 class="talbs__name">{{ site.data.talbs.name }}</h1>
 
-<body class="view--welcomemat">
-  <div class="wrapper--view">
+      <p class="talbs__description"><span class="sr">is a </span>{{ site.data.talbs.description }}</p>
+    </main>
 
+    <aside class="content--aside">
+      {% include nav-elsewhere.html %}
+    </aside>
   </div>
-</body>
-</html>
+</div>
+
+
