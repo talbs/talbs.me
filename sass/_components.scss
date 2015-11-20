@@ -1,0 +1,449 @@
+// ------------------------------
+// Components
+
+// About:
+
+// #DECORATIVE
+// #ACTIONS
+// #HEADINGS
+// #COPY
+// #NAV
+// #SYSTEM_FEEDBACK
+// #HEADER
+// #FOOTER
+// #WORK_LISTING
+
+
+// ------------------------------
+// #GLOBAL
+// ------------------------------
+.wrapper--view {
+  background: $view-bg;
+}
+
+
+// ------------------------------
+// #DECORATIVE
+// ------------------------------
+$bubble-triangle-size: rem($baseline*2);
+
+%deco-bubble {
+  @include transition(
+    background-color timing(x-fast) ease-in-out
+  );
+  position: relative;
+  border-radius: rem($baseline/5);
+  padding: $spacing-lg;
+  background: $secondary;
+  color: $text-lod;
+
+  &:after {
+    @include transition(
+      border-color timing(x-fast) ease-in-out
+    );
+    position: absolute;
+    bottom: -($bubble-triangle-size);
+    content: "";
+    font-size: 0;
+    @include triangle(20px, $secondary, up-right);
+    right: $bubble-triangle-size;
+  }
+
+  &:before {
+    @include transition(
+      color timing(x-fast) ease-in-out
+    );
+    position: absolute;
+    top: -($spacing-lg);
+    left: $spacing-md;
+    content: "";
+  }
+
+  &:hover, &:focus {
+    background: $secondary-sat;
+
+    &:after {
+      border-top-color: $secondary-sat;
+    }
+  }
+}
+
+%deco-frame {
+  display: block;
+  border-radius: rem(2);
+  padding: $spacing-md;
+  box-shadow: 0 rem(2) 0 0 $grayscale-lightest;
+  background: $white-t;
+}
+
+%deco-divider-single {
+  border-bottom: rem(1) solid $grayscale-lightest;
+}
+
+%deco-divider-double {
+  border-bottom: rem(4) double $grayscale-lightest;
+}
+
+.deco-banner {
+  position: relative;
+  display: block;
+
+  .banner-rule {
+    display: block;
+    border: none;
+    border-bottom: rem(4) double $grayscale-lightest;
+  }
+
+  .banner-icon {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    font-size: modular-scale(1);
+    color: $grayscale-lightest;
+  }
+}
+
+
+// ------------------------------
+// #ACTIONS
+// ------------------------------
+// reset of links
+%link {
+  @include transition(
+    color timing(x-fast) ease-in-out 0s,
+    box-shadow timing(x-fast) ease-in-out 0s
+  );
+  box-shadow: 0 1px 0 0 rgba($grayscale, 0.25);
+  color: $link-color;
+  text-decoration: none;
+
+  .icon {
+    display: inline-block;
+    vertical-align: baseline;
+    margin-right: $spacing-xs;
+  }
+
+  // STATE: hover, active, focus
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: 0 1px 0 0 $link-focus-color;
+    color: $link-focus-color;
+  }
+
+  // STATE: is pressed or active
+  &:active,
+  &.is-pressed,
+  &.is-active {
+    color: $link-focus-color;
+  }
+
+  &.is-disabled {
+      box-shadow: none;
+  }
+}
+
+.link {
+  @extend %link;
+}
+
+%btn {
+  @include transition(
+    color timing(x-fast) ease-in-out 0s,
+    background-color timing(x-fast) ease-in-out 0s,
+    border-color timing(x-fast) ease-in-out 0s
+  );
+  @extend %reset-link;
+  display: inline-block;
+  border: 2px solid $black;
+  border-radius: rem(1);
+  background: $transparent;
+  font-family: $font-family-sans-serif;
+  font-weight: $text-emphasized-font-weight;
+  text-align: center;
+
+  .icon--inline {
+    margin-right: $spacing-sm;
+  }
+
+  &:hover, &:focus {
+  }
+}
+
+%btn-primary {
+  @extend %btn;
+  // color: $text-dol;
+  color: $primary;
+  border-color: $primary;
+  padding: $spacing-md $spacing-lg;
+
+  &:hover, &:focus {
+    background: $primary;
+    color: $text-lod;
+  }
+}
+
+%btn-secondary {
+  @extend %btn;
+  color: $text-dol;
+  border-color: $secondary;
+  padding: $spacing-md $spacing-lg;
+
+  &:hover, &:focus {
+    background: $secondary;
+    color: $text-lod;
+  }
+}
+
+// ------------------------------
+// #HEADINGS
+// ------------------------------
+h1, h2, h3, h4, h5, h6, .hd, %hd {
+  @extend %reset-headings;
+  color: $headings-emphasized-color;
+
+  .sub {
+    display: block;
+  }
+
+  .sub--top {
+    margin-bottom: $spacing-sm;
+  }
+
+  .sub--bottom {
+    margin-top: $spacing-sm;
+  }
+}
+
+%hd-1 {
+  margin-bottom: $spacing-lg;
+  font-size: modular-scale(4);
+}
+
+%hd-2 {
+  margin-bottom: $spacing-lg;
+  font-size: modular-scale(3);
+}
+
+%hd-3 {
+  margin-bottom: $spacing-lg;
+  font-size: modular-scale(2);
+}
+
+%hd-4 {
+  margin-bottom: $spacing-md;
+  font-size: modular-scale(1);
+}
+
+%hd-5-alt {
+  margin-bottom: $spacing-md;
+  font-size: modular-scale(0);
+}
+
+%hd-5 {
+  margin-bottom: $spacing-md;
+  font-size: modular-scale(0);
+  font-weight: font-weight(x-bold);
+  text-transform: uppercase;
+  letter-spacing: letter-spacing(x-loose);
+}
+
+%hd-6 {
+  margin-bottom: $spacing-sm;
+  font-size: modular-scale(-1);
+  font-weight: font-weight(x-bold);
+  text-transform: uppercase;
+  letter-spacing: letter-spacing(x-loose);
+}
+
+%hd-brand {
+  text-transform: uppercase;
+  font-family: $font-family-sans-serif;
+  font-weight: font-weight(x-bold);
+  font-size: modular-scale(2);
+  letter-spacing: letter-spacing(xxx-loose);
+}
+
+// ------------------------------
+// #COPY
+// ------------------------------
+%copy-1 {
+  font-size: modular-scale(3);
+  // line-height: 1.60;
+}
+
+%copy-2 {
+  font-size: modular-scale(2);
+  // line-height: 1.60;
+}
+
+%copy-3 {
+  font-size: modular-scale(1);
+  // line-height: 1.60;
+}
+
+%copy-4 {
+  font-size: modular-scale(0);
+  // line-height: 1.60;
+}
+
+%copy-5 {
+  font-size: modular-scale(-1);
+  // line-height: 1.60;
+}
+
+// ------------------------------
+// #NAV
+// ------------------------------
+// nav
+.nav--return {
+  font-family: $actions-base-font-family;
+}
+
+.nav--return__link {
+  @extend %btn-primary;
+}
+
+.nav--elsewhere {
+  @extend %reset-lists;
+}
+
+.nav--breadcrumbs {
+  font-family: $actions-base-font-family;
+}
+
+.nav--breadcrumbs__spacer {
+  color: $grayscale-lighter;
+  margin-right: $spacing-sm;
+  margin-left: $spacing-sm;
+}
+
+// ------------------------------
+// #FORMS
+// ------------------------------
+
+
+// ------------------------------
+// #SYSTEM_FEEDBACK
+// ------------------------------
+
+
+// ------------------------------
+// #HEADER
+// ------------------------------
+.wrapper--header {
+  background: $banner-bg;
+}
+
+.header--site {
+  @extend %deco-divider-double;
+  padding-bottom: $spacing-lg;
+}
+
+.header--site--title {
+  @extend %hd-brand;
+  margin: 0;
+  color: $grayscale-dark;
+
+  a {
+    box-shadow: none;
+    color: inherit;
+
+    &:hover, &:focus {
+      color: $primary;
+    }
+  }
+}
+
+// ------------------------------
+// #FOOTER
+// ------------------------------
+.wrapper--footer--site {
+  padding-top: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  background: $footer-bg;
+}
+
+.footer--site {
+  @extend %copy-5;
+  font-family: $font-family-sans-serif;
+  color: $text-de-emphasized-color;
+}
+
+// ------------------------------
+// #WORK_LISTING
+// ------------------------------
+.work-lead {
+  margin-bottom: $spacing-xl;
+}
+
+.work-lead__image {
+  @include transition(
+    border-color timing(x-fast) ease-in-out 0s
+  );
+  margin-bottom: $spacing-md;
+  border-bottom: rem(5) solid $secondary;
+}
+
+.work-lead__title {
+  @include transition(
+    color timing(x-fast) ease-in-out 0s
+  );
+  @extend %hd-4;
+  margin-bottom: 0;
+}
+
+.work-lead__client {
+  @extend %hd-6;
+  display: block;
+  margin-bottom: rem(2);
+}
+
+.work-lead__copy {
+  @extend %copy-detail;
+}
+
+.work-lead__image {
+  display: block;
+  position: relative;
+
+  .image__overlay {
+    @include transition(
+      all timing(x-fast) ease-in-out 0s
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    opacity: 0;
+    background: $primary;
+  }
+
+  .image__overlay__icon {
+    @extend %vertically-center;
+    font-size: modular-scale(4);
+    color: $text-lod;
+  }
+}
+
+.work-lead__link {
+
+  &:hover,
+  &:focus {
+
+    .work-lead__image {
+      border-bottom-color: $primary;
+    }
+
+    .image__overlay {
+      opacity: 0.65;
+    }
+
+    .work-lead__title {
+      color: $primary;
+    }
+  }
+}
+

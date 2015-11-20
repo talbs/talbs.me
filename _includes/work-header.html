@@ -1,0 +1,13 @@
+<div class="wrapper--header">
+  <header class="header--site" role="banner" aria-labelledby="header--site--title">
+    {% if page.title == "Home" %}
+    <h1 class="header--site--title" id="header--site--title">{{ site.title }}</h1>
+    {% else %}
+    <h2 class="header--site--title" id="header--site--title">
+      <a href="{{ site.baseurl }}">
+        {{ site.title }}
+      </a>
+    </h2>
+    {% endif %}
+  </header>
+</div>
