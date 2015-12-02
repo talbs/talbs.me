@@ -13,6 +13,7 @@ module.exports = {
   },
   css: {
     src: src + "/sass/**/*.scss",
+    local: local + "/css",
     dest: dest + "/css",
     settings: {
       imagePath: 'images', // Used by the image-url helper
@@ -24,6 +25,7 @@ module.exports = {
     dest: dest + "/images"
   },
   jekyll:                     {
+    data:     '_data/**/*',
     content:  '**/*.md',
     home:     'index.html',
     work:     'work/**/*',

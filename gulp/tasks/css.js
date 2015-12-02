@@ -17,6 +17,7 @@ gulp.task('css', function () {
     .on('error', handleErrors)
     .pipe(autoprefixer(config.settings.autoprefixer))
     .pipe(sourcemaps.write())
+    .pipe(gulp.dest(config.local))
     .pipe(gulp.dest(config.dest))
     .pipe(browserSync.reload({stream:true}));
 });
