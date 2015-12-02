@@ -3,7 +3,11 @@
 
 // About:
 
-// #BASE_RESET
+// #GLOBAL
+// #BASE
+// #FORMS
+// #ACTIONS
+// #UTILITY
 
 
 // ----------------------------
@@ -19,7 +23,27 @@
 // ----------------------------
 html, body {
     height: 100%;
+}
+
+html {
+    font-size: $font-base-sm;
+
+    @include breakpoint($bp-screen-md) {
+      font-size: $font-base-md;
+    }
+
+    @include breakpoint($bp-screen-lg) {
+      font-size: $font-base-lg;
+    }
+}
+
+body {
+    @include font-smoothing(on);
+    @extend %depth-0;
     color: $text-base-color;
+    background: $view-bg;
+    font-size: modular-scale(0);
+    line-height: 1.48;
     font-family: $text-base-font-family;
 }
 
@@ -30,14 +54,6 @@ img,
 svg,
 video {
     vertical-align: middle;
-}
-
-body {
-    @include font-smoothing(on);
-    @extend %depth-0;
-    color: $text-base-color;
-    font-size: font-size(base);
-    font-family: $text-base-font-family;
 }
 
 p,
@@ -104,7 +120,7 @@ pre {
 // ----------------------------
 // #UTILITIES
 // ----------------------------
-.sr-only {
+.sr {
     @extend %a11y-hide;
 }
 

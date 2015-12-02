@@ -3,8 +3,8 @@
 
 // About:
 
-// #CONFIG
 // #THIRD_PARTY_LIB
+// #CONFIG + UTILITIES
 // #ELEMENTS
 // #OVERRIDES
 
@@ -16,15 +16,10 @@
 
 
 // ------------------------------
-// #CONFIG
-// ------------------------------
-@import 'settings';
-
-
-// ------------------------------
-// #UTILITIES
+// #CONFIG + UTILITIES
 // ------------------------------
 @import 'functions';
+@import 'settings';
 @import 'helpers';
 
 

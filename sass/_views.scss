@@ -2,3 +2,16 @@
 // Views
 
 // About: styling for specific views.
+
+// #STATE
+
+// ------------------------------
+// #STATE
+// ------------------------------
+.work .nav--site .link--work,
+.about .nav--site .link--about,
+.contact .nav--site .link--contact {
+  color: $black;
+  cursor: pointer;
+  pointer-events: none;
+}

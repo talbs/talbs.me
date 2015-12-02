@@ -130,34 +130,27 @@
 // reset of links
 %link {
     @include transition(
-        color timing(xx-fast) ease-in-out 0s,
-        border-color timing(xx-fast) ease-in-out 0s
+        color timing(x-fast) ease-in-out 0s,
+        box-shadow timing(x-fast) ease-in-out 0s
     );
 
-    border-bottom: 1px solid red;
-    color: red;
+    box-shadow: 0 1px 0 0 rgba($grayscale, 0.25);
+    color: $link-color;
     text-decoration: none;
 
     // STATE: hover, active, focus
     &:hover,
     &:active,
     &:focus {
-        border-bottom-color: red;
-        color: red;
-    }
-
-    // STATE: is disabled
-    &:disabled,
-    &.is-disabled {
-        display: none;
-        color: red;
+        box-shadow: 0 1px 0 0 $link-focus-color;
+        color: $link-focus-color;
     }
 
     // STATE: is pressed or active
     &:active,
     &.is-pressed,
     &.is-active {
-        color: red;
+        color: $link-focus-color;
     }
 }
 

@@ -11,7 +11,25 @@
 // ------------------------------
 // #TEMP
 // ------------------------------
+body {
+  // background: teal;
 
+  // @include breakpoint($bp-screen-sm) {
+  //   background: green;
+  // }
+
+  // @include breakpoint($bp-screen-md) {
+  //   background: yellow;
+  // }
+
+  // @include breakpoint($bp-screen-lg) {
+  //   background: orange;
+  // }
+
+  // @include breakpoint($bp-screen-xl) {
+  //   background: red;
+  // }
+}
 
 // ------------------------------
 // #DEVELOPERS

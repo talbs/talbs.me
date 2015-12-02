@@ -18,20 +18,18 @@
 $font-path:                                                 '../fonts' !default;
 $image-path:                                                '../images' !default;
 
-
 // ----------------------------
 // #UNITS
 // ----------------------------
-$em-base:                                                   18; // deliberately sets bourbon-based em-base (http://bourbon.io/docs/#em-base)
-
+$em-base: 16;
 
 // ----------------------------
 // #GRID
 // ----------------------------
 // grid - dimensions
-$grid-max-width:                                            rem(800) !default;
+$grid-max-width:                                            rem(1170) !default;
 $grid-column-count:                                         12 !default;
-$grid-gutter-width:                                         (1/3) !default;  // set to fraction to be proportional to fluid column widths (see - http://susydocs.oddbird.net/en/latest/settings/#gutters)
+$grid-gutter-width:                                         (1/2) !default;  // set to fraction to be proportional to fluid column widths (see - http://susydocs.oddbird.net/en/latest/settings/#gutters)
 $grid-container-position:                                   center !default;
 $grid-gutter-position:                                      after !default;
 $grid-manual-gutter-position:                               inside !default;
@@ -51,9 +49,8 @@ $bp-screen-xl:                                              1280px !default;
 // ----------------------------
 // #TYPOGRAPHY
 // ----------------------------
-
 // typography - font-faces
-@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
 @import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic,300italic,300);
 
 // typography:                                              config - stacks
@@ -62,31 +59,63 @@ $font-family-serif:                                         'Merriweather', 'Geo
 $font-family-monospace:                                     'Bitstream Vera Sans Mono', 'Consolas', 'Courier', monospace !default;
 
 // typography - font scale
-$modular-scale-ratio:                                       $perfect-fourth;
+$font-base-sm:                                             rem(14);
+$font-base-md:                                             rem(16);
+$font-base-lg:                                             rem(18);
+
+$modular-scale-ratio:                                      $perfect-fourth;
+$modular-scale-base:                                       $font-base-sm;
 
 // typography - weights
 $font-weights:                                              (
-    normal:                                                 400,
-    light:                                                  300,
-    x-light:                                                100,
-    semi-bold:                                              600,
-    bold:                                                   700
+  normal:                                                 400,
+  light:                                                  300,
+  x-light:                                                100,
+  semi-bold:                                              600,
+  bold:                                                   700,
+  x-bold:                                                 900
 );
 
 // typography - letter-spacing
 $letter-spacing:                                            (
-    normal:                                                 0,
-    xx-tight:                                               -3,
-    x-tight:                                                -2,
-    tight:                                                  -.095,
-    loose:                                                  .5,
-    x-loose:                                                1,
-    xx-loose:                                               2
+  normal:                                                 0,
+  xx-tight:                                               -3,
+  x-tight:                                                -2,
+  tight:                                                  -.095,
+  loose:                                                  .5,
+  x-loose:                                                1,
+  xx-loose:                                               2
 );
 
 // ----------------------------
 // #COLORS
 // ----------------------------
+$white: rgb(240, 240, 244);
+$white-t: rgb(255,255,255);
+$black: rgb(43, 41, 59);
+$black-t: rgb(0,0,0);
+
+$grayscale: rgb(127, 126, 137);
+$grayscale-light: mix($white, $grayscale, 33%);
+$grayscale-lighter: mix($white, $grayscale, 66%);
+$grayscale-lightest: mix($black, $grayscale, 90%);
+$grayscale-dark: mix($black, $grayscale, 66%);
+$grayscale-darker: mix($black, $grayscale, 66%);
+$grayscale-darkest: mix($black, $grayscale, 90%);
+
+$primary: rgb(242, 80, 80);
+$primary-light: mix($white, $primary, 33%);
+$primary-lighter: mix($white, $primary, 66%);
+$primary-dark: mix($black, $primary, 33%);
+$primary-darker: mix($black, $primary, 66%);
+$primary-sat: saturate($primary, 33%);
+
+$secondary: rgb(12, 188, 225);
+$secondary-light: mix($white, $secondary, 33%);
+$secondary-lighter: mix($white, $secondary, 66%);
+$secondary-dark: mix($black, $secondary, 33%);
+$secondary-darker: mix($black, $secondary, 66%);
+$secondary-sat: saturate($secondary, 33%);
 
 
 // ----------------------------
@@ -120,26 +149,32 @@ $timing:                                                    (
 // ----------------------------
 // base component settings
 $component-focus-color:                                     inherit !default;
-$component-focus-bg:                                        red !default;
-$component-active-color:                                    red !default;
-$component-active-bg:                                       red !default;
+$component-focus-bg:                                        inherit !default;
+$component-active-color:                                    inherit !default;
+$component-active-bg:                                       inherit !default;
+
+// view/body settings
+$view-bg:                                                   $white-t;
+$banner-bg:                                                 $white;
+$footer-bg:                                                 $white;
+$card-bg:                                                   $white;
 
 // base text settings
-$text-base-font-family:                                     $font-family-sans-serif !default;
-$text-base-color:                                           red !default;
+$text-base-font-family:                                     $font-family-serif !default;
+$text-base-color:                                           $grayscale-dark !default;
 $text-base-font-weight:                                     font-weight(normal) !default;
-$text-base-focus-color:                                     red !default;
+$text-base-focus-color:                                     $primary-light !default;
 
-$text-emphasized-color:                                     red !default;
+$text-emphasized-color:                                     $grayscale-dark !default;
 $text-emphasized-font-weight:                               font-weight(normal) !default;
 
-$text-de-emphasized-color:                                  red !default;
+$text-de-emphasized-color:                                  $grayscale-light !default;
 $text-de-emphasized-font-weight:                            font-weight(normal) !default;
 
 // links
-$link-color:                                                red !default;
-$link-focus-color:                                          red !default;
-$link-visited-color:                                        red !default;
+$link-color:                                                inherit !default;
+$link-focus-color:                                          $primary-sat !default;
+$link-visited-color:                                        $primary-light !default;
 
 // headings
 $headings-font-weight-normal:                               font-weight(normal) !default;
@@ -148,13 +183,13 @@ $headings-font-weight-x-bold:                               font-weight(bold) !d
 
 $headings-base-font-family:                                 $font-family-sans-serif !default;
 $headings-base-font-weight:                                 $headings-font-weight-normal !default;
-$headings-base-color:                                       red !default;
+$headings-base-color:                                       $grayscale-darker !default;
 
 $headings-emphasized-font-family:                           $font-family-sans-serif !default;
-$headings-emphasized-color:                                 red !default;
+$headings-emphasized-color:                                 $black !default;
 
 $headings-de-emphasized-font-family:                        $font-family-sans-serif !default;
-$headings-de-emphasized-color:                              red !default;
+$headings-de-emphasized-color:                              $grayscale !default;
 
 // buttons
 $buttons-border-style:                                      solid !default;

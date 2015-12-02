@@ -3,6 +3,7 @@
 
 // About:
 
+// #DECORATIVE
 // #BUTTONS
 // #HEADINGS
 // #COPY
@@ -10,6 +11,11 @@
 
 
 // ------------------------------
+// #DECORATIVE
+// ------------------------------
+
+
+// ------------------------------
 // #BUTTONS
 // ------------------------------
 
@@ -17,12 +23,79 @@
 // ------------------------------
 // #HEADINGS
 // ------------------------------
+h1, h2, h3, h4, h5, h6, .hd {
+  font-family: $headings-base-font-family;
+  font-weight: $headings-base-font-weight;
+  color: $headings-base-color;
+}
 
+%hd-lead {
+  margin: 0 0 rem(20) 0;
+  font-size: modular-scale(4);
+}
+
+%hd-section {
+  margin: 0 0 rem(10) 0;
+  font-size: modular-scale(3);
+  font-weight: font-weight(normal);
+}
+
+%hd-detail {
+  margin: 0 0 rem(5) 0;
+}
+
+%hd-meta {
+  margin: 0 0 rem(5) 0;
+  font-size: modular-scale(0);
+  font-weight: font-weight(x-bold);
+  text-transform: uppercase;
+  letter-spacing: letter-spacing(x-loose);
+}
+
+.section {
+  @extend %clear-last-child;
+  margin-bottom: rem(40);
+
+  .introduction {
+    @extend %copy-base;
+  }
+}
+
+.section__title {
+  @extend %hd-section;
+
+  .sub {
+    @extend %hd-meta;
+    display: block;
+  }
+
+  .sub--top {
+    margin-bottom: rem(5);
+  }
+
+  .sub--bottom {
+    margin-top: rem(5);
+  }
+}
 
 // ------------------------------
 // #COPY
 // ------------------------------
+%copy-lead {
+  font-size: modular-scale(2);
+}
 
+%copy-base {
+  font-size: modular-scale(1);
+}
+
+%copy-detail {
+  font-size: modular-scale(0);
+}
+
+%copy-micro {
+  font-size: modular-scale(-1);
+}
 
 // ------------------------------
 // #FORMS
@@ -32,3 +105,60 @@
 // ------------------------------
 // #SYSTEM_FEEDBACK
 // ------------------------------
+
+
+// ------------------------------
+// #BANNER
+// ------------------------------
+.wrapper--banner {
+  background: $banner-bg;
+}
+
+.banner {
+  padding: rem(20) 0;
+}
+
+.header--site--title {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: font-weight(x-bold);
+  font-size: modular-scale(2);
+  letter-spacing: letter-spacing(xx-loose);
+  color: $black;
+
+  a {
+    box-shadow: none;
+    color: $grayscale-darker;
+  }
+}
+
+// ------------------------------
+// #NAV
+// ------------------------------
+.nav--site {
+  text-align: right;
+  margin-top: rem(5);
+}
+
+.nav--site--link {
+  @extend %clear-last-child;
+  font-family: $font-family-sans-serif;
+  font-weight: font-weight(semi-bold);
+  // letter-spacing: letter-spacing(loose);
+  margin-right: rem(15);
+  box-shadow: none;
+}
+
+// ------------------------------
+// #FOOTER
+// ------------------------------
+.wrapper--footer--site {
+  background: $footer-bg;
+}
+
+.footer--site {
+  @extend %copy-micro;
+  padding: rem(10) 0;
+  font-family: $font-family-sans-serif;
+  color: $text-de-emphasized-color;
+}
