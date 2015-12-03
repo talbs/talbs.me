@@ -1,4 +1,8 @@
-<a href="{{ post.url }}">
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.lead }}</p>
-</a>
+<div class="work-lead">
+  <h2 class="work-load__title">
+    <a class="work-load__title" href="{{ post.url }}">{{ post.title }}</a>
+  </h2>
+  <p class="work-lead__copy">{{ post.lead }}</p>
+
+  <a class="work-lead__action" href="{{ post.url }}">{{post.hook}}</a>
+</div>

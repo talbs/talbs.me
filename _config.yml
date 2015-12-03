@@ -9,8 +9,10 @@ author:
     email:              hi.talbs@gmail.com
 
 url:                    http://www.talbs.me
-url_work:               /work/
-url_contact:            /contact/
+url_about:              about/
+url_work:               work/
+url_work_docs:          work/files
+url_contact:            contact/
 
 baseurl:                /
 permalink:              /:categories/:title/

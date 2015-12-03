@@ -5,6 +5,29 @@ title: Work
 section: work
 view: work-index
 ---
-{% for post in site.categories.work %}
-{% include work-lead.html %}
-{% endfor %}
+
+<section class="section section--work">
+  <h2 class="section__title">
+    <span class="sub sub--top">{{ site.data.talbs-work.name }}</span>
+    {{ site.data.talbs-work.description }}
+  </h2>
+
+
+  <div class="section__content">
+    <p class="introduction">{{ site.data.talbs-work.introduction }}</p>
+
+    <div class="list--work">
+      {% for post in site.categories.work %}
+      {% include work-lead.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--resume">
+  <h2 class="section__title">More Information</h2>
+  <div class="section__content">
+    <p>Want to know more about my exploits? Take a look through <a href="{{ site.baseurl }}{{ site.url_work_docs }}/resume-briantalbot.pdf">my resume</a></p>
+  </div>
+</section>
+
