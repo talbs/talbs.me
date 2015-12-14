@@ -1,0 +1,53 @@
+// ------------------------------
+// Overrides
+
+// About: Additional sass rules that must come at the end of the compilation for overriding purposes - either for temporary/specific developer styling needs or for known poorly scoped/written styling (aka shame CSS).
+
+// #TEMP
+// #DEVELOPERS
+// #SHAME
+
+
+// ------------------------------
+// #TEMP
+// ------------------------------
+body {
+  // background: teal;
+
+  // @include breakpoint($bp-screen-sm) {
+  //   background: green;
+  // }
+
+  // @include breakpoint($bp-screen-md) {
+  //   background: yellow;
+  // }
+
+  // @include breakpoint($bp-screen-lg) {
+  //   background: orange;
+  // }
+
+  // @include breakpoint($bp-screen-xl) {
+  //   background: red;
+  // }
+}
+
+// %badge {
+//   display: inline-block;
+//   border-radius: rem(2);
+//   padding: rem($baseline/2) rem($baseline);
+//   font-family: $headings-base-font-family;
+//   font-size: modular-scale(-1);
+//   font-weight: font-weight(x-bold);
+//   text-transform: uppercase;
+//   letter-spacing: letter-spacing(x-loose);
+// }
+
+// ------------------------------
+// #DEVELOPERS
+// ------------------------------
+
+
+// ------------------------------
+// #SHAME
+// ------------------------------
+

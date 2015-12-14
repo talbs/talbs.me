@@ -1,0 +1,205 @@
+// ------------------------------
+// Layouts
+
+// About: styling for generic layouts and responsive support.
+
+// #CONFIG
+// #GLOBAL
+// #UTILITY
+// #WORK
+
+
+// ------------------------------
+// #CONFIG
+// ------------------------------
+// susy-based configuration (see http://susydocs.oddbird.net/en/latest/settings/)
+$susy: (
+  use-custom: (
+    background-options: false,
+    box-sizing: false,
+    breakpoint: true,
+    clearfix: true,
+    rem: true
+    ),
+  debug: (
+    color: $grid-debug-color,
+    ),
+  math: fluid,
+  output: float
+  );
+
+// LAYOUT: set default susy settings
+// (gutters are handled outside of elements - by default)
+$susy-default: (
+  flow: $grid-direction-default,
+  column-width: $grid-column-width,
+  columns: $grid-column-count,
+  container-position: $grid-container-position,
+  container: $grid-max-width,
+  global-box-sizing: border-box,
+  gutters: $grid-gutter-width,
+  gutter-position: $grid-gutter-position
+  );
+
+// set basic grid settings for app
+@include layout($susy-default);
+
+// ----------------------------
+// #UTILITY
+// ----------------------------
+// shift grid for content
+%shift-content {
+  @include pre(1);
+  @include post(1);
+}
+
+%grid-wrapper {
+  padding-right: gutter();
+  padding-left: gutter();
+}
+
+%grid-container {
+  @include container();
+}
+
+// grid rows - set visual break and document flow clear (clearfix)
+%grid-row {
+  @include break();
+  @include clearfix();
+}
+
+%grid-gallery {
+  @include break();
+  @include clearfix();
+}
+
+%grid-fill-col {
+  display: block;
+  width: 100%;
+}
+
+
+// ------------------------------
+// #GLOBAL
+// ------------------------------
+.wrapper--view {
+  margin: $spacing-md $spacing-md 0 $spacing-md;
+
+  @include breakpoint($bp-screen-sm) {
+    margin: $spacing-lg $spacing-lg 0 $spacing-lg;
+  }
+}
+
+// banner
+.wrapper--header {
+  @extend %grid-wrapper;
+  padding-top: $spacing-xl;
+  margin-bottom: $spacing-lg;
+}
+
+.header--site {
+  @extend %grid-container;
+}
+
+.header--site--title {
+  text-align: center;
+}
+
+// footer
+.wrapper--footer--site {
+  margin-top: $spacing-md;
+  @extend %grid-wrapper;
+  padding-top: $spacing-lg;
+
+  @include breakpoint($bp-screen-sm) {
+    margin-top: $spacing-xl;
+  }
+}
+
+.footer--site {
+  @extend %grid-container;
+  text-align: center;
+
+  .copyright, .source {
+
+    @include breakpoint($bp-screen-sm) {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .copyright {
+    margin-bottom: $spacing-sm;
+
+    @include breakpoint($bp-screen-sm) {
+      margin-right: $spacing-xl;
+    }
+  }
+}
+
+// nav - elsewhere
+.nav--elsewhere__item {
+  display: block;
+  text-align: center;
+  margin-bottom: $spacing-md;
+
+  .link {
+    display: block;
+  }
+
+  .icon {
+    margin-right: $spacing-md;
+  }
+
+  @include breakpoint($bp-screen-sm) {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: $spacing-lg;
+    text-align: left;
+
+    .link {
+      display: inline;
+    }
+  }
+}
+
+// nav - breadcrumbs
+.wrapper--breadcrumbs {
+  @extend %grid-wrapper;
+}
+
+.nav--breadcrumbs {
+  @extend %grid-container;
+  margin-bottom: $spacing-lg;
+  text-align: center;
+
+  @include breakpoint($bp-screen-md) {
+    text-align: left;
+  }
+}
+
+.nav--breadcrumbs__spacer,
+.nav--breadcrumbs__link {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// ------------------------------
+// #WORK
+// ------------------------------
+
+
+// listings
+.list--work {
+  @extend %grid-gallery;
+}
+.work-lead {
+
+  @include breakpoint($bp-screen-md) {
+    @include gallery(6);
+  }
+
+  // @include breakpoint($bp-screen-lg) {
+  //   @include gallery(4);
+  // }
+}

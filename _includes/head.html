@@ -1,0 +1,39 @@
+<head>
+  <base href="{{ site.baseurl }}">
+
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="{{ site.title }}">
+  <meta itemprop="description" content="{{ site.data.talbs.description }}">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="{{ site.baseurl }}{{ site.url_avatar }}">
+  <meta name="twitter:site" content="@{{ site.data.talbs.nickname }}">
+  <meta name="twitter:title" content="{{ site.data.talbs.name }}">
+  <meta name="twitter:description" content="{{ site.data.talbs.description }}">
+  <meta name="twitter:creator" content="@site_owner_twitter_handle">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="{{ site.baseurl }}{{ site.url_avatar }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ site.baseurl }}{{ site.url_avatar }}">
+  <meta property="og:image" content="/assets/avatar.png" />
+  <meta property="og:description" content="{{ site.data.talbs.description }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  <title>
+    {% if page.title == "Home" %}
+    {{ site.title }}
+    {% else %}
+    {{ page.title }} | {{ site.title }}
+    {% endif %}
+  </title>
+
+  <meta name="description" content="{{ site.tagline }}">
+
+  {% include assets-primary.html %}
+</head>
