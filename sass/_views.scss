@@ -417,21 +417,36 @@
   }
 
   .work__goals {
+    @include breakpoint($bp-screen-md) {
+      @include span(4 last);
+      position: relative;
+      top: -($spacing-xl);
+    }
+  }
+
+  .work__goals__title {
+    @extend %hd-6;
+    color: $secondary;
+  }
+
+  .list--goals {
     @extend %reset-lists;
     color: $text-emphasized-color;
 
     @include breakpoint($bp-screen-md) {
       color: $grayscale-lighter;
-      @include span(4 last);
     }
 
     .goal {
       @extend %clear-last-child;
       margin-bottom: $spacing-md;
-      border-bottom: rem(1) solid $secondary;
+      border-bottom: rem(2) solid $grayscale-lightest;
       padding-bottom: $spacing-md;
       font-family: $font-family-sans-serif;
-      font-weight: font-weight(bold);
+
+      @include breakpoint($bp-screen-md) {
+        border-color: $grayscale;
+      }
     }
   }
 

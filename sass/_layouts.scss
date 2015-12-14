@@ -194,7 +194,6 @@ $susy-default: (
   @extend %grid-gallery;
 }
 .work-lead {
-
   @include breakpoint($bp-screen-md) {
     @include gallery(6);
   }
