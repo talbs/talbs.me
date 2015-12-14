@@ -29,7 +29,6 @@ module.exports = {
     data:     '_data/**/*',
     content:  '**/*.md',
     home:     'index.html',
-    work:     'work/**/*',
     contact:  'contact/**/*',
     posts:    '_posts/**/*',
     includes: '_includes/**/*',
