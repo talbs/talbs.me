@@ -40,7 +40,6 @@
     @include transition(
       filter timing(fast) ease-in-out
     );
-    @include filter(grayscale(100%));
     display: block;
     position: relative;
     top: -(rem(25));
@@ -51,6 +50,10 @@
     border-radius: 50%;
     background: url('#{$image-path}/talbs.png') center center no-repeat;
     background-size: 100%;
+
+    @include breakpoint($bp-screen-md) {
+      @include filter(grayscale(100%));
+    }
   }
 
   .wrapper--view {
@@ -69,8 +72,12 @@
     max-width: span(12);
     flex: none;
     background: $black;
-    border-top: rem(4) solid $grayscale-light;
+    border-top: rem(4) solid $secondary;
     padding: 0 $spacing-xl $spacing-md $spacing-xl;
+
+    @include breakpoint($bp-screen-md) {
+      border-top: rem(4) solid $grayscale-light;
+    }
 
     &:hover, &:active {
       border-color: $secondary;
@@ -106,10 +113,11 @@
     margin-bottom: 0;
     font-size: modular-scale(0);
     letter-spacing: letter-spacing(loose);
-    color: $grayscale-light;
+    color: $secondary;
 
     @include breakpoint($bp-screen-md) {
       font-size: modular-scale(1);
+      color: $grayscale-light;
     }
   }
 
@@ -134,9 +142,15 @@
       @extend %a11y-hide;
     }
 
+    .icon {
+      margin: 0;
+    }
+
     .link {
       box-shadow: none;
       display: block;
+      padding: $spacing-sm ($spacing-sm*1.5);
+      text-align: center;
     }
   }
 }
