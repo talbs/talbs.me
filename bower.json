@@ -13,7 +13,8 @@
     "bourbon": "*",
     "breakpoint-sass": "*",
     "jquery": "*",
-    "susy": "*"
+    "susy": "*",
+    "picturefill": "~3.0.1"
   },
   "devDependencies": {
     "modernizr": "~3.2.0"
