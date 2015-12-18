@@ -186,7 +186,6 @@ $grayscale-dark: mix($black, $grayscale, 33%);
 $grayscale-darker: mix($black, $grayscale, 66%);
 $grayscale-darkest: mix($black, $grayscale, 90%);
 
-// $primary: rgb(93, 145, 168);
 $primary: $blue;
 $primary-light: mix($white, $primary, 33%);
 $primary-lighter: mix($white, $primary, 66%);
@@ -194,7 +193,6 @@ $primary-dark: mix($black, $primary, 33%);
 $primary-darker: mix($black, $primary, 66%);
 $primary-sat: saturate($primary, 20%);
 
-// $secondary: rgb(227, 132, 53);
 $secondary: $red;
 $secondary-light: mix($white, $secondary, 33%);
 $secondary-lighter: mix($white, $secondary, 66%);

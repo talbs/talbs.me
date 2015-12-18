@@ -20,7 +20,7 @@
     left: 0;
     display: block;
     width: 100%;
-    height: rem(4);
+    height: rem(3);
     background: repeating-linear-gradient(
       to right,
       $secondary-lighter,
@@ -67,20 +67,23 @@
 
   .wrapper--content {
     @include transition(
-      border-color timing(fast) ease-in-out
+      border-color timing(fast) ease-in-out,
+      box-shadow timing(fast) ease-in-out
     );
     max-width: span(12);
     flex: none;
     background: $black;
-    border-top: rem(4) solid $secondary;
+    box-shadow: 0 rem(2) 0 0 rgba($black-t, 0.15);
+    border-top: rem(6) solid $secondary;
     padding: 0 $spacing-xl $spacing-md $spacing-xl;
 
     @include breakpoint($bp-screen-md) {
-      border-top: rem(4) solid $grayscale-light;
+      border-top: rem(6) solid $grayscale-light;
     }
 
     &:hover, &:active {
       border-color: $secondary;
+      box-shadow: 0 rem(2) 0 0 rgba($black-t, 0.35);
 
       .deco--avatar {
         @include filter(grayscale(0%));
@@ -359,24 +362,13 @@
 
   // billboard
   .wrapper--billboard {
-
-    @include breakpoint($bp-screen-md) {
-      margin-top: ($spacing-xl*2);
-      border-top: rem(10) solid $secondary;
-      @include linear-gradient(50deg, $grayscale 0%, $grayscale-dark 100%);
-    }
+    @include linear-gradient(50deg, $grayscale 0%, $grayscale-dark 100%);
   }
 
   .billboard__image {
     // @extend %deco-frame;
     margin-bottom: $spacing-lg;
     box-shadow-color: $grayscale-dark;
-
-    @include breakpoint($bp-screen-md) {
-      position: relative;
-      top: -($spacing-xl);
-      margin-bottom: 0;
-    }
   }
 
   .billboard__content {
