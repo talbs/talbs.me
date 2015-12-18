@@ -148,7 +148,7 @@ $susy-default: (
   }
 
   .icon {
-    margin-right: $spacing-md;
+    margin-right: $spacing-sm;
   }
 
   @include breakpoint($bp-screen-sm) {

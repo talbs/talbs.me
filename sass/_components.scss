@@ -72,8 +72,18 @@ $bubble-triangle-size: rem($baseline*2);
   display: block;
   border-radius: rem(2);
   padding: $spacing-md;
+}
+
+%deco-frame-dol {
+  @extend %deco-frame;
+  background: $grayscale-dark;
   box-shadow: 0 rem(2) 0 0 $grayscale-lightest;
+}
+
+%deco-frame-lod {
+  @extend %deco-frame;
   background: $white-t;
+  box-shadow: 0 rem(2) 0 0 $grayscale-lightest;
 }
 
 %deco-divider-single {
@@ -381,8 +391,9 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
   @include transition(
     border-color timing(x-fast) ease-in-out 0s
   );
+  @extend %deco-frame;
+  border: rem(4) double $grayscale-lightest;
   margin-bottom: $spacing-md;
-  border-bottom: rem(5) solid $secondary;
 }
 
 .work-lead__title {

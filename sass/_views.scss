@@ -359,16 +359,16 @@
 
   // billboard
   .wrapper--billboard {
-    // background: $grayscale;
 
     @include breakpoint($bp-screen-md) {
       margin-top: ($spacing-xl*2);
+      border-top: rem(10) solid $secondary;
       @include linear-gradient(50deg, $grayscale 0%, $grayscale-dark 100%);
     }
   }
 
   .billboard__image {
-    border-bottom: rem(10) solid $secondary;
+    // @extend %deco-frame;
     margin-bottom: $spacing-lg;
     box-shadow-color: $grayscale-dark;
 
@@ -426,7 +426,11 @@
 
   .work__goals__title {
     @extend %hd-6;
-    color: $grayscale-lightest;
+    color: $secondary;
+
+    @include breakpoint($bp-screen-md) {
+      color: $grayscale-lightest;
+    }
   }
 
   .list--goals {
@@ -471,7 +475,7 @@
     }
 
     .image {
-      @extend %deco-frame;
+      @extend %deco-frame-lod;
       max-width: 100%;
       margin-bottom: $spacing-lg;
 
