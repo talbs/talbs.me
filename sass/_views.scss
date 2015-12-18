@@ -37,23 +37,16 @@
   }
 
   .deco--avatar {
-    @include transition(
-      filter timing(fast) ease-in-out
-    );
     display: block;
     position: relative;
     top: -(rem(25));
     width: rem(150);
     height: rem(150);
     margin: 0 auto;
-    // border: rem(2) solid $black;
+    border: rem(6) solid $black;
     border-radius: 50%;
     background: url('#{$image-path}/talbs.png') center center no-repeat;
     background-size: 100%;
-
-    @include breakpoint($bp-screen-md) {
-      @include filter(grayscale(100%));
-    }
   }
 
   .wrapper--view {
@@ -97,6 +90,7 @@
 
   .content--main {
     font-family: $font-family-sans-serif;
+    margin-top: -($spacing-lg);
     margin-bottom: $spacing-lg;
     border-bottom: rem(4) double $grayscale-darker;
     padding-bottom: $spacing-lg;
@@ -325,19 +319,14 @@
 // ------------------------------
 .work--detail {
 
+  .wrapper--title,
   .wrapper--billboard,
   .wrapper--highlights,
   .wrapper--takeaways {
     @extend %grid-wrapper;
-    margin-bottom: $spacing-lg;
-    padding-bottom: $spacing-lg;
-
-    @include breakpoint($bp-screen-md) {
-      margin-bottom: $spacing-xl;
-      padding-bottom: $spacing-xl;
-    }
   }
 
+  .work__title,
   .work__billboard,
   .work__highlights,
   .work__takeaways {
@@ -360,9 +349,30 @@
     }
   }
 
+  // title
+  .work__title {
+    @extend %grid-fill-col;
+    @extend %hd-2;
+    color: $headings-base-color;
+    text-align: center;
+
+    .sub {
+      @extend %hd-6;
+      margin-bottom: 0;
+      color: $headings-emphasized-color;
+    }
+  }
+
   // billboard
   .wrapper--billboard {
-    @include linear-gradient(50deg, $grayscale 0%, $grayscale-dark 100%);
+    margin-bottom: $spacing-lg;
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
+    background: $white-t;
+
+    @include breakpoint($bp-screen-md) {
+      margin-bottom: $spacing-xl;
+    }
   }
 
   .billboard__image {
@@ -373,26 +383,6 @@
 
   .billboard__content {
     @extend %grid-row;
-  }
-
-  .work__title {
-    @extend %grid-fill-col;
-    @extend %hd-2;
-    color: $headings-base-color;
-
-    @include breakpoint($bp-screen-md) {
-      color: $white;
-    }
-
-    .sub {
-      @extend %hd-6;
-      margin-bottom: 0;
-      color: $headings-emphasized-color;
-
-      @include breakpoint($bp-screen-md) {
-        color: $white-t;
-      }
-    }
   }
 
   .work__introduction {
@@ -411,8 +401,6 @@
   .work__goals {
     @include breakpoint($bp-screen-md) {
       @include span(4 last);
-      position: relative;
-      top: -($spacing-xl);
     }
   }
 
@@ -447,6 +435,14 @@
   }
 
   // highlights
+  .wrapper--highlights {
+    margin-bottom: $spacing-lg;
+
+    @include breakpoint($bp-screen-md) {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
   .work__highlights {
 
     .section__content {
