@@ -85,7 +85,7 @@ $susy-default: (
 .wrapper--view {
   margin: $spacing-md $spacing-md 0 $spacing-md;
 
-  @include breakpoint($bp-screen-sm) {
+  @include breakpoint($bp-screen-md) {
     margin: $spacing-lg $spacing-lg 0 $spacing-lg;
   }
 }
@@ -93,7 +93,6 @@ $susy-default: (
 // banner
 .wrapper--header {
   @extend %grid-wrapper;
-  padding-top: $spacing-xl;
   margin-bottom: $spacing-lg;
 }
 
@@ -107,34 +106,18 @@ $susy-default: (
 
 // footer
 .wrapper--footer--site {
-  margin-top: $spacing-md;
+  // margin-top: $spacing-md;
   @extend %grid-wrapper;
   padding-top: $spacing-lg;
 
   @include breakpoint($bp-screen-sm) {
-    margin-top: $spacing-xl;
+    // margin-top: $spacing-xl;
   }
 }
 
 .footer--site {
   @extend %grid-container;
   text-align: center;
-
-  .copyright, .source {
-
-    @include breakpoint($bp-screen-sm) {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-
-  .copyright {
-    margin-bottom: $spacing-sm;
-
-    @include breakpoint($bp-screen-sm) {
-      margin-right: $spacing-xl;
-    }
-  }
 }
 
 // nav - elsewhere
@@ -187,18 +170,3 @@ $susy-default: (
 // ------------------------------
 // #WORK
 // ------------------------------
-
-
-// listings
-.list--work {
-  @extend %grid-gallery;
-}
-.work-lead {
-  @include breakpoint($bp-screen-md) {
-    @include gallery(6);
-  }
-
-  // @include breakpoint($bp-screen-lg) {
-  //   @include gallery(4);
-  // }
-}

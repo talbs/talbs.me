@@ -1,12 +1,16 @@
 <div class="wrapper--header">
   <header class="header--site" role="banner" aria-labelledby="header--site--title">
     {% if page.title == "Home" %}
-    <h1 class="header--site--title" id="header--site--title">{{ site.title }}</h1>
+    <h1 class="header--site--title" id="header--site--title">
+      <abbr title="{{ site.data.talbs.name }}">
+        {{ site.data.talbs.abbreviation }}
+      </abbr>
+    </h1>
     {% else %}
     <h2 class="header--site--title" id="header--site--title">
-      <a href="{{ site.baseurl }}">
-        {{ site.title }}
-      </a>
+      <abbr title="{{ site.data.talbs.name }}">
+        {{ site.data.talbs.abbreviation }}
+      </abbr>
     </h2>
     {% endif %}
   </header>

@@ -227,27 +227,27 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 
 %hd-1 {
   margin-bottom: $spacing-lg;
-  font-size: modular-scale(4);
+  font-size: modular-scale(5);
 }
 
 %hd-2 {
   margin-bottom: $spacing-lg;
-  font-size: modular-scale(3);
+  font-size: modular-scale(4);
 }
 
 %hd-3 {
   margin-bottom: $spacing-lg;
-  font-size: modular-scale(2);
+  font-size: modular-scale(3);
 }
 
 %hd-4 {
   margin-bottom: $spacing-md;
-  font-size: modular-scale(1);
+  font-size: modular-scale(2);
 }
 
 %hd-5-alt {
   margin-bottom: $spacing-md;
-  font-size: modular-scale(0);
+  font-size: modular-scale(1);
 }
 
 %hd-5 {
@@ -255,7 +255,7 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
   font-size: modular-scale(0);
   font-weight: font-weight(x-bold);
   text-transform: uppercase;
-  letter-spacing: letter-spacing(x-loose);
+  letter-spacing: letter-spacing(xx-loose);
 }
 
 %hd-6 {
@@ -346,14 +346,26 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 }
 
 .header--site {
-  @extend %deco-divider-double;
   padding-bottom: $spacing-lg;
+  text-align: center;
 }
 
 .header--site--title {
   @extend %hd-brand;
+  position: relative;
+  top: -(rem(2));
+  display: inline-block;
   margin: 0;
-  color: $grayscale-dark;
+  border-bottom-right-radius: rem(2);
+  border-bottom-left-radius: rem(2);
+  padding: $spacing-sm $spacing-md;
+  color: $white-t;
+  @include linear-gradient($secondary-dark 0%, $secondary 2%, $secondary-sat 100%);
+
+  abbr {
+    text-decoration: none;
+    border: none;
+  }
 
   a {
     box-shadow: none;
@@ -383,19 +395,6 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 // ------------------------------
 // #WORK_LISTING
 // ------------------------------
-.work-lead {
-  margin-bottom: $spacing-xl;
-}
-
-.work-lead__image {
-  @include transition(
-    border-color timing(x-fast) ease-in-out 0s
-  );
-  @extend %deco-frame;
-  border: rem(4) double $grayscale-lightest;
-  margin-bottom: $spacing-md;
-}
-
 .work-lead__title {
   @include transition(
     color timing(x-fast) ease-in-out 0s
@@ -411,6 +410,9 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 }
 
 .work-lead__copy {
+  @include transition(
+    all timing(x-fast) ease-in-out 0s
+  );
   @extend %copy-detail;
 }
 
