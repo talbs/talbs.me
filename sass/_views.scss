@@ -15,12 +15,9 @@
   @include linear-gradient(50deg, $grayscale-darker 0%, $grayscale-darkest 100%);
 
   .deco--stripe {
-    position: fixed;
-    top: 0;
-    left: 0;
     display: block;
     width: 100%;
-    height: rem(3);
+    height: rem(2);
     background: repeating-linear-gradient(
       to right,
       $secondary-lighter,
@@ -54,7 +51,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100%;
-    margin: $spacing-lg $spacing-xl;
+    padding: $spacing-lg $spacing-xl;
     background: none; //reset
   }
 
@@ -85,6 +82,10 @@
       .talbs__description {
         color: $secondary;
       }
+
+      .deco--stripe {
+        opacity: 0.25;
+      }
     }
   }
 
@@ -92,8 +93,6 @@
     font-family: $font-family-sans-serif;
     margin-top: -($spacing-lg);
     margin-bottom: $spacing-lg;
-    border-bottom: rem(4) double $grayscale-darker;
-    padding-bottom: $spacing-lg;
     text-align: center;
   }
 
@@ -116,6 +115,14 @@
       font-size: modular-scale(1);
       color: $grayscale-light;
     }
+  }
+
+  .deco--stripe {
+    @include transition(
+      opacity timing(x-fast) ease-in-out
+    );
+    margin-bottom: $spacing-lg;
+    opacity: 0.65;
   }
 
   .content--aside {
@@ -230,7 +237,7 @@
   // work
   .wrapper--work {
     margin-bottom: $spacing-xl;
-    padding-top: $spacing-lg;
+    padding-top: $spacing-xl;
     padding-bottom: $spacing-lg;
     background: $grayscale-darker;
   }
@@ -249,7 +256,7 @@
   .work-lead {
     @extend %clear-last-child;
     @extend %grid-row;
-    margin-bottom: $spacing-xl;
+    margin-bottom: $spacing-xx;
 
     &:hover, &:active {
 
@@ -375,15 +382,12 @@
 // #WORK
 // ------------------------------
 .work--detail {
-
-  .wrapper--title,
   .wrapper--billboard,
   .wrapper--highlights,
   .wrapper--takeaways {
     @extend %grid-wrapper;
   }
 
-  .work__title,
   .work__billboard,
   .work__highlights,
   .work__takeaways {
@@ -412,9 +416,8 @@
   }
 
   .work__title {
-    @extend %grid-fill-col;
     @extend %hd-2;
-    color: $secondary;
+    color: $text-lod;
     text-align: center;
 
     .sub {
@@ -428,7 +431,7 @@
     margin-bottom: $spacing-lg;
     padding-top: $spacing-xl;
     padding-bottom: $spacing-xl;
-    background: $white-t;
+    background: $grayscale-darker;
 
     @include breakpoint($bp-screen-md) {
       margin-bottom: $spacing-xl;
@@ -436,9 +439,8 @@
   }
 
   .billboard__image {
-    // @extend %deco-frame;
-    margin-bottom: $spacing-lg;
-    box-shadow-color: $grayscale-dark;
+    @extend %deco-frame-dark;
+    margin-bottom: $spacing-xl;
   }
 
   .billboard__content {
@@ -449,12 +451,11 @@
     @extend %copy-3;
     color: $grayscale-lightest;
     margin-bottom: $spacing-lg;
-    color: $text-base-color;
+    color: $text-lod;
 
     @include breakpoint($bp-screen-md) {
       @include span(8 first);
       margin-bottom: 0;
-      color: $white-t;
     }
   }
 
@@ -466,31 +467,19 @@
 
   .work__goals__title {
     @extend %hd-6;
-    color: $secondary;
-
-    @include breakpoint($bp-screen-md) {
-      color: $grayscale-lightest;
-    }
+    color: $grayscale-lightest;
   }
 
   .list--goals {
     @extend %reset-lists;
-    color: $text-emphasized-color;
-
-    @include breakpoint($bp-screen-md) {
-      color: $grayscale-lighter;
-    }
+    color: $grayscale-lighter;
 
     .goal {
       @extend %clear-last-child;
       margin-bottom: $spacing-md;
-      border-bottom: rem(2) solid $grayscale-lightest;
+      border-bottom: rem(2) solid $grayscale-darkest;
       padding-bottom: $spacing-md;
       font-family: $font-family-sans-serif;
-
-      @include breakpoint($bp-screen-md) {
-        border-color: $grayscale;
-      }
     }
   }
 
@@ -523,7 +512,8 @@
     }
 
     .image {
-      @extend %deco-frame-lod;
+      @extend %deco-frame-light;
+      @extend %graphic-focus;
       max-width: 100%;
       margin-bottom: $spacing-lg;
 
@@ -560,13 +550,13 @@
 
       .image {
         @include breakpoint($bp-screen-md) {
-          @include span(6 first);
+          @include span(8 first);
         }
       }
 
       .caption {
         @include breakpoint($bp-screen-md) {
-          @include span(6 last);
+          @include span(4 last);
         }
       }
     }
@@ -576,13 +566,13 @@
 
       .image {
         @include breakpoint($bp-screen-md) {
-          @include span(6 last);
+          @include span(8 last);
         }
       }
 
       .caption {
         @include breakpoint($bp-screen-md) {
-          @include span(6 first);
+          @include span(4 first);
         }
       }
     }
