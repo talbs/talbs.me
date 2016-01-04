@@ -14,24 +14,9 @@
 .home {
   @include linear-gradient(50deg, $grayscale-darker 0%, $grayscale-darkest 100%);
 
-  .deco--stripe {
-    display: block;
-    width: 100%;
-    height: rem(2);
-    background: repeating-linear-gradient(
-      to right,
-      $secondary-lighter,
-      $secondary-lighter 30px,
-      $secondary 30px,
-      $secondary 60px,
-      $primary 60px,
-      $primary 90px,
-      $secondary-light 90px,
-      $secondary-light 120px,
-      $primary-light 120px,
-      $primary-light 150px
-    );
-  }
+  // .deco--stripe {
+  //   @extend %deco-stripe;
+  // }
 
   .deco--avatar {
     display: block;
@@ -40,7 +25,7 @@
     width: rem(150);
     height: rem(150);
     margin: 0 auto;
-    border: rem(6) solid $black;
+    border: rem(6) solid $white;
     border-radius: 50%;
     background: url('#{$image-path}/talbs.png') center center no-repeat;
     background-size: 100%;
@@ -56,35 +41,24 @@
   }
 
   .wrapper--content {
-    @include transition(
-      border-color timing(fast) ease-in-out,
-      box-shadow timing(fast) ease-in-out
-    );
+    @extend %deco-frame-dark;
+    position: relative;
     max-width: span(12);
     flex: none;
-    background: $black;
-    box-shadow: 0 rem(2) 0 0 rgba($black-t, 0.15);
-    border-top: rem(6) solid $secondary;
     padding: 0 $spacing-xl $spacing-md $spacing-xl;
 
-    @include breakpoint($bp-screen-md) {
-      border-top: rem(6) solid $grayscale-light;
+    &:before {
+      @extend %deco-stripe;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
     }
 
     &:hover, &:active {
-      border-color: $secondary;
-      box-shadow: 0 rem(2) 0 0 rgba($black-t, 0.35);
-
-      .deco--avatar {
-        @include filter(grayscale(0%));
-      }
 
       .talbs__description {
         color: $secondary;
-      }
-
-      .deco--stripe {
-        opacity: 0.25;
       }
     }
   }
@@ -99,7 +73,7 @@
   .talbs__name {
     @extend %hd-brand;
     margin-bottom: $spacing-sm;
-    color: $white;
+    // color: $white;
   }
 
   .talbs__description {
@@ -109,24 +83,10 @@
     margin-bottom: 0;
     font-size: modular-scale(0);
     letter-spacing: letter-spacing(loose);
-    color: $secondary;
 
     @include breakpoint($bp-screen-md) {
       font-size: modular-scale(1);
-      color: $grayscale-light;
     }
-  }
-
-  .deco--stripe {
-    @include transition(
-      opacity timing(x-fast) ease-in-out
-    );
-    margin-bottom: $spacing-lg;
-    opacity: 0.65;
-  }
-
-  .content--aside {
-    font-family: $font-family-sans-serif;
   }
 
   .nav--elsewhere {

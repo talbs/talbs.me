@@ -79,11 +79,31 @@ $bubble-triangle-size: rem($baseline*2);
   }
 }
 
+
+%deco-stripe {
+  display: block;
+  width: 100%;
+  height: rem(4);
+  background: repeating-linear-gradient(
+    to right,
+    $secondary-light,
+    $secondary-light 30px,
+    $secondary 30px,
+    $secondary 60px,
+    $primary 60px,
+    $primary 90px,
+    $secondary-light 90px,
+    $secondary-light 120px,
+    $primary-light 120px,
+    $primary-light 150px
+  );
+}
+
 %deco-frame {
   display: block;
   border-radius: rem(2);
   padding: $spacing-md;
-  background: $white-t;
+  background: $white;
 }
 
 %deco-frame-dark {
@@ -364,22 +384,23 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 
 .header--site--title {
   @include transition(
-    background-color timing(x-fast) ease-in-out 0s
+    background-color timing(x-fast) ease-in-out 0s,
+    border-color timing(x-fast) ease-in-out 0s
   );
-  background: $grayscale-darker;
+  background: $grayscale-dark;
   @extend %hd-brand;
   position: relative;
   top: -(rem(2));
   display: inline-block;
   margin: 0;
-  border-top: rem(2) solid $grayscale-darkest;
+  border-top: rem(2) solid $grayscale-darker;
   border-bottom-right-radius: rem(2);
   border-bottom-left-radius: rem(2);
   color: $white-t;
 
   &:hover, &:focus {
-    background: $secondary;
-    border-top-color: $secondary-dark;
+    background: $primary;
+    border-top-color: $primary-dark;
   }
 
   abbr {
