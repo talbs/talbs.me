@@ -85,11 +85,15 @@ $susy-default: (
 // banner
 .wrapper--header {
   @extend %grid-wrapper;
-  margin-bottom: $spacing-lg;
 }
 
 .header--site {
   @extend %grid-container;
+  text-align: center;
+
+  @include breakpoint($bp-screen-md) {
+    text-align: left;
+  }
 }
 
 .header--site--title {
@@ -98,12 +102,10 @@ $susy-default: (
 
 // footer
 .wrapper--footer--site {
-  // margin-top: $spacing-md;
   @extend %grid-wrapper;
   padding-top: $spacing-lg;
 
   @include breakpoint($bp-screen-sm) {
-    // margin-top: $spacing-xl;
   }
 }
 

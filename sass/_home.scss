@@ -9,7 +9,7 @@
 // #HOME
 // ------------------------------
 .home {
-  @include linear-gradient(50deg, $grayscale-darker 0%, $grayscale-darkest 100%);
+  @include linear-gradient(50deg, $black 0%, $black-dark 100%);
 
   // .deco--stripe {
   //   @extend %deco-stripe;
@@ -22,7 +22,7 @@
     width: rem(150);
     height: rem(150);
     margin: 0 auto;
-    border: rem(6) solid $white;
+    border: rem(6) solid $gray-light;
     border-radius: 50%;
     background: url('#{$image-path}/talbs.png') center center no-repeat;
     background-size: 100%;
@@ -41,8 +41,10 @@
     @extend %deco-frame-dark;
     position: relative;
     max-width: span(12);
-    flex: none;
+    border-radius: rem(2);
     padding: 0 $spacing-xl $spacing-md $spacing-xl;
+    box-shadow: 0 rem(2) 0 0 $shadow;
+    background: $gray-light;
 
     &:before {
       @extend %deco-stripe;
@@ -70,7 +72,7 @@
   .talbs__name {
     @extend %hd-brand;
     margin-bottom: $spacing-sm;
-    // color: $white;
+    font-size: modular-scale(2);
   }
 
   .talbs__description {
@@ -97,7 +99,7 @@
 
   .nav--elsewhere__item {
     display: inline-block;
-    color: $grayscale-light;
+    color: $gray;
 
     .text {
       @extend %a11y-hide;

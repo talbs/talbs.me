@@ -2,15 +2,11 @@
   <header class="header--site" role="banner" aria-labelledby="header--site--title">
     {% if page.title == "Work" %}
     <h1 class="header--site--title" id="header--site--title">
-      <abbr title="{{ site.data.talbs.name }}">
-        <a href="{{ site.baseurl}}">{{ site.data.talbs.abbreviation }}</a>
-      </abbr>
+      <a href="{{ site.baseurl}}">{{ site.data.talbs.name }}</a>
     </h1>
     {% else %}
     <h2 class="header--site--title" id="header--site--title">
-      <abbr title="{{ site.data.talbs.name }}">
-        <a href="{{ site.baseurl}}{{ site.url_work}}">{{ site.data.talbs.abbreviation }}</a>
-      </abbr>
+      <a href="{{ site.baseurl}}{{ site.url_work}}">{{ site.data.talbs.name }}</a>
     </h2>
     {% endif %}
   </header>

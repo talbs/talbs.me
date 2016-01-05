@@ -12,6 +12,8 @@
 // #WORK
 // ------------------------------
 .work {
+  // background: $work-bg;
+  @include linear-gradient(50deg, $black 0%, $black-dark 100%);
 
   .wrapper--view {
     margin: $spacing-md $spacing-md 0 $spacing-md;
@@ -56,70 +58,79 @@
     }
 
     .section__title {
-      @extend %hd-1;
+      @extend %hd-A;
       color: $secondary;
-      // text-align: center;
     }
 
     .section__content {
-      @extend %copy-2;
-      color: $text-emphasized-color;
+      @extend %copy-B;
     }
   }
 
   .section--who {
+    @extend %deco-divider-double;
+    padding-bottom: $spacing-lg;
     margin-bottom: $spacing-xl;
-
-    @include breakpoint($bp-screen-lg) {
-        @include span(7 first);
-        margin-bottom: 0;
-    }
   }
 
   .section--what {
-    @include breakpoint($bp-screen-lg) {
-        @include span(5 last);
+
+    .section__content {
+      @extend %grid-gallery;
     }
 
     .what__detail {
-      margin-bottom: $spacing-lg;
+      margin-bottom: $spacing-md;
+
+      @include breakpoint($bp-screen-md) {
+        @include gallery(4);
+      }
 
       .title {
-        @extend %hd-5-alt;
-        @extend %deco-divider-double;
-        padding-bottom: $spacing-sm;
+        @extend %hd-C;
         color: $secondary;
       }
 
       .content {
-        @extend %copy-5;
+        @include transition(
+          color timing(x-fast) ease-in-out 0s
+        );
+        @extend %copy-D;
       }
     }
   }
 
   // work
   .wrapper--work {
+    position: relative;
     margin-bottom: $spacing-xl;
     padding-top: $spacing-xl;
-    padding-bottom: $spacing-lg;
-    background: $grayscale-darker;
+
+    &:before {
+      @extend %deco-stripe-thin;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+    }
   }
 
   .section--work {
-    color: $text-lod;
 
     .section__title {
-      @extend %hd-5;
+      @extend %hd-D;
       margin-bottom: $spacing-lg;
-      color: $grayscale;
       text-align: center;
+      color: $secondary;
     }
   }
 
   .work-lead {
+    @extend %deco-divider-double;
     @extend %clear-last-child;
     @extend %grid-row;
-    margin-bottom: $spacing-xx;
+    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-xl;
 
     &:hover, &:active {
 
@@ -162,25 +173,100 @@
     }
   }
 
+  .work-lead__image {
+    @extend %graphic-focus;
+    @extend %deco-frame;
+    border: 1px solid $gray-light;
+    box-shadow: 0 rem(2) 0 0 $shadow;
+  }
+
   .work-lead__title {
-    color: $white;
+    @include transition(
+      color timing(x-fast) ease-in-out 0s
+    );
+    @extend %hd-B;
+    margin-bottom: 0;
   }
 
   .work-lead__client {
-    // color: $grayscale-light;
+    @extend %hd-E;
+    display: block;
+    margin-bottom: rem(2);
   }
 
   .work-lead__copy {
-    color: $grayscale-light;
+    @include transition(
+      all timing(x-fast) ease-in-out 0s
+    );
+    @extend %copy-D;
+  }
+
+  .work-lead__image {
+    display: block;
+    position: relative;
+
+    .image__overlay {
+      @include transition(
+        all timing(x-fast) ease-in-out 0s
+      );
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      opacity: 0;
+      background: $primary;
+    }
+
+    .image__overlay__icon {
+      @extend %vertically-center;
+      font-size: modular-scale(4);
+      color: $text-lod;
+    }
+  }
+
+  .work-lead__link {
+
+    &:hover,
+    &:focus {
+
+      .work-lead__image {
+        border-bottom-color: $primary;
+      }
+
+      .image__overlay {
+        opacity: 0.65;
+      }
+
+      .work-lead__title {
+        color: $primary;
+      }
+    }
   }
 
   // more
+  .wrapper--more {
+    position: relative;
+    margin-bottom: $spacing-xl;
+    padding-top: $spacing-xl;
+
+    &:before {
+      @extend %deco-stripe-thin;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+    }
+  }
+
   .section--more {
 
     .section__title {
-      @extend %hd-5;
+      @extend %hd-D;
       margin-bottom: $spacing-lg;
       text-align: center;
+      color: $secondary;
     }
 
     .section--more__about {
@@ -192,7 +278,7 @@
       }
 
       .about--misc {
-        @extend %copy-4;
+        @extend %copy-D;
         margin-bottom: $spacing-lg;
 
         @include breakpoint($bp-screen-md) {
@@ -265,7 +351,7 @@
   .work__section {
 
     .section__title {
-      @extend %hd-3;
+      @extend %hd-C;
     }
 
     & + .deco-banner {
@@ -292,7 +378,7 @@
     margin-bottom: $spacing-lg;
     padding-top: $spacing-xl;
     padding-bottom: $spacing-xl;
-    background: $grayscale-darker;
+    background: $gray-light;
 
     @include breakpoint($bp-screen-md) {
       margin-bottom: $spacing-xl;
@@ -300,7 +386,6 @@
   }
 
   .billboard__image {
-    @extend %deco-frame-dark;
     margin-bottom: $spacing-xl;
   }
 
@@ -309,10 +394,8 @@
   }
 
   .work__introduction {
-    @extend %copy-3;
-    color: $grayscale-lightest;
+    @extend %copy-D;
     margin-bottom: $spacing-lg;
-    color: $text-lod;
 
     @include breakpoint($bp-screen-md) {
       @include span(8 first);
@@ -331,12 +414,11 @@
 
   .list--goals {
     @extend %reset-lists;
-    color: $grayscale-lighter;
 
     .goal {
       @extend %clear-last-child;
       margin-bottom: $spacing-md;
-      border-bottom: rem(2) solid $grayscale-darkest;
+      border-bottom: rem(4) double $gray-light;
       padding-bottom: $spacing-md;
       font-family: $font-family-sans-serif;
     }
@@ -362,7 +444,7 @@
     @extend %grid-row;
     @extend %clear-last-child;
     margin-bottom: $spacing-xl;
-    border-bottom: rem(4) double $grayscale-lightest;
+    border-bottom: rem(4) double $gray-light;
     padding-bottom: $spacing-xl;
 
     @include breakpoint($bp-screen-md) {
@@ -371,8 +453,10 @@
     }
 
     .image {
-      @extend %deco-frame-light;
       @extend %graphic-focus;
+      @extend %deco-frame;
+      border: 1px solid $gray-light;
+      box-shadow: 0 rem(2) 0 0 $shadow;
       max-width: 100%;
       margin-bottom: $spacing-lg;
 
@@ -386,11 +470,11 @@
     }
 
     .title {
-      @extend %hd-5;
+      @extend %hd-D;
     }
 
     .content {
-      @extend %copy-4;
+      @extend %copy-C;
       margin-bottom: $spacing-lg;
     }
 
