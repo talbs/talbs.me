@@ -82,14 +82,6 @@ $susy-default: (
 // ------------------------------
 // #GLOBAL
 // ------------------------------
-.wrapper--view {
-  margin: $spacing-md $spacing-md 0 $spacing-md;
-
-  @include breakpoint($bp-screen-md) {
-    margin: $spacing-lg $spacing-lg 0 $spacing-lg;
-  }
-}
-
 // banner
 .wrapper--header {
   @extend %grid-wrapper;

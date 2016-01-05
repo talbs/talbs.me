@@ -262,19 +262,9 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
   font-size: modular-scale(5);
 }
 
-%hd-2 {
-  margin-bottom: $spacing-lg;
-  font-size: modular-scale(4);
-}
-
 %hd-3 {
   margin-bottom: $spacing-lg;
   font-size: modular-scale(3);
-}
-
-%hd-4 {
-  margin-bottom: $spacing-md;
-  font-size: modular-scale(2);
 }
 
 %hd-5-alt {
@@ -288,14 +278,6 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
   font-weight: font-weight(x-bold);
   text-transform: uppercase;
   letter-spacing: letter-spacing(xx-loose);
-}
-
-%hd-6 {
-  margin-bottom: $spacing-sm;
-  font-size: modular-scale(-1);
-  font-weight: font-weight(x-bold);
-  text-transform: uppercase;
-  letter-spacing: letter-spacing(x-loose);
 }
 
 %hd-brand {

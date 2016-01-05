@@ -1,120 +1,23 @@
 // ------------------------------
-// Views
+// Views: Work
 
-// About: styling for specific views.
+// About: styling for specific work views.
 
-// #HOME
+// #WORK
 // #WORK_INDEX
 // #WORK_DETAIL
-// #STATE
+
 
 // ------------------------------
-// #HOME
+// #WORK
 // ------------------------------
-.home {
-  @include linear-gradient(50deg, $grayscale-darker 0%, $grayscale-darkest 100%);
-
-  // .deco--stripe {
-  //   @extend %deco-stripe;
-  // }
-
-  .deco--avatar {
-    display: block;
-    position: relative;
-    top: -(rem(25));
-    width: rem(150);
-    height: rem(150);
-    margin: 0 auto;
-    border: rem(6) solid $white;
-    border-radius: 50%;
-    background: url('#{$image-path}/talbs.png') center center no-repeat;
-    background-size: 100%;
-  }
+.work {
 
   .wrapper--view {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    padding: $spacing-lg $spacing-xl;
-    background: none; //reset
-  }
-
-  .wrapper--content {
-    @extend %deco-frame-dark;
-    position: relative;
-    max-width: span(12);
-    flex: none;
-    padding: 0 $spacing-xl $spacing-md $spacing-xl;
-
-    &:before {
-      @extend %deco-stripe;
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: "";
-    }
-
-    &:hover, &:active {
-
-      .talbs__description {
-        color: $secondary;
-      }
-    }
-  }
-
-  .content--main {
-    font-family: $font-family-sans-serif;
-    margin-top: -($spacing-lg);
-    margin-bottom: $spacing-lg;
-    text-align: center;
-  }
-
-  .talbs__name {
-    @extend %hd-brand;
-    margin-bottom: $spacing-sm;
-    // color: $white;
-  }
-
-  .talbs__description {
-    @include transition(
-      color timing(x-fast) ease-in-out
-    );
-    margin-bottom: 0;
-    font-size: modular-scale(0);
-    letter-spacing: letter-spacing(loose);
+    margin: $spacing-md $spacing-md 0 $spacing-md;
 
     @include breakpoint($bp-screen-md) {
-      font-size: modular-scale(1);
-    }
-  }
-
-  .nav--elsewhere {
-    font-size: modular-scale(1);
-    text-align: center;
-
-    @include breakpoint($bp-screen-md) {
-      font-size: modular-scale(2);
-    }
-  }
-
-  .nav--elsewhere__item {
-    display: inline-block;
-    color: $grayscale-light;
-
-    .text {
-      @extend %a11y-hide;
-    }
-
-    .icon {
-      margin: 0;
-    }
-
-    .link {
-      box-shadow: none;
-      display: block;
-      padding: $spacing-sm ($spacing-sm*1.5);
-      text-align: center;
+      margin: $spacing-lg $spacing-lg 0 $spacing-lg;
     }
   }
 }
@@ -376,12 +279,10 @@
   }
 
   .work__title {
-    @extend %hd-2;
     color: $text-lod;
     text-align: center;
 
     .sub {
-      @extend %hd-6;
       margin-bottom: 0;
     }
   }
@@ -426,8 +327,6 @@
   }
 
   .work__goals__title {
-    @extend %hd-6;
-    color: $grayscale-lightest;
   }
 
   .list--goals {
@@ -545,7 +444,6 @@
   .work__takeaways {
 
     .section__title {
-      @extend %hd-4;
       margin-bottom: $spacing-xl;
       text-align: center;
     }
