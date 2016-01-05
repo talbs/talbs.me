@@ -1,16 +1,25 @@
 <div class="work-lead">
   <a class="work-lead__link" href="{{ post.url }}">
     <figure class="work-lead__image">
-      <img src="http://placehold.it/1200x900" alt="sample of {{ post.title }}">
+      <img
+        class="billboard__image image image--01"
+        sizes="(min-width: 40em) 80vw, 100vw"
+        srcset="/images/work/{{ post.slug }}-billboard.png 300w,
+                /images/work/{{ post.slug }}-billboard-lg.png 600w,
+                /images/work/{{ post.slug }}-billboard-xl.png 1200w"
+        alt="sample of {{ post.title }}"
+      >
       <span class="image__overlay">
         <i class="image__overlay__icon icon fa fa-search" aria-hidden="true"></i>
       </span>
     </figure>
 
-    <h2 class="work-lead__title">
-      <span class="work-lead__client">{{ post.client }}</span>
-      {{ post.title }}
-    </h2>
-    <p class="work-lead__copy">{{ post.lead }}</p>
+    <div class="work-lead__content">
+      <h2 class="work-lead__title">
+        <span class="work-lead__client">{{ post.client }}</span>
+        {{ post.title }}
+      </h2>
+      <p class="work-lead__copy">{{ post.lead }}</p>
+    </div>
   </a>
 </div>

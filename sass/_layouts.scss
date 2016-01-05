@@ -82,23 +82,18 @@ $susy-default: (
 // ------------------------------
 // #GLOBAL
 // ------------------------------
-.wrapper--view {
-  margin: $spacing-md $spacing-md 0 $spacing-md;
-
-  @include breakpoint($bp-screen-sm) {
-    margin: $spacing-lg $spacing-lg 0 $spacing-lg;
-  }
-}
-
 // banner
 .wrapper--header {
   @extend %grid-wrapper;
-  padding-top: $spacing-xl;
-  margin-bottom: $spacing-lg;
 }
 
 .header--site {
   @extend %grid-container;
+  text-align: center;
+
+  @include breakpoint($bp-screen-md) {
+    text-align: left;
+  }
 }
 
 .header--site--title {
@@ -107,34 +102,16 @@ $susy-default: (
 
 // footer
 .wrapper--footer--site {
-  margin-top: $spacing-md;
   @extend %grid-wrapper;
   padding-top: $spacing-lg;
 
   @include breakpoint($bp-screen-sm) {
-    margin-top: $spacing-xl;
   }
 }
 
 .footer--site {
   @extend %grid-container;
   text-align: center;
-
-  .copyright, .source {
-
-    @include breakpoint($bp-screen-sm) {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-
-  .copyright {
-    margin-bottom: $spacing-sm;
-
-    @include breakpoint($bp-screen-sm) {
-      margin-right: $spacing-xl;
-    }
-  }
 }
 
 // nav - elsewhere
@@ -148,7 +125,7 @@ $susy-default: (
   }
 
   .icon {
-    margin-right: $spacing-md;
+    margin-right: $spacing-sm;
   }
 
   @include breakpoint($bp-screen-sm) {
@@ -187,19 +164,3 @@ $susy-default: (
 // ------------------------------
 // #WORK
 // ------------------------------
-
-
-// listings
-.list--work {
-  @extend %grid-gallery;
-}
-.work-lead {
-
-  @include breakpoint($bp-screen-md) {
-    @include gallery(6);
-  }
-
-  // @include breakpoint($bp-screen-lg) {
-  //   @include gallery(4);
-  // }
-}

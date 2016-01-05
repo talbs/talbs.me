@@ -1,156 +1,25 @@
 // ------------------------------
-// Views
+// Views: Work
 
-// About: styling for specific views.
+// About: styling for specific work views.
 
-// #HOME
+// #WORK
 // #WORK_INDEX
 // #WORK_DETAIL
-// #STATE
+
 
 // ------------------------------
-// #HOME
+// #WORK
 // ------------------------------
-.home {
-  @include linear-gradient(50deg, $grayscale-darker 0%, $grayscale-darkest 100%);
-
-  .deco--stripe {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: rem(4);
-    background: repeating-linear-gradient(
-      to right,
-      $secondary-lighter,
-      $secondary-lighter 30px,
-      $secondary 30px,
-      $secondary 60px,
-      $primary 60px,
-      $primary 90px,
-      $secondary-light 90px,
-      $secondary-light 120px,
-      $primary-light 120px,
-      $primary-light 150px
-    );
-  }
-
-  .deco--avatar {
-    @include transition(
-      filter timing(fast) ease-in-out
-    );
-    display: block;
-    position: relative;
-    top: -(rem(25));
-    width: rem(150);
-    height: rem(150);
-    margin: 0 auto;
-    // border: rem(2) solid $black;
-    border-radius: 50%;
-    background: url('#{$image-path}/talbs.png') center center no-repeat;
-    background-size: 100%;
-
-    @include breakpoint($bp-screen-md) {
-      @include filter(grayscale(100%));
-    }
-  }
+.work {
+  // background: $work-bg;
+  @include linear-gradient(50deg, $black 0%, $black-dark 100%);
 
   .wrapper--view {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    margin: $spacing-lg $spacing-xl;
-    background: none; //reset
-  }
-
-  .wrapper--content {
-    @include transition(
-      border-color timing(fast) ease-in-out
-    );
-    max-width: span(12);
-    flex: none;
-    background: $black;
-    border-top: rem(4) solid $secondary;
-    padding: 0 $spacing-xl $spacing-md $spacing-xl;
+    margin: $spacing-md $spacing-md 0 $spacing-md;
 
     @include breakpoint($bp-screen-md) {
-      border-top: rem(4) solid $grayscale-light;
-    }
-
-    &:hover, &:active {
-      border-color: $secondary;
-
-      .deco--avatar {
-        @include filter(grayscale(0%));
-      }
-
-      .talbs__description {
-        color: $secondary;
-      }
-    }
-  }
-
-  .content--main {
-    font-family: $font-family-sans-serif;
-    margin-bottom: $spacing-lg;
-    border-bottom: rem(4) double $grayscale-darker;
-    padding-bottom: $spacing-lg;
-    text-align: center;
-  }
-
-  .talbs__name {
-    @extend %hd-brand;
-    margin-bottom: $spacing-sm;
-    color: $white;
-  }
-
-  .talbs__description {
-    @include transition(
-      color timing(x-fast) ease-in-out
-    );
-    margin-bottom: 0;
-    font-size: modular-scale(0);
-    letter-spacing: letter-spacing(loose);
-    color: $secondary;
-
-    @include breakpoint($bp-screen-md) {
-      font-size: modular-scale(1);
-      color: $grayscale-light;
-    }
-  }
-
-  .content--aside {
-    font-family: $font-family-sans-serif;
-  }
-
-  .nav--elsewhere {
-    font-size: modular-scale(1);
-    text-align: center;
-
-    @include breakpoint($bp-screen-md) {
-      font-size: modular-scale(2);
-    }
-  }
-
-  .nav--elsewhere__item {
-    display: inline-block;
-    color: $grayscale-light;
-
-    .text {
-      @extend %a11y-hide;
-    }
-
-    .icon {
-      margin: 0;
-    }
-
-    .link {
-      box-shadow: none;
-      display: block;
-      padding: $spacing-sm ($spacing-sm*1.5);
-      text-align: center;
+      margin: $spacing-lg $spacing-lg 0 $spacing-lg;
     }
   }
 }
@@ -181,86 +50,223 @@
   }
 
   .greeting {
+    margin-bottom: $spacing-xl;
 
     em {
       font-style: normal;
       color: $secondary;
     }
-  }
-
-  .section--who {
-    margin-bottom: $spacing-xl;
-
-    @include breakpoint($bp-screen-md) {
-      @include pre(1);
-      @include post(1);
-    }
 
     .section__title {
-      @extend %hd-1;
+      @extend %hd-A;
       color: $secondary;
-      text-align: center;
     }
 
     .section__content {
-      @extend %copy-3;
-      color: $text-emphasized-color;
+      @extend %copy-B;
     }
   }
 
-  .section--what {
-    margin-top: $spacing-xl;
+  .section--who {
+    @extend %deco-divider-double;
+    padding-bottom: $spacing-lg;
+    margin-bottom: $spacing-xl;
+  }
 
-    .section__title {
-      @extend %hd-5;
-      margin-bottom: $spacing-lg;
-      text-align: center;
-      color: $headings-de-emphasized-color;
-    }
+  .section--what {
 
     .section__content {
       @extend %grid-gallery;
     }
 
     .what__detail {
-      margin-bottom: $spacing-lg;
+      margin-bottom: $spacing-md;
 
       @include breakpoint($bp-screen-md) {
         @include gallery(4);
-        margin-bottom: 0;
       }
 
       .title {
-        @extend %hd-5-alt;
-        @extend %deco-divider-single;
-        padding-bottom: $spacing-sm;
+        @extend %hd-C;
         color: $secondary;
       }
 
       .content {
-        @extend %copy-5;
+        @include transition(
+          color timing(x-fast) ease-in-out 0s
+        );
+        @extend %copy-D;
       }
     }
   }
 
   // work
   .wrapper--work {
+    position: relative;
+    margin-bottom: $spacing-xl;
     padding-top: $spacing-xl;
-    background: $white-t;
+
+    &:before {
+      @extend %deco-stripe-thin;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+    }
   }
 
   .section--work {
 
     .section__title {
-      @extend %hd-3;
+      @extend %hd-D;
+      margin-bottom: $spacing-lg;
+      text-align: center;
+      color: $secondary;
+    }
+  }
+
+  .work-lead {
+    @extend %deco-divider-double;
+    @extend %clear-last-child;
+    @extend %grid-row;
+    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-xl;
+
+    &:hover, &:active {
+
+      .work-lead__copy {
+        color: inherit;
+      }
+    }
+
+    // odd
+    &:nth-child(odd) {
+
+      .work-lead__image {
+        @include breakpoint($bp-screen-lg) {
+            @include span(8 first);
+        }
+      }
+
+      .work-lead__content {
+        @include breakpoint($bp-screen-lg) {
+            @include span(4 last);
+        }
+      }
+    }
+
+    // odd
+    &:nth-child(even) {
+
+      .work-lead__image {
+        @include breakpoint($bp-screen-lg) {
+            @include span(8 last);
+        }
+      }
+
+      .work-lead__content {
+        @include breakpoint($bp-screen-lg) {
+            @include span(4 first);
+            text-align: right;
+        }
+      }
+    }
+  }
+
+  .work-lead__image {
+    @extend %graphic-focus;
+    @extend %deco-frame;
+    border: 1px solid $gray-light;
+    box-shadow: 0 rem(2) 0 0 $shadow;
+  }
+
+  .work-lead__title {
+    @include transition(
+      color timing(x-fast) ease-in-out 0s
+    );
+    @extend %hd-B;
+    margin-bottom: 0;
+  }
+
+  .work-lead__client {
+    @extend %hd-E;
+    display: block;
+    margin-bottom: rem(2);
+  }
+
+  .work-lead__copy {
+    @include transition(
+      all timing(x-fast) ease-in-out 0s
+    );
+    @extend %copy-D;
+  }
+
+  .work-lead__image {
+    display: block;
+    position: relative;
+
+    .image__overlay {
+      @include transition(
+        all timing(x-fast) ease-in-out 0s
+      );
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      opacity: 0;
+      background: $primary;
+    }
+
+    .image__overlay__icon {
+      @extend %vertically-center;
+      font-size: modular-scale(4);
+      color: $text-lod;
+    }
+  }
+
+  .work-lead__link {
+
+    &:hover,
+    &:focus {
+
+      .work-lead__image {
+        border-bottom-color: $primary;
+      }
+
+      .image__overlay {
+        opacity: 0.65;
+      }
+
+      .work-lead__title {
+        color: $primary;
+      }
     }
   }
 
   // more
+  .wrapper--more {
+    position: relative;
+    margin-bottom: $spacing-xl;
+    padding-top: $spacing-xl;
+
+    &:before {
+      @extend %deco-stripe-thin;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+    }
+  }
+
   .section--more {
 
     .section__title {
-      @extend %hd-3;
+      @extend %hd-D;
+      margin-bottom: $spacing-lg;
+      text-align: center;
+      color: $secondary;
     }
 
     .section--more__about {
@@ -272,7 +278,7 @@
       }
 
       .about--misc {
-        @extend %copy-4;
+        @extend %copy-D;
         margin-bottom: $spacing-lg;
 
         @include breakpoint($bp-screen-md) {
@@ -312,6 +318,10 @@
         vertical-align: baseline;
         font-family: $font-family-sans-serif;
       }
+
+      .nav--elsewhere__item .link {
+        box-shadow: none;
+      }
     }
   }
 }
@@ -321,18 +331,10 @@
 // #WORK
 // ------------------------------
 .work--detail {
-
   .wrapper--billboard,
   .wrapper--highlights,
   .wrapper--takeaways {
     @extend %grid-wrapper;
-    margin-bottom: $spacing-lg;
-    padding-bottom: $spacing-lg;
-
-    @include breakpoint($bp-screen-md) {
-      margin-bottom: $spacing-xl;
-      padding-bottom: $spacing-xl;
-    }
   }
 
   .work__billboard,
@@ -349,7 +351,7 @@
   .work__section {
 
     .section__title {
-      @extend %hd-3;
+      @extend %hd-C;
     }
 
     & + .deco-banner {
@@ -357,85 +359,80 @@
     }
   }
 
+  // title
+  .wrapper--title {
+    margin-top: $spacing-xl;
+  }
+
+  .work__title {
+    color: $text-lod;
+    text-align: center;
+
+    .sub {
+      margin-bottom: 0;
+    }
+  }
+
   // billboard
   .wrapper--billboard {
-    // background: $grayscale;
+    margin-bottom: $spacing-lg;
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
+    background: $gray-light;
 
     @include breakpoint($bp-screen-md) {
-      margin-top: ($spacing-xl*2);
-      @include linear-gradient(50deg, $grayscale 0%, $grayscale-dark 100%);
+      margin-bottom: $spacing-xl;
     }
   }
 
   .billboard__image {
-    border-bottom: rem(10) solid $secondary;
-    margin-bottom: $spacing-lg;
-    box-shadow-color: $grayscale-dark;
-
-    @include breakpoint($bp-screen-md) {
-      position: relative;
-      top: -($spacing-xl);
-      margin-bottom: 0;
-    }
+    margin-bottom: $spacing-xl;
   }
 
   .billboard__content {
     @extend %grid-row;
   }
 
-  .work__title {
-    @extend %grid-fill-col;
-    @extend %hd-2;
-    color: $headings-base-color;
-
-    @include breakpoint($bp-screen-md) {
-      color: $white;
-    }
-
-    .sub {
-      @extend %hd-6;
-      margin-bottom: 0;
-      color: $headings-emphasized-color;
-
-      @include breakpoint($bp-screen-md) {
-        color: $white-t;
-      }
-    }
-  }
-
   .work__introduction {
-    @extend %copy-3;
-    color: $grayscale-lightest;
+    @extend %copy-D;
     margin-bottom: $spacing-lg;
-    color: $text-base-color;
 
     @include breakpoint($bp-screen-md) {
       @include span(8 first);
       margin-bottom: 0;
-      color: $white-t;
     }
   }
 
   .work__goals {
-    @extend %reset-lists;
-    color: $text-emphasized-color;
-
     @include breakpoint($bp-screen-md) {
-      color: $grayscale-lighter;
       @include span(4 last);
     }
+  }
+
+  .work__goals__title {
+  }
+
+  .list--goals {
+    @extend %reset-lists;
 
     .goal {
       @extend %clear-last-child;
       margin-bottom: $spacing-md;
-      border-bottom: rem(1) solid $secondary;
+      border-bottom: rem(4) double $gray-light;
       padding-bottom: $spacing-md;
       font-family: $font-family-sans-serif;
-      font-weight: font-weight(bold);
     }
   }
 
   // highlights
+  .wrapper--highlights {
+    margin-bottom: $spacing-lg;
+
+    @include breakpoint($bp-screen-md) {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
   .work__highlights {
 
     .section__content {
@@ -447,7 +444,7 @@
     @extend %grid-row;
     @extend %clear-last-child;
     margin-bottom: $spacing-xl;
-    border-bottom: rem(4) double $grayscale-lightest;
+    border-bottom: rem(4) double $gray-light;
     padding-bottom: $spacing-xl;
 
     @include breakpoint($bp-screen-md) {
@@ -456,7 +453,10 @@
     }
 
     .image {
+      @extend %graphic-focus;
       @extend %deco-frame;
+      border: 1px solid $gray-light;
+      box-shadow: 0 rem(2) 0 0 $shadow;
       max-width: 100%;
       margin-bottom: $spacing-lg;
 
@@ -470,11 +470,11 @@
     }
 
     .title {
-      @extend %hd-5;
+      @extend %hd-D;
     }
 
     .content {
-      @extend %copy-4;
+      @extend %copy-C;
       margin-bottom: $spacing-lg;
     }
 
@@ -493,13 +493,13 @@
 
       .image {
         @include breakpoint($bp-screen-md) {
-          @include span(6 first);
+          @include span(8 first);
         }
       }
 
       .caption {
         @include breakpoint($bp-screen-md) {
-          @include span(6 last);
+          @include span(4 last);
         }
       }
     }
@@ -509,22 +509,25 @@
 
       .image {
         @include breakpoint($bp-screen-md) {
-          @include span(6 last);
+          @include span(8 last);
         }
       }
 
       .caption {
         @include breakpoint($bp-screen-md) {
-          @include span(6 first);
+          @include span(4 first);
         }
       }
     }
   }
 
+  .wrapper--takeaways {
+    margin-bottom: $spacing-xl;
+  }
+
   .work__takeaways {
 
     .section__title {
-      @extend %hd-4;
       margin-bottom: $spacing-xl;
       text-align: center;
     }

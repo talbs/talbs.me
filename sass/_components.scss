@@ -68,20 +68,55 @@ $bubble-triangle-size: rem($baseline*2);
   }
 }
 
+%graphic-focus {
+  @include transition(
+    all timing(x-fast) ease-in-out 0s
+  );
+  @include transform(scale(0.98));
+
+  &:hover, &:focus {
+    @include transform(scale(1.0));
+  }
+}
+
+
+%deco-stripe {
+  display: block;
+  width: 100%;
+  background: repeating-linear-gradient(
+    to right,
+    $secondary-light,
+    $secondary-light 30px,
+    $secondary-dark 30px,
+    $secondary-dark 60px,
+    $secondary 60px,
+    $secondary 90px
+  );
+}
+
+%deco-stripe-thin {
+  @extend %deco-stripe;
+  height: rem(2);
+}
+
+%deco-stripe-thick {
+  @extend %deco-stripe;
+  height: rem(4);
+}
+
 %deco-frame {
   display: block;
   border-radius: rem(2);
   padding: $spacing-md;
-  box-shadow: 0 rem(2) 0 0 $grayscale-lightest;
   background: $white-t;
 }
 
 %deco-divider-single {
-  border-bottom: rem(1) solid $grayscale-lightest;
+  border-bottom: rem(1) solid $gray-light;
 }
 
 %deco-divider-double {
-  border-bottom: rem(4) double $grayscale-lightest;
+  border-bottom: rem(4) double $gray-light;
 }
 
 .deco-banner {
@@ -91,7 +126,7 @@ $bubble-triangle-size: rem($baseline*2);
   .banner-rule {
     display: block;
     border: none;
-    border-bottom: rem(4) double $grayscale-lightest;
+    border-bottom: rem(2) solid $gray;
   }
 
   .banner-icon {
@@ -99,7 +134,7 @@ $bubble-triangle-size: rem($baseline*2);
     top: -1px;
     left: 50%;
     font-size: modular-scale(1);
-    color: $grayscale-lightest;
+    color: $gray;
   }
 }
 
@@ -113,7 +148,7 @@ $bubble-triangle-size: rem($baseline*2);
     color timing(x-fast) ease-in-out 0s,
     box-shadow timing(x-fast) ease-in-out 0s
   );
-  box-shadow: 0 1px 0 0 rgba($grayscale, 0.25);
+  box-shadow: 0 1px 0 0 rgba($gray, 0.50);
   color: $link-color;
   text-decoration: none;
 
@@ -158,7 +193,7 @@ $bubble-triangle-size: rem($baseline*2);
   border: 2px solid $black;
   border-radius: rem(1);
   background: $transparent;
-  font-family: $font-family-sans-serif;
+  font-family: $actions-base-font-family;
   font-weight: $text-emphasized-font-weight;
   text-align: center;
 
@@ -200,7 +235,6 @@ $bubble-triangle-size: rem($baseline*2);
 // ------------------------------
 h1, h2, h3, h4, h5, h6, .hd, %hd {
   @extend %reset-headings;
-  color: $headings-emphasized-color;
 
   .sub {
     display: block;
@@ -215,41 +249,36 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
   }
 }
 
-%hd-1 {
+%hd-A {
+  @extend %hd;
   margin-bottom: $spacing-lg;
   font-size: modular-scale(4);
 }
 
-%hd-2 {
-  margin-bottom: $spacing-lg;
-  font-size: modular-scale(3);
-}
-
-%hd-3 {
+%hd-B {
+  @extend %hd;
   margin-bottom: $spacing-lg;
   font-size: modular-scale(2);
 }
 
-%hd-4 {
+%hd-C {
+  @extend %hd;
   margin-bottom: $spacing-md;
   font-size: modular-scale(1);
 }
 
-%hd-5-alt {
-  margin-bottom: $spacing-md;
-  font-size: modular-scale(0);
-}
-
-%hd-5 {
+%hd-D {
+  @extend %hd;
   margin-bottom: $spacing-md;
   font-size: modular-scale(0);
   font-weight: font-weight(x-bold);
   text-transform: uppercase;
-  letter-spacing: letter-spacing(x-loose);
+  letter-spacing: letter-spacing(xx-loose);
 }
 
-%hd-6 {
-  margin-bottom: $spacing-sm;
+%hd-E {
+  @extend %hd;
+  margin-bottom: $spacing-md;
   font-size: modular-scale(-1);
   font-weight: font-weight(x-bold);
   text-transform: uppercase;
@@ -257,39 +286,43 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 }
 
 %hd-brand {
+  @extend %hd;
   text-transform: uppercase;
   font-family: $font-family-sans-serif;
   font-weight: font-weight(x-bold);
-  font-size: modular-scale(2);
   letter-spacing: letter-spacing(xxx-loose);
 }
 
 // ------------------------------
 // #COPY
 // ------------------------------
-%copy-1 {
+%copy {
+  color: $text-base-color;
+}
+
+%copy-A {
+  @extend %copy;
   font-size: modular-scale(3);
-  // line-height: 1.60;
 }
 
-%copy-2 {
+%copy-B {
+  @extend %copy;
   font-size: modular-scale(2);
-  // line-height: 1.60;
 }
 
-%copy-3 {
+%copy-C {
+  @extend %copy;
   font-size: modular-scale(1);
-  // line-height: 1.60;
 }
 
-%copy-4 {
+%copy-D {
+  @extend %copy;
   font-size: modular-scale(0);
-  // line-height: 1.60;
 }
 
-%copy-5 {
+%copy-E {
+  @extend %copy;
   font-size: modular-scale(-1);
-  // line-height: 1.60;
 }
 
 // ------------------------------
@@ -313,7 +346,7 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 }
 
 .nav--breadcrumbs__spacer {
-  color: $grayscale-lighter;
+  color: $gray-light;
   margin-right: $spacing-sm;
   margin-left: $spacing-sm;
 }
@@ -332,26 +365,38 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 // #HEADER
 // ------------------------------
 .wrapper--header {
+  @extend %deco-divider-double;
   background: $banner-bg;
+  margin-bottom: $spacing-lg;
 }
 
 .header--site {
-  @extend %deco-divider-double;
+  padding-top: $spacing-lg;
   padding-bottom: $spacing-lg;
 }
 
 .header--site--title {
+  @include transition(
+    background-color timing(x-fast) ease-in-out 0s,
+    border-color timing(x-fast) ease-in-out 0s
+  );
   @extend %hd-brand;
+  display: inline-block;
   margin: 0;
-  color: $grayscale-dark;
+  font-size: modular-scale(1);
+
+  &:hover, &:focus {
+  }
+
+  abbr {
+    text-decoration: none;
+    border: none;
+  }
 
   a {
+    display: block;
     box-shadow: none;
     color: inherit;
-
-    &:hover, &:focus {
-      color: $primary;
-    }
   }
 }
 
@@ -365,85 +410,7 @@ h1, h2, h3, h4, h5, h6, .hd, %hd {
 }
 
 .footer--site {
-  @extend %copy-5;
+  @extend %copy-E;
   font-family: $font-family-sans-serif;
   color: $text-de-emphasized-color;
 }
-
-// ------------------------------
-// #WORK_LISTING
-// ------------------------------
-.work-lead {
-  margin-bottom: $spacing-xl;
-}
-
-.work-lead__image {
-  @include transition(
-    border-color timing(x-fast) ease-in-out 0s
-  );
-  margin-bottom: $spacing-md;
-  border-bottom: rem(5) solid $secondary;
-}
-
-.work-lead__title {
-  @include transition(
-    color timing(x-fast) ease-in-out 0s
-  );
-  @extend %hd-4;
-  margin-bottom: 0;
-}
-
-.work-lead__client {
-  @extend %hd-6;
-  display: block;
-  margin-bottom: rem(2);
-}
-
-.work-lead__copy {
-  @extend %copy-detail;
-}
-
-.work-lead__image {
-  display: block;
-  position: relative;
-
-  .image__overlay {
-    @include transition(
-      all timing(x-fast) ease-in-out 0s
-    );
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    opacity: 0;
-    background: $primary;
-  }
-
-  .image__overlay__icon {
-    @extend %vertically-center;
-    font-size: modular-scale(4);
-    color: $text-lod;
-  }
-}
-
-.work-lead__link {
-
-  &:hover,
-  &:focus {
-
-    .work-lead__image {
-      border-bottom-color: $primary;
-    }
-
-    .image__overlay {
-      opacity: 0.65;
-    }
-
-    .work-lead__title {
-      color: $primary;
-    }
-  }
-}
-

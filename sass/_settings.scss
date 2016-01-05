@@ -160,48 +160,33 @@ $letter-spacing:                                            (
 // ----------------------------
 // #COLORS
 // ----------------------------
-$white: rgb(250, 250, 250);
 $white-t: rgb(255, 255, 255);
-$black: rgb(53, 57, 65);
 $black-t: rgb(0, 0, 0);
 $transparent: rgba(0, 0, 0, 0);
 
-$tang: rgb(227, 132, 53);
-$lakeplacid: rgb(125, 176, 171);
-$wintrymix: rgb(93, 145, 168);
+$red: rgb(242, 80, 80);
+$red-dark: rgb(192, 64, 64);
+$black: rgb(43, 41, 61);
+$black-dark: rgb(34, 32, 48);
 
 $blue: rgb(20, 166, 219);
-$blue-alt: rgb(77, 196, 239);
-$blue-alt2: rgb(93, 132, 172);
-$green: rgb(128, 182, 27);
-$orange: rgb(245, 165, 41);
-$red: rgb(211, 103, 96);
-$red-2: rgb(242, 80, 80);
 
-$grayscale: rgb(102, 110, 126);
-$grayscale-light: mix($white, $grayscale, 33%);
-$grayscale-lighter: mix($white, $grayscale, 66%);
-$grayscale-lightest: mix($white, $grayscale, 90%);
-$grayscale-dark: mix($black, $grayscale, 33%);
-$grayscale-darker: mix($black, $grayscale, 66%);
-$grayscale-darkest: mix($black, $grayscale, 90%);
+$gray: rgb(192, 192, 195);
+$gray-light: rgb(240, 240, 244);
 
-// $primary: rgb(93, 145, 168);
 $primary: $blue;
-$primary-light: mix($white, $primary, 33%);
-$primary-lighter: mix($white, $primary, 66%);
-$primary-dark: mix($black, $primary, 33%);
-$primary-darker: mix($black, $primary, 66%);
+$primary-light: mix($gray-light, $primary, 33%);
+$primary-dark: mix($black-dark, $primary, 33%);
 $primary-sat: saturate($primary, 20%);
+$primary-desat: desaturate($primary, 20%);
 
-// $secondary: rgb(227, 132, 53);
 $secondary: $red;
-$secondary-light: mix($white, $secondary, 33%);
-$secondary-lighter: mix($white, $secondary, 66%);
-$secondary-dark: mix($black, $secondary, 33%);
-$secondary-darker: mix($black, $secondary, 66%);
+$secondary-light: mix($gray-light, $secondary, 33%);
+$secondary-dark: mix($black-dark, $secondary, 33%);
 $secondary-sat: saturate($secondary, 20%);
+$secondary-desat: desaturate($secondary, 20%);
 
+$shadow: rgba($black, 0.05);
 
 // ----------------------------
 // #SPACING
@@ -211,6 +196,7 @@ $spacing-sm: rem($baseline/2);
 $spacing-md: rem($baseline);
 $spacing-lg: rem($baseline*2);
 $spacing-xl: rem($baseline*4);
+$spacing-xx: rem($baseline*8);
 
 // ----------------------------
 // #DEPTH
@@ -248,40 +234,39 @@ $component-active-color:                                    inherit !default;
 $component-active-bg:                                       inherit !default;
 
 // view/body settings
-$body-bg:                                                   $grayscale-lightest;
-$view-bg:                                                   $white;
-$banner-bg:                                                 inherit;
-$footer-bg:                                                 inherit;
+$work-bg:                                                   $gray;
+$view-bg:                                                   $white-t;
+$banner-bg:                                                 $gray-light;
+$footer-bg:                                                 $gray-light;
 $card-bg:                                                   $white-t;
-$well-bg:                                                   $grayscale-lightest;
 
 // base text settings
 $text-base-font-family:                                     $font-family-serif !default;
-$text-base-color:                                           $grayscale !default;
+$text-base-color:                                           $black !default;
 $text-base-font-weight:                                     font-weight(normal) !default;
-$text-base-focus-color:                                     $primary-light !default;
+$text-base-focus-color:                                     $primary !default;
 
-$text-emphasized-color:                                     $grayscale-dark !default;
+$text-emphasized-color:                                     $black-dark !default;
 $text-emphasized-font-weight:                               font-weight(semi-bold) !default;
 
-$text-de-emphasized-color:                                  $grayscale-light !default;
+$text-de-emphasized-color:                                  $gray !default;
 $text-de-emphasized-font-weight:                            font-weight(light) !default;
 
-$text-lod: $white;
-$text-dol: $black;
+$text-lod: $gray-light;
+$text-dol: $black-dark;
 
 // links
 $link-color:                                                inherit !default;
-$link-focus-color:                                          $primary-sat !default;
+$link-focus-color:                                          $primary !default;
 $link-visited-color:                                        $primary-light !default;
 
 // headings
 $headings-base-font-weight:                                 font-weight(semi-bold) !default;
-$headings-base-color:                                       $grayscale-dark !default;
+$headings-base-color:                                       $black !default;
 $headings-emphasized-font-weight:                           font-weight(bold) !default;
-$headings-emphasized-color:                                 $grayscale-darker !default;
+$headings-emphasized-color:                                 $primary !default;
 $headings-de-emphasizedfont-weight:                         font-weight(normal) !default;
-$headings-de-emphasized-color:                              $grayscale-light !default;
+$headings-de-emphasized-color:                              $gray !default;
 
 $headings-base-font-family:                                 $font-family-sans-serif !default;
 
