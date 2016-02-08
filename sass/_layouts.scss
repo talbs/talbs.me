@@ -1,0 +1,141 @@
+// ------------------------------
+// Layouts
+
+// About: styling for generic layouts and responsive support.
+
+// #CONFIG
+// #GLOBAL
+// #UTILITY
+// #WORK
+
+
+// ------------------------------
+// #CONFIG
+// ------------------------------
+// susy-based configuration (see http://susydocs.oddbird.net/en/latest/settings/)
+$susy: (
+  use-custom: (
+    background-options: false,
+    box-sizing: false,
+    breakpoint: true,
+    clearfix: true,
+    rem: true
+    ),
+  debug: (
+    color: $grid-debug-color,
+    ),
+  math: fluid,
+  output: float
+  );
+
+// LAYOUT: set default susy settings
+// (gutters are handled outside of elements - by default)
+$susy-default: (
+  flow: $grid-direction-default,
+  column-width: $grid-column-width,
+  columns: $grid-column-count,
+  container-position: $grid-container-position,
+  container: $grid-max-width,
+  global-box-sizing: border-box,
+  gutters: $grid-gutter-width,
+  gutter-position: $grid-gutter-position
+  );
+
+// set basic grid settings for app
+@include layout($susy-default);
+
+// ----------------------------
+// #UTILITY
+// ----------------------------
+// shift grid for content
+%shift-content {
+  @include pre(1);
+  @include post(1);
+}
+
+%grid-wrapper {
+  padding-right: gutter();
+  padding-left: gutter();
+}
+
+%grid-container {
+  @include container();
+}
+
+// grid rows - set visual break and document flow clear (clearfix)
+%grid-row {
+  @include break();
+  @include clearfix();
+}
+
+%grid-gallery {
+  @include break();
+  @include clearfix();
+}
+
+%grid-fill-col {
+  display: block;
+  width: 100%;
+}
+
+
+// ------------------------------
+// #GLOBAL
+// ------------------------------
+// banner
+.wrapper--header {
+  @extend %grid-wrapper;
+}
+
+.header--site {
+  @extend %grid-container;
+  text-align: center;
+
+  // @include breakpoint($bp-screen-md) {
+  //   text-align: left;
+  // }
+}
+
+// footer
+.wrapper--footer--site {
+  @extend %grid-wrapper;
+  padding-top: $spacing-lg;
+
+  @include breakpoint($bp-screen-sm) {
+  }
+}
+
+.footer--site {
+  @extend %grid-container;
+  text-align: center;
+}
+
+// nav - elsewhere
+.nav--elsewhere__item {
+  display: block;
+  text-align: center;
+  margin-bottom: $spacing-md;
+
+  .link {
+    display: block;
+  }
+
+  .icon {
+    margin-right: $spacing-sm;
+  }
+
+  @include breakpoint($bp-screen-sm) {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: $spacing-lg;
+    text-align: left;
+
+    .link {
+      display: inline;
+    }
+  }
+}
+
+// ------------------------------
+// #WORK
+// ------------------------------

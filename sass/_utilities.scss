@@ -1,0 +1,143 @@
+// ------------------------------
+// Utilities
+
+// About:
+
+// #GLOBAL
+// #BASE
+// #FORMS
+// #ACTIONS
+// #UTILITY
+
+
+// ----------------------------
+// #GLOBAL
+// ----------------------------
+* {
+    box-sizing: border-box;
+}
+
+
+// ----------------------------
+// #BASE
+// ----------------------------
+html,
+body {
+    height: 100%;
+}
+
+html {
+    // font-size: $font-base-sm;
+    font-size: $font-base-md;
+
+    // @include breakpoint($bp-screen-md) {
+    //   font-size: $font-base-md;
+    // }
+
+    // @include breakpoint($bp-screen-lg) {
+    //   font-size: $font-base-lg;
+    // }
+}
+
+body {
+    @include font-smoothing(on);
+    @extend %depth-0;
+    color: $text-base-color;
+    font-size: modular-scale(0);
+    line-height: 1.65;
+    font-family: $text-base-font-family;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+p,
+ol,
+ul,
+dl {
+    margin: 0 0 rem($baseline) 0;
+}
+
+
+// ----------------------------
+// #FORMS
+// ----------------------------
+fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+// ----------------------------
+// #ACTIONS
+// ----------------------------
+a,
+.link {
+    @extend %reset-links;
+
+    &.is-disabled {
+        @extend %state-disabled;
+    }
+}
+
+
+// ----------------------------
+// #MEDIA
+// ----------------------------
+figure {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    img {
+        display: block;
+    }
+
+    figcaption {
+
+    }
+}
+
+// images
+.img,
+img,
+picture {
+    max-width: 100%;
+    margin: 0;
+}
+
+pre {
+    @extend %reset-code;
+    margin: 0;
+}
+
+
+// ----------------------------
+// #UTILITIES
+// ----------------------------
+.sr {
+    @extend %a11y-hide;
+}
+
+.bg-replace {
+    @extend %a11y-hide-image-text;
+}
+
+.is-hidden {
+    display: none;
+}
+
+[class^='wrapper'] {
+    @extend %wrapper;
+}

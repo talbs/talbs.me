@@ -1,0 +1,212 @@
+// ------------------------------
+// Settings
+
+// About:
+
+// #PATHS
+// #UNITS
+// #GRID
+// #TYPOGRAHY
+// #COLORS
+// #SPACING
+// #DEPTH
+// #TIMING
+// #APPLICATIONS
+
+// ----------------------------
+// #PATHS
+// ----------------------------
+$font-path:                                                 "../fonts" !default;
+$image-path:                                                "../images" !default;
+
+
+// ----------------------------
+// #UNITS
+// ----------------------------
+$em-base: 16;
+$baseline: 10;
+
+
+// ----------------------------
+// #GRID
+// ----------------------------
+// grid - dimensions
+$grid-max-width:                                            rem(1000) !default;
+$grid-column-count:                                         12 !default;
+$grid-gutter-width:                                         (1) !default;  // set to fraction to be proportional to fluid column widths (see - http://susydocs.oddbird.net/en/latest/settings/#gutters)
+$grid-container-position:                                   center !default;
+$grid-gutter-position:                                      after !default;
+$grid-manual-gutter-position:                               inside !default;
+$grid-column-width:                                         false !default;  // set to false for fluid columns by default (see - http://susydocs.oddbird.net/en/latest/settings/#column-width)
+$grid-debug-color:                                          rgba(203, 89, 141, 0.33) !default;
+$grid-debug-color-alt:                                      rgba(0, 121, 188, 0.33) !default;
+$grid-direction-default:                                    ltr !default; // default grid direction
+$grid-direction-reversed:                                   rtl !default; // reversed grid direction (used for layouts)
+
+// grid - breakpoints
+$bp-screen-sm:                                              480px !default;
+$bp-screen-md:                                              768px !default;
+$bp-screen-lg:                                              1024px !default;
+$bp-screen-xl:                                              1280px !default;
+
+
+// ----------------------------
+// #TYPOGRAPHY
+// ----------------------------
+// typography:                                              config - stacks
+$font-family-sans-serif:                                    'Lato','Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$font-family-serif:                                         'Merriweather', 'Georgia', 'Cambria', 'Times New Roman', Times, serif !default;
+$font-family-monospace:                                     'Bitstream Vera Sans Mono', 'Consolas', 'Courier', monospace !default;
+
+// typography - font scale
+$font-base-sm:                                             rem(14);
+$font-base-md:                                             rem(16);
+$font-base-lg:                                             rem(18);
+
+$modular-scale-ratio:                                      $perfect-fourth;
+$modular-scale-base:                                       $font-base-md;
+
+// typography - weights
+$font-weights:                                              (
+  normal:                                                 400,
+  light:                                                  300,
+  x-light:                                                100,
+  semi-bold:                                              600,
+  bold:                                                   700,
+  x-bold:                                                 900
+);
+
+// typography - letter-spacing
+$letter-spacing:                                            (
+  normal:                                                 0,
+  xx-tight:                                               -3,
+  x-tight:                                                -2,
+  tight:                                                  -.095,
+  loose:                                                  .5,
+  x-loose:                                                1,
+  xx-loose:                                               2,
+  xxx-loose:                                              3
+);
+
+// ----------------------------
+// #COLORS
+// ----------------------------
+$white-t: rgb(255, 255, 255);
+$black-t: rgb(0, 0, 0);
+$transparent: rgba(0, 0, 0, 0);
+
+$red: rgb(242, 80, 80);
+$red-dark: rgb(192, 64, 64);
+$black: rgb(43, 41, 61);
+$black-dark: rgb(34, 32, 48);
+
+$blue: rgb(20, 166, 219);
+
+$gray: rgb(192, 192, 195);
+$gray-light: rgb(240, 240, 244);
+$gray-dark: mix($black-dark, $gray, 33%);
+
+$primary: $blue;
+$primary-light: mix($gray-light, $primary, 33%);
+$primary-dark: mix($black-dark, $primary, 33%);
+$primary-sat: saturate($primary, 20%);
+$primary-desat: desaturate($primary, 20%);
+
+$secondary: $red;
+$secondary-light: mix($gray-light, $secondary, 33%);
+$secondary-dark: mix($black-dark, $secondary, 33%);
+$secondary-sat: saturate($secondary, 20%);
+$secondary-desat: desaturate($secondary, 20%);
+
+$shadow: rgba($black, 0.05);
+
+// ----------------------------
+// #SPACING
+// ----------------------------
+$spacing-xs: rem($baseline/4);
+$spacing-sm: rem($baseline/2);
+$spacing-md: rem($baseline);
+$spacing-lg: rem($baseline*2);
+$spacing-xl: rem($baseline*4);
+$spacing-xx: rem($baseline*8);
+
+// ----------------------------
+// #DEPTH
+// ----------------------------
+$z-depths:                                                  (
+    base:                                                   1,
+    mid-back:                                               -10,
+    back:                                                   -100,
+    very-back:                                              -1000,
+    mid-front:                                              10,
+    front:                                                  100,
+    very-front:                                             1000
+);
+
+
+// ----------------------------
+// #TIMING
+// ----------------------------
+$timing:                                                    (
+    base:                                                   0.75s,
+    slow:                                                   1s,
+    x-slow:                                                 1.5s,
+    fast:                                                   0.5s,
+    x-fast:                                                 0.25s,
+    xx-fast:                                                0.125s
+);
+
+// ----------------------------
+// #APPLICATIONS
+// ----------------------------
+// base component settings
+$component-focus-color:                                     inherit !default;
+$component-focus-bg:                                        inherit !default;
+$component-active-color:                                    inherit !default;
+$component-active-bg:                                       inherit !default;
+
+// view/body settings
+$work-bg:                                                   $gray;
+$view-bg:                                                   $white-t;
+$banner-bg:                                                 $gray-light;
+$footer-bg:                                                 $gray-light;
+$card-bg:                                                   $white-t;
+
+// base text settings
+$text-base-font-family:                                     $font-family-serif !default;
+$text-base-color:                                           $black !default;
+$text-base-font-weight:                                     font-weight(normal) !default;
+$text-base-focus-color:                                     $primary !default;
+
+$text-emphasized-color:                                     $black-dark !default;
+$text-emphasized-font-weight:                               font-weight(semi-bold) !default;
+
+$text-de-emphasized-color:                                  $gray !default;
+$text-de-emphasized-font-weight:                            font-weight(light) !default;
+
+$text-lod: $gray-light;
+$text-dol: $black-dark;
+
+// links
+$link-color:                                                inherit !default;
+$link-focus-color:                                          $primary !default;
+$link-visited-color:                                        $primary-light !default;
+
+// headings
+$headings-base-font-weight:                                 font-weight(semi-bold) !default;
+$headings-base-color:                                       $black !default;
+$headings-emphasized-font-weight:                           font-weight(bold) !default;
+$headings-emphasized-color:                                 $primary !default;
+$headings-de-emphasizedfont-weight:                         font-weight(normal) !default;
+$headings-de-emphasized-color:                              $gray !default;
+
+$headings-base-font-family:                                 $font-family-sans-serif !default;
+
+// actions
+$actions-base-font-family:                                  $font-family-sans-serif !default;
+
+// buttons
+$buttons-border-style:                                      solid !default;
+$buttons-border-size:                                       1px !default;
+$buttons-border-radius:                                     3px !default;
+$buttons-font-weight:                                       font-weight(semi-bold) !default;
