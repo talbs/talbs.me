@@ -43,10 +43,8 @@ body {
     @include font-smoothing(on);
     @extend %depth-0;
     color: $text-base-color;
-    // @include linear-gradient(50deg, $primary-lighter 0%, $primary-light 100%);
-    background: $body-bg;
     font-size: modular-scale(0);
-    line-height: 1.7;
+    line-height: 1.65;
     font-family: $text-base-font-family;
 }
 

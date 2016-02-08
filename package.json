@@ -1,16 +1,13 @@
 {
   "name": "talbs.me",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "dependencies for personal site",
   "homepage": "http://talbs.me",
   "repository": {
     "type": "git",
     "url": "git://github.com/talbs/talbs.me.git"
   },
-  "browser": {
-    "underscore": "backbone/node_modules/underscore",
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
-  },
+  "license" : "MIT",
   "devDependencies": {
     "browser-sync": "*",
     "gulp": "*",
@@ -22,19 +19,24 @@
     "gulp-gh-pages": "*",
     "gulp-imagemin": "*",
     "gulp-jshint": "*",
-    "gulp-minify-css": "^1.2.2",
+    "gulp-minify-css": "*",
     "gulp-notify": "*",
-    "gulp-rename": "^1.2.2",
+    "gulp-rename": "*",
     "gulp-sass": "*",
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
     "gulp-util": "*",
     "imagemin-pngquant": "*",
-    "jshint": "^2.8.0",
+    "jshint": "*",
     "lodash": "*",
     "open": "*",
     "path": "*",
     "require-dir": "*",
     "run-sequence": "*"
+  },
+  "dependencies": {
+    "bourbon": "^4.2.6",
+    "breakpoint-sass": "^2.6.1",
+    "susy": "^2.2.12"
   }
 }
