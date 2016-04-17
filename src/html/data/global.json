@@ -1,0 +1,42 @@
+{
+  "title"       : "talbs.me",
+  "name"        : "Brian Talbot",
+  "nickname"    : "Talbs",
+  "email"       : "hi.talbs@gmail.com",
+  "description" : "Designer, Photographer, and Professional Analogy User",
+  "location"    : "Boston, MA",
+  "url_site"    : "http://www.talbs.me",
+  "url_repo"    : "https://github.com/talbs/talbs.me",
+  "social_links": [
+    {
+      "id": "twitter",
+      "title": "Twitter",
+      "url": "https://twitter.com/talbs"
+    },
+    {
+      "id": "github",
+      "title": "Github",
+      "url": "https://github.com/talbs"
+    },
+    {
+      "id": "dribbble",
+      "title": "Dribbble",
+      "url": "https://dribbble.com/talbs"
+    },
+    {
+      "id": "lastfm",
+      "title": "Last.fm",
+      "url": "ttp://www.last.fm/user/B-Tal"
+    },
+    {
+      "id": "flickr",
+      "title": "Flickr",
+      "url": "https://www.flickr.com/photos/b-tal"
+    },
+    {
+      "id": "linkedin",
+      "title": "LinkedIn",
+      "url": "https://www.linkedin.com/in/briantalbot"
+    }
+  ]
+}
