@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% include "shared/head.html" %}
+    {% block head %}{% endblock %}
+  </head>
+  <body class="view--{% block view_name %}{% endblock %}">
+    <div class="wrapper--view">
+      {% block content %}{% endblock %}
+    </div>
+
+    {% include "shared/assets-secondary.html" %}
+    {% block javascript %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{#
+  Nunjucks Templating!
+  Homepage: https://mozilla.github.io/nunjucks/
+  Docs: https://mozilla.github.io/nunjucks/api.html
+#}
+
+{% extends 'layouts/base.html' %}
+
+{% block view_name %}index{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="wrapper--content">
+  <span class="deco--avatar"></span>
+
+  <main class="content--main">
+    <h1 class="talbs__name">{{ name }}</h1>
+
+    <p class="talbs__description"><span class="sr">is a </span>{{ description }}</p>
+  </main>
+
+  <aside class="content--aside">
+    {% include "shared/nav-elsewhere.html" %}
+  </aside>
+</div>
+{% endblock %}
