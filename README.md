@@ -1,5 +1,6 @@
-# Personal Site
-Code and assets for styling talbs.me.
+# talbs.me
+Code for my personal site, http://www.talbs.me.
+
 
 
 
