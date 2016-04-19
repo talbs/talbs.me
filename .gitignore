@@ -26,13 +26,14 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 .idea
+Desktop.ini
 
 # Ignore: Front End/Local Development
 .sass-cache
 .map
-bower_components
-_bower_components
 node_modules
+npm-debug.log.publish
+.DS_Store
 
 # Ignore: Project-centric folders/files
-_site
+public
