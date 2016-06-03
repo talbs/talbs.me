@@ -28,57 +28,6 @@ $susy: (
   output: float
   );
 
-// LAYOUT: set default susy settings
-// (gutters are handled outside of elements - by default)
-$susy-default: (
-  flow: $grid-direction-default,
-  column-width: $grid-column-width,
-  columns: $grid-column-count,
-  container-position: $grid-container-position,
-  container: $grid-max-width,
-  global-box-sizing: border-box,
-  gutters: $grid-gutter-width,
-  gutter-position: $grid-gutter-position
-  );
-
-// set basic grid settings for app
-@include layout($susy-default);
-
-// ----------------------------
-// #UTILITY
-// ----------------------------
-// shift grid for content
-%shift-content {
-  @include pre(1);
-  @include post(1);
-}
-
-%grid-wrapper {
-  padding-right: gutter();
-  padding-left: gutter();
-}
-
-%grid-container {
-  @include container();
-}
-
-// grid rows - set visual break and document flow clear (clearfix)
-%grid-row {
-  @include break();
-  @include clearfix();
-}
-
-%grid-gallery {
-  @include break();
-  @include clearfix();
-}
-
-%grid-fill-col {
-  display: block;
-  width: 100%;
-}
-
-
 // ------------------------------
 // #GLOBAL
 // ------------------------------
@@ -135,7 +84,3 @@ $susy-default: (
     }
   }
 }
-
-// ------------------------------
-// #WORK
-// ------------------------------

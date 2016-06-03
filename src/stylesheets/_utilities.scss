@@ -27,12 +27,12 @@ body {
 }
 
 html {
-    // font-size: $font-base-sm;
-    font-size: $font-base-md;
+    font-size: $font-base-sm;
+    // font-size: $font-base-md;
 
-    // @include breakpoint($bp-screen-md) {
-    //   font-size: $font-base-md;
-    // }
+    @include breakpoint($bp-screen-md) {
+      font-size: $font-base-md;
+    }
 
     // @include breakpoint($bp-screen-lg) {
     //   font-size: $font-base-lg;
