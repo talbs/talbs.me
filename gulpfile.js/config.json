@@ -39,7 +39,7 @@
       "sass": {
         "indentedSyntax": true,
         "includePaths": [
-          "./node_modules/normalize.css"
+          "./node_modules/tachyons-sass"
         ]
       },
       "extensions": ["sass", "scss", "css"]
