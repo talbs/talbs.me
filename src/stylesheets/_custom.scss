@@ -21,7 +21,25 @@
   }
 }
 
-[data-name='view--index'] {
+.deco--grid {
   background-image: url('https://img.fortawesome.com/47947f7d/tiny-grid.svg');
+  background-position: 0 0;
   background-repeat: repeat;
+}
+
+.deco--avatar {
+  border-width: 0.5rem;
+}
+
+.deco--striped {
+  height: 0.25rem;
+  background: repeating-linear-gradient(
+    to right,
+    $yellow,
+    $yellow 2rem,
+    $gold 2rem,
+    $gold 4rem,
+    $orange 4rem,
+    $orange 6rem
+  );
 }
