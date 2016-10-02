@@ -24,9 +24,20 @@
 
 // decorative
 .deco--grid {
-  background-image: url('https://img.fortawesome.com/47947f7d/tiny-grid.svg');
-  background-position: 0 0;
-  background-repeat: repeat;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background-image: url('https://img.fortawesome.com/47947f7d/tiny-grid.svg');
+    background-position: 0 0;
+    background-repeat: repeat;
+    transform: rotate(45deg);
+  }
 }
 
 .deco--striped {
