@@ -1,0 +1,27 @@
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.sr-only-focusable {
+  &:active,
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+  }
+}
+
+[data-name='view--index'] {
+  background-image: url('https://img.fortawesome.com/47947f7d/tiny-grid.svg');
+  background-repeat: repeat;
+}

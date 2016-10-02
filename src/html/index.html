@@ -6,21 +6,28 @@
 
 {% extends 'layouts/base.html' %}
 
-{% block view_name %}index{% endblock %}
-{% block title %}Home{% endblock %}
+{% block view_name %}view--index{% endblock %}
+{% block title %}Brian Talbot{% endblock %}
+{% block description %}Designer, Photographer, Analogy User{% endblock %}
+
+{% block body_class %}w-100 bg-light-yellow{% endblock %}
 
 {% block content %}
-<div class="wrapper--content">
-  <span class="deco--avatar"></span>
+<div class="min-vh-100 w-100 overflow-scroll dtc flex flex-column justify-center item-center pa4 relative">
+  <div class="absolute--fill w-100 h-100" style="background transparent url('https://img.fortawesome.com/47947f7d/tiny-grid.png') 0 0 repeat"></div>
 
-  <main class="content--main">
-    <h1 class="talbs__name">{{ name }}</h1>
+  <div class="bg-white br2 center w-100 mw6 shadow-2 near-black tc">
 
-    <p class="talbs__description"><span class="sr">is a </span>{{ description }}</p>
-  </main>
+    <img class="br-100 w4 ba bw4 b--white relative top--1" src="https://img.fortawesome.com/47947f7d/talbs.png" alt="">
 
-  <aside class="content--aside">
-    {% include "shared/nav-elsewhere.html" %}
-  </aside>
+    <main class="ph3 pt0 pb4" data-name="content--main">
+      <h1 class="f1 serif lh-title mt0 mb2">{{ name }}</h1>
+      <p class="f3 sans-serif lh-copy mv0 mid-gray"><span class="sr">is a </span>{{ description }}</p>
+    </main>
+
+    <aside class="f4 bt b--light-yellow bg-washed-yellow pa2" data-name="content--aside">
+      {% include "shared/nav-elsewhere.html" %}
+    </aside>
+  </div>
 </div>
 {% endblock %}

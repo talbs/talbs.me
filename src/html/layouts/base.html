@@ -5,8 +5,8 @@
     {% include "shared/head.html" %}
     {% block head %}{% endblock %}
   </head>
-  <body class="view--{% block view_name %}{% endblock %}">
-    <div class="wrapper--view">
+  <body class="{% block body_class %}{% endblock %}" data-name="{% block view_name %}{% endblock %}">
+    <div data-name="wrapper--view">
       {% block content %}{% endblock %}
     </div>
 

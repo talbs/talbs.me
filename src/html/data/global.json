@@ -3,7 +3,7 @@
   "name"        : "Brian Talbot",
   "nickname"    : "Talbs",
   "email"       : "hi.talbs@gmail.com",
-  "description" : "Designer, Photographer, and Professional Analogy User",
+  "description" : "Designer, Photographer, Analogy User",
   "location"    : "Boston, MA",
   "url_site"    : "http://www.talbs.me",
   "url_repo"    : "https://github.com/talbs/talbs.me",
@@ -26,7 +26,7 @@
     {
       "id": "lastfm",
       "title": "Last.fm",
-      "url": "ttp://www.last.fm/user/B-Tal"
+      "url": "http://www.last.fm/user/B-Tal"
     },
     {
       "id": "flickr",

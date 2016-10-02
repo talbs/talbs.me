@@ -3,40 +3,6 @@
 
 // About:
 
-// #THIRD_PARTY_LIB
-// #CONFIG + UTILITIES
-// #ELEMENTS
-// #OVERRIDES
-
-// ------------------------------
-// #THIRD_PARTY_LIB
-// ------------------------------
-@import 'libs';
-@import 'normalize';
-
-
-// ------------------------------
-// #CONFIG + UTILITIES
-// ------------------------------
-@import 'functions';
-@import 'settings';
-@import 'helpers';
-
-
-// ------------------------------
-// #ELEMENTS
-// ------------------------------
-@import 'utilities';
-@import 'components';
-@import 'layouts';
-
-
-// ------------------------------
-// #VIEWS
-// ------------------------------
-@import 'views';
-
-// ------------------------------
-// #OVERRIDES
-// ------------------------------
-@import 'overrides';
+@import 'tachyons';
+@import 'tachyons-overrides';
+@import 'custom';

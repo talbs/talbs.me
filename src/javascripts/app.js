@@ -1,3 +1,2 @@
-import './modules'
-
-console.log(`app.js has loaded!`)
+import './modules';
+console.log(`app.js has loaded!`);

@@ -8,7 +8,7 @@
 
   <title>{% block title %}{{ name }}{% endblock %}</title>
 
-  <meta name="description" content="{{ description }}">
+  <meta name="description" content="{% block description %}{{ description }}{% endblock %}">
 
   {% include "shared/assets-primary.html" %}
 </head>
