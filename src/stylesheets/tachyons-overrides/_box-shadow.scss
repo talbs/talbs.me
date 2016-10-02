@@ -1,0 +1,50 @@
+
+// Converted Variables
+$shadow-spread: 0;
+$shadow-blur: 4px;
+$shadow-color: rgba( 0, 0, 0, 0.1 );
+
+// Custom Media Query Variables
+
+
+/*
+
+  BOX-SHADOW
+  Docs: http://tachyons.io/docs/themes/box-shadow/
+
+  Media Query Extensions:
+   -ns = not-small
+   -m  = medium
+   -l  = large
+
+ */
+
+.shadow-1 { box-shadow: 0px 0px $shadow-blur $shadow-spread $shadow-color; }
+.shadow-2 { box-shadow: 0px 2px $shadow-blur $shadow-spread $shadow-color; }
+.shadow-3 { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
+.shadow-4 { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
+.shadow-5 { box-shadow: 4px 4px $shadow-blur $shadow-spread $shadow-color; }
+
+@media #{$breakpoint-not-small} {
+  .shadow-1-ns { box-shadow: 0px 0px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-2-ns { box-shadow: 0px 2px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-3-ns { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-4-ns { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-5-ns { box-shadow: 4px 4px $shadow-blur $shadow-spread $shadow-color; }
+}
+
+@media #{$breakpoint-medium} {
+  .shadow-1-m { box-shadow: 0px 0px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-2-m { box-shadow: 0px 2px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-3-m { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-4-m { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-5-m { box-shadow: 4px 4px $shadow-blur $shadow-spread $shadow-color; }
+}
+
+@media #{$breakpoint-large} {
+  .shadow-1-l { box-shadow: 0px 0px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
+  .shadow-2-l { box-shadow: 0px 2px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
+  .shadow-3-l { box-shadow: 2px 2px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
+  .shadow-4-l { box-shadow: 2px 2px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
+  .shadow-5-l { box-shadow: 4px 4px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
+}

@@ -1,9 +1,9 @@
-<ul class="nav--elsewhere">
+<ul class="list pl0 dt dt--fixed tc" data-name="nav--elsewhere">
   {% for item in social_links %}
-  <li class="nav--elsewhere__item nav--elsewhere__item--{{ item.id }}">
-    <a class="link" href="{{ item.url }}">
-      <i class="icon tb tb-{{ item.id }}" aria-hidden="true"></i>
-      <span class="text">{{ item.name }}</span>
+  <li class="dtc" data-name="nav--elsewhere__item--{{ item.id }}">
+    <a class="pa3 link gold hover-orange" href="{{ item.url }}">
+      <i class="tb tb-{{ item.id }} tb-lg" aria-hidden="true"></i>
+      <span class="sr">{{ item.name }}</span>
     </a>
   </li>
   {% endfor %}
