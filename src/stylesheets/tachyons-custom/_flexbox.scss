@@ -1,0 +1,44 @@
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/*
+
+  FLEXBOX
+
+  Media Query Extensions            :
+   -ns = not-small
+   -m = medium
+   -l = large
+
+*/
+
+.flex-grow-none { flex-grow: 0 }
+.flex-grow-1 { flex-grow: 1 }
+
+.flex-shrink-none { flex-shrink: 0 }
+.flex-basis-none { flex-basis: 0 }
+.flex-basis-auto { flex-basis: auto }
+
+@media #{$breakpoint-not-small} {
+  .flex-grow-none-ns { flex-grow: 0 }
+  .flex-shrink-none-ns { flex-shrink: 0 }
+  .flex-basis-none-ns { flex-basis: 0 }
+  .flex-basis-auto-ns { flex-basis: auto }
+}
+@media #{$breakpoint-medium} {
+  .flex-grow-none-m { flex-grow: 0 }
+  .flex-shrink-none-m { flex-shrink: 0 }
+  .flex-basis-none-m { flex-basis: 0 }
+  .flex-basis-auto-m { flex-basis: auto }
+}
+
+@media #{$breakpoint-large} {
+  .flex-grow-none-l { flex-grow: 0 }
+  .flex-shrink-none-l { flex-shrink: 0 }
+  .flex-basis-none-l { flex-basis: 0 }
+  .flex-basis-auto-l { flex-basis: auto }
+}

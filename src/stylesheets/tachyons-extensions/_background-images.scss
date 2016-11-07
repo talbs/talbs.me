@@ -1,0 +1,128 @@
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/*
+
+   BACKGROUND SIZE
+   Docs: http://tachyons.io/docs/themes/background-size/
+
+   Media Query Extensions:
+     -ns = not-small
+     -m  = medium
+     -l  = large
+
+*/
+
+/*
+  Often used in combination with background image set as an inline style
+  on an html element.
+*/
+
+.bg-img {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-position: top center;
+    z-index: -1;
+  }
+
+  > * {
+    position: relative;
+  }
+}
+
+// invert the background image
+.bg-img-invert:after {
+  -webkit-filter: brightness(0) invert(100%); // TODO: remove this webkit filter once we have autoprefixer
+  filter: brightness(0) invert(100%);
+}
+
+// levels of opacity.
+.bg-img-o-100:after { opacity: 1; }
+.bg-img-o-90:after { opacity: .9; }
+.bg-img-o-80:after { opacity: .8; }
+.bg-img-o-70:after { opacity: .7; }
+.bg-img-o-60:after { opacity: .6; }
+.bg-img-o-50:after { opacity: .5; }
+.bg-img-o-40:after { opacity: .4; }
+.bg-img-o-30:after { opacity: .3; }
+.bg-img-o-20:after { opacity: .2; }
+.bg-img-o-10:after { opacity: .1; }
+.bg-img-o-005:after { opacity: 0.05; }
+.bg-img-o-0025:after { opacity: 0.025; }
+.bg-img-o-0 :after { opacity: 0; }
+
+
+@media #{$breakpoint-not-small} {
+  .bg-img-invert-ns:after {
+    filter: brightness(0) invert(100%);
+  }
+
+  // levels of opacity.
+  .bg-img-o-100-ns:after { opacity: 1; }
+  .bg-img-o-90-ns:after { opacity: .9; }
+  .bg-img-o-80-ns:after { opacity: .8; }
+  .bg-img-o-70-ns:after { opacity: .7; }
+  .bg-img-o-60-ns:after { opacity: .6; }
+  .bg-img-o-50-ns:after { opacity: .5; }
+  .bg-img-o-40-ns:after { opacity: .4; }
+  .bg-img-o-30-ns:after { opacity: .3; }
+  .bg-img-o-20-ns:after { opacity: .2; }
+  .bg-img-o-10-ns:after { opacity: .1; }
+  .bg-img-o-005-ns:after { opacity: 0.05; }
+  .bg-img-o-0025-ns:after { opacity: 0.025; }
+  .bg-img-o-0-ns :after { opacity: 0; }
+}
+
+@media #{$breakpoint-medium} {
+  .bg-img-invert-m:after {
+    filter: brightness(0) invert(100%);
+  }
+
+  // levels of opacity.
+  .bg-img-o-100-m:after { opacity: 1; }
+  .bg-img-o-90-m:after { opacity: .9; }
+  .bg-img-o-80-m:after { opacity: .8; }
+  .bg-img-o-70-m:after { opacity: .7; }
+  .bg-img-o-60-m:after { opacity: .6; }
+  .bg-img-o-50-m:after { opacity: .5; }
+  .bg-img-o-40-m:after { opacity: .4; }
+  .bg-img-o-30-m:after { opacity: .3; }
+  .bg-img-o-20-m:after { opacity: .2; }
+  .bg-img-o-10-m:after { opacity: .1; }
+  .bg-img-o-005-m:after { opacity: 0.05; }
+  .bg-img-o-0025-m:after { opacity: 0.025; }
+  .bg-img-o-0-m :after { opacity: 0; }
+}
+
+@media #{$breakpoint-large} {
+  .bg-img-invert-l:after {
+    filter: brightness(0) invert(100%);
+  }
+
+  // levels of opacity.
+  .bg-img-o-100-l:after { opacity: 1; }
+  .bg-img-o-90-l:after { opacity: .9; }
+  .bg-img-o-80-l:after { opacity: .8; }
+  .bg-img-o-70-l:after { opacity: .7; }
+  .bg-img-o-60-l:after { opacity: .6; }
+  .bg-img-o-50-l:after { opacity: .5; }
+  .bg-img-o-40-l:after { opacity: .4; }
+  .bg-img-o-30-l:after { opacity: .3; }
+  .bg-img-o-20-l:after { opacity: .2; }
+  .bg-img-o-10-l:after { opacity: .1; }
+  .bg-img-o-005-l:after { opacity: 0.05; }
+  .bg-img-o-0025-l:after { opacity: 0.025; }
+  .bg-img-o-0-l :after { opacity: 0; }
+}

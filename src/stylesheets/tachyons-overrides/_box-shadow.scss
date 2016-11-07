@@ -1,8 +1,9 @@
 
 // Converted Variables
-$shadow-spread: 0;
-$shadow-blur: 4px;
-$shadow-color: rgba( 0, 0, 0, 0.1 );
+$depth-x                    : 0;
+$depth-y                    : .25rem;
+$depth-blur                 : .125rem;
+$depth-spread               : 0;
 
 // Custom Media Query Variables
 
@@ -10,41 +11,82 @@ $shadow-color: rgba( 0, 0, 0, 0.1 );
 /*
 
   BOX-SHADOW
-  Docs: http://tachyons.io/docs/themes/box-shadow/
+  Docs                         : http://tachyons.io/docs/themes/box-shadow/
 
-  Media Query Extensions:
+  Media Query Extensions       :
    -ns = not-small
-   -m  = medium
-   -l  = large
+   -m = medium
+   -l = large
 
  */
 
-.shadow-1 { box-shadow: 0px 0px $shadow-blur $shadow-spread $shadow-color; }
-.shadow-2 { box-shadow: 0px 2px $shadow-blur $shadow-spread $shadow-color; }
-.shadow-3 { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
-.shadow-4 { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
-.shadow-5 { box-shadow: 4px 4px $shadow-blur $shadow-spread $shadow-color; }
+ .shadow-0 { box-shadow : none; }
+ .shadow-1 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+ .shadow-2 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+ .shadow-3 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+ .shadow-4 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+ .shadow-4 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-30 }
+ .shadow-5 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+ .shadow-6 { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-50; }
+
+ .shadow-inset-1 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+ .shadow-inset-2 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+ .shadow-inset-3 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+ .shadow-inset-4 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+ .shadow-inset-4 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-30; }
+ .shadow-inset-5 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+ .shadow-inset-6 { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-50; }
 
 @media #{$breakpoint-not-small} {
-  .shadow-1-ns { box-shadow: 0px 0px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-2-ns { box-shadow: 0px 2px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-3-ns { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-4-ns { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-5-ns { box-shadow: 4px 4px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-1-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+  .shadow-2-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+  .shadow-3-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+  .shadow-4-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+  .shadow-4-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-30 }
+  .shadow-5-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+  .shadow-6-ns { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-50; }
+
+  .shadow-inset-1-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+  .shadow-inset-2-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+  .shadow-inset-3-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+  .shadow-inset-4-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+  .shadow-inset-4-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-30; }
+  .shadow-inset-5-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+  .shadow-inset-6-ns { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-50; }
 }
 
 @media #{$breakpoint-medium} {
-  .shadow-1-m { box-shadow: 0px 0px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-2-m { box-shadow: 0px 2px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-3-m { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-4-m { box-shadow: 2px 2px $shadow-blur $shadow-spread $shadow-color; }
-  .shadow-5-m { box-shadow: 4px 4px $shadow-blur $shadow-spread $shadow-color; }
+  .shadow-1-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+  .shadow-2-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+  .shadow-3-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+  .shadow-4-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+  .shadow-4-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-30 }
+  .shadow-5-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+  .shadow-6-m { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-50; }
+
+  .shadow-inset-1-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+  .shadow-inset-2-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+  .shadow-inset-3-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+  .shadow-inset-4-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+  .shadow-inset-4-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-30; }
+  .shadow-inset-5-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+  .shadow-inset-6-m { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-50; }
 }
 
 @media #{$breakpoint-large} {
-  .shadow-1-l { box-shadow: 0px 0px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
-  .shadow-2-l { box-shadow: 0px 2px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
-  .shadow-3-l { box-shadow: 2px 2px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
-  .shadow-4-l { box-shadow: 2px 2px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
-  .shadow-5-l { box-shadow: 4px 4px $shadow-blur $shadow-spread rgba( 0, 0, 0, 0.2 ); }
+  .shadow-1-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+  .shadow-2-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+  .shadow-3-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+  .shadow-4-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+  .shadow-4-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-30 }
+  .shadow-5-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+  .shadow-6-l { box-shadow : $depth-x $depth-y $depth-blur $depth-spread $black-50; }
+
+  .shadow-inset-1-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-025; }
+  .shadow-inset-2-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-05 }
+  .shadow-inset-3-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-10; }
+  .shadow-inset-4-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-20; }
+  .shadow-inset-4-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-30; }
+  .shadow-inset-5-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-40; }
+  .shadow-inset-6-l { box-shadow : inset $depth-x $depth-y $depth-blur $depth-spread $black-50; }
 }

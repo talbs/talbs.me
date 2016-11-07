@@ -1,68 +1,163 @@
 
 // Converted Variables
 
-$black: #000 !default;
-$near-black: #111 !default;
-$dark-gray:#333 !default;
-$mid-gray:#555 !default;
-$gray: #777 !default;
-$silver: #999 !default;
-$light-silver: #aaa !default;
-$moon-gray: #ccc !default;
-$light-gray: #eee !default;
-$near-white: #f4f4f4 !default;
-$white: #fff !default;
+$black            : #000 !default;
+$darkest-gray     : $oc-gray-8 !default;
+$darker-gray      : $oc-gray-7 !default;
+$dark-gray        : $oc-gray-6 !default;
+$gray             : $oc-gray-5 !default;
+$light-gray       : $oc-gray-4 !default;
+$lighter-gray     : $oc-gray-3 !default;
+$lightest-gray    : $oc-gray-2 !default;
+$washed-gray      : $oc-gray-1 !default;
+$white            : #fff !default;
 
-$transparent:transparent !default;
+$darkest-red      : $oc-red-9 !default;
+$darker-red       : $oc-red-8 !default;
+$dark-red         : $oc-red-7 !default;
+$red              : $oc-red-6 !default;
+$light-red        : $oc-red-4 !default;
+$lighter-red      : $oc-red-2 !default;
+$lightest-red     : $oc-red-1 !default;
+$washed-red       : $oc-red-0 !default;
 
-$black-90: rgba(0,0,0,.9) !default;
-$black-80: rgba(0,0,0,.8) !default;
-$black-70: rgba(0,0,0,.7) !default;
-$black-60: rgba(0,0,0,.6) !default;
-$black-50: rgba(0,0,0,.5) !default;
-$black-40: rgba(0,0,0,.4) !default;
-$black-30: rgba(0,0,0,.3) !default;
-$black-20: rgba(0,0,0,.2) !default;
-$black-10: rgba(0,0,0,.1) !default;
-$black-05: rgba(0,0,0,.05) !default;
-$black-025: rgba(0,0,0,.025) !default;
-$black-0125: rgba(0,0,0,.0125) !default;
+$darkest-orange   : $oc-orange-9 !default;
+$darker-orange    : $oc-orange-8 !default;
+$dark-orange      : $oc-orange-7 !default;
+$orange           : $oc-orange-6 !default;
+$light-orange     : $oc-orange-4 !default;
+$lighter-orange   : $oc-orange-2 !default;
+$lightest-orange  : $oc-orange-1 !default;
+$washed-orange    : $oc-orange-0 !default;
 
-$white-90: rgba(255,255,255,.9) !default;
-$white-80: rgba(255,255,255,.8) !default;
-$white-70: rgba(255,255,255,.7) !default;
-$white-60: rgba(255,255,255,.6) !default;
-$white-50: rgba(255,255,255,.5) !default;
-$white-40: rgba(255,255,255,.4) !default;
-$white-30: rgba(255,255,255,.3) !default;
-$white-20: rgba(255,255,255,.2) !default;
-$white-10: rgba(255,255,255,.1) !default;
-$white-05: rgba(255,255,255,.05) !default;
-$white-025: rgba(255,255,255,.025) !default;
-$white-0125: rgba(255,255,255,.0125) !default;
+$darkest-yellow   : $oc-yellow-7 !default;
+$darker-yellow    : $oc-yellow-6 !default;
+$dark-yellow      : $oc-yellow-5 !default;
+$yellow           : $oc-yellow-4 !default;
+$light-yellow     : $oc-yellow-3 !default;
+$lighter-yellow   : $oc-yellow-2 !default;
+$lightest-yellow  : $oc-yellow-1 !default;
+$washed-yellow    : $oc-yellow-0 !default;
 
-$dark-red:  #e7040f !default;
-$red:  #ff4136 !default;
-$light-red:  #ff725c !default;
-$orange:  #ff6300 !default;
-$gold:  #ffb700 !default;
-$yellow:  #ffd700 !default;
-$light-yellow:  #fbf1a9 !default;
-$purple:  #5e2ca5 !default;
-$light-purple:  #a463f2 !default;
-$dark-pink:  #d5008f !default;
-$hot-pink: #ff41b4 !default;
-$pink:  #ff80cc !default;
-$light-pink:  #ffa3d7 !default;
-$dark-green:  #137752 !default;
-$green:  #19a974 !default;
-$light-green:  #9eebcf !default;
-$navy:  #001b44 !default;
-$dark-blue:  #00449e !default;
-$blue:  #357edd !default;
-$light-blue:  #96ccff !default;
-$lightest-blue:  #cdecff !default;
-$washed-blue:  #f6fffe !default;
-$washed-green:  #e8fdf5 !default;
-$washed-yellow:  #fffceb !default;
-$washed-red:  #ffdfdf !default;
+$darkest-purple   : $oc-violet-9 !default;
+$darker-purple    : $oc-violet-8 !default;
+$dark-purple      : $oc-violet-7 !default;
+$purple           : $oc-violet-6 !default;
+$light-purple     : $oc-violet-4 !default;
+$lighter-purple   : $oc-violet-2 !default;
+$lightest-purple  : $oc-violet-1 !default;
+$washed-purple    : $oc-violet-0 !default;
+
+$darkest-pink     : $oc-pink-7 !default;
+$darker-pink      : $oc-pink-6 !default;
+$dark-pink        : $oc-pink-5 !default;
+$pink             : $oc-pink-4 !default;
+$light-pink       : $oc-pink-3 !default;
+$lighter-pink     : $oc-pink-2 !default;
+$lightest-pink    : $oc-pink-1 !default;
+$washed-pink      : $oc-pink-0 !default;
+
+$darkest-green    : $oc-green-9 !default;
+$darker-green     : $oc-green-8 !default;
+$dark-green       : $oc-green-7 !default;
+$green            : $oc-green-6 !default;
+$light-green      : $oc-green-4 !default;
+$lighter-green    : $oc-green-2 !default;
+$lightest-green   : $oc-green-1 !default;
+$washed-green     : $oc-green-0 !default;
+
+$darkest-teal     : $oc-teal-9 !default;
+$darker-teal      : $oc-teal-8 !default;
+$dark-teal        : $oc-teal-7 !default;
+$teal             : $oc-teal-6 !default;
+$light-teal       : $oc-teal-4 !default;
+$lighter-teal     : $oc-teal-2 !default;
+$lightest-teal    : $oc-teal-1 !default;
+$washed-teal      : $oc-teal-0 !default;
+
+$darkest-blue     : $oc-blue-9 !default;
+$darker-blue      : $oc-blue-8 !default;
+$dark-blue        : $oc-blue-7 !default;
+$blue             : $oc-blue-6 !default;
+$light-blue       : $oc-blue-4 !default;
+$lighter-blue     : $oc-blue-2 !default;
+$lightest-blue    : $oc-blue-1 !default;
+$washed-blue      : $oc-blue-0 !default;
+
+// tachyons mapping & unused
+$hot-pink         : $oc-pink-8 !default;
+$navy             : $darkest-blue !default;
+$gold             : $dark-yellow !default;
+$near-white       : $oc-gray-0 !default;
+$moon-gray        : $oc-gray-3 !default;
+$light-silver     : $oc-gray-4 !default;
+$silver           : $oc-gray-5 !default;
+$mid-gray         : $oc-gray-7 !default;
+$near-black       : $oc-gray-9 !default;
+
+// application
+$transparent      : rgba($near-black, 0) !default;
+
+$black-90         : rgba($near-black, .9) !default;
+$black-80         : rgba($near-black, .8) !default;
+$black-70         : rgba($near-black, .7) !default;
+$black-60         : rgba($near-black, .6) !default;
+$black-50         : rgba($near-black, .5) !default;
+$black-40         : rgba($near-black, .4) !default;
+$black-30         : rgba($near-black, .3) !default;
+$black-20         : rgba($near-black, .2) !default;
+$black-10         : rgba($near-black, .1) !default;
+$black-05         : rgba($near-black, .05) !default;
+$black-025        : rgba($near-black, .025) !default;
+$black-0125       : rgba($near-black, .0125) !default;
+
+$white-90         : rgba($white,.9) !default;
+$white-80         : rgba($white,.8) !default;
+$white-70         : rgba($white,.7) !default;
+$white-60         : rgba($white,.6) !default;
+$white-50         : rgba($white,.5) !default;
+$white-40         : rgba($white,.4) !default;
+$white-30         : rgba($white,.3) !default;
+$white-20         : rgba($white,.2) !default;
+$white-10         : rgba($white,.1) !default;
+$white-05         : rgba($white,.05) !default;
+$white-025        : rgba($white,.025) !default;
+$white-0125       : rgba($white,.0125) !default;
+
+
+// font awesome specific
+$darkest-info     : $darkest-blue !default;
+$darker-info      : $darker-blue !default;
+$dark-info        : $dark-blue !default;
+$info             : $blue !default;
+$light-info       : $light-blue !default;
+$lighter-info     : $lighter-blue !default;
+$lightest-info    : $lightest-blue !default;
+$washed-info      : $washed-blue !default;
+
+$darkest-success  : $darkest-green !default;
+$darker-success   : $darker-green !default;
+$dark-success     : $dark-green !default;
+$success          : $green !default;
+$light-success    : $light-green !default;
+$lighter-success  : $lighter-green !default;
+$lightest-success : $lightest-green !default;
+$washed-success   : $washed-green !default;
+
+$darkest-danger   : $darkest-red !default;
+$darker-danger    : $darker-red !default;
+$dark-danger      : $dark-red !default;
+$danger           : $red !default;
+$light-danger     : $light-red !default;
+$lighter-danger   : $lighter-red !default;
+$lightest-danger  : $lightest-red !default;
+$washed-danger    : $washed-red !default;
+
+$darkest-warning  : $darkest-yellow !default;
+$darker-warning   : $darker-yellow !default;
+$dark-warning     : $dark-yellow !default;
+$warning          : $yellow !default;
+$light-warning    : $light-yellow !default;
+$lighter-warning  : $lighter-yellow !default;
+$lightest-warning : $lightest-yellow !default;
+$washed-warning   : $washed-yellow !default;

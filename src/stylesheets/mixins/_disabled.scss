@@ -1,0 +1,6 @@
+@mixin state-disabled() {
+  pointer-events: none;
+  outline: none;
+  cursor: not-allowed;
+  user-select: none;
+}

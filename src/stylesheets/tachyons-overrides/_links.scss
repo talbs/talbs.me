@@ -1,0 +1,33 @@
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/*
+
+   LINKS
+   Docs: http://tachyons.io/docs/elements/links/
+
+*/
+
+.link {
+  text-decoration: none;
+  transition: all $timing-fastest ease-in;
+}
+
+.link:link,
+.link:visited {
+  transition: all $timing-fastest  ease-in;
+}
+.link:hover   {
+  transition: all $timing-fastest  ease-in;
+}
+.link:active  {
+  transition: all $timing-fastest  ease-in;
+}
+.link:focus   {
+  transition: all $timing-fastest  ease-in;
+  outline: 1px dotted currentColor;
+}

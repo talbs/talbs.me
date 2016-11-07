@@ -1,7 +1,123 @@
 // ------------------------------
 // Main Style Compile
 
-// About:
+// custom mixins/variables
+@import  "variables";
+@import  "mixins";
 
-@import 'tachyons-custom';
-@import 'custom';
+// open color
+@import  "open-color/open-color";
+
+// open color
+@import  "animate-css/animate-css";
+
+// tachyons variables
+@import  "tachyons/media-queries";
+// @import  "colors";
+@import  "tachyons-overrides/colors";
+
+// tachyons debug
+// @import  "debug";
+
+// tachyons
+@import  "tachyons/background-position";
+@import  "tachyons/background-size";
+@import  "tachyons/borders";
+
+@import  "tachyons/border-colors";
+@import  "tachyons-custom/_border-colors";
+
+@import  "tachyons/border-radius";
+@import  "tachyons/border-style";
+
+@import  "tachyons/border-widths";
+@import  "tachyons-custom/_border-widths";
+
+// @import  "tachyons/box-shadow";
+@import  "tachyons-overrides/box-shadow";
+
+@import  "tachyons/box-sizing";
+@import  "tachyons/clears";
+@import  "tachyons/code";
+
+@import  "tachyons/coordinates";
+@import  "tachyons-custom/coordinates";
+
+@import  "tachyons/debug-children";
+@import  "tachyons/debug-grid";
+@import  "tachyons/display";
+
+@import  "tachyons/flexbox";
+@import  "tachyons-custom/flexbox";
+
+@import  "tachyons/floats";
+
+// @import  "tachyons/font-family";
+@import  "tachyons-overrides/font-family";
+
+@import  "tachyons/font-style";
+@import  "tachyons/font-weight";
+@import  "tachyons/forms";
+
+@import  "tachyons/heights";
+@import  "tachyons-custom/heights";
+
+// @import  "tachyons/hovers";
+@import  "tachyons-overrides/hovers";
+
+@import  "tachyons/images";
+@import  "tachyons/letter-spacing";
+@import  "tachyons/line-height";
+
+// @import  "tachyons/links";
+@import  "tachyons-overrides/links";
+
+@import  "tachyons/lists";
+
+// @import  "tachyons/max-widths";
+@import  "tachyons-overrides/max-widths";
+
+@import  "tachyons/module-template";
+
+@import  "tachyons/normalize";
+@import  "tachyons-custom/normalize";
+
+@import  "tachyons/opacity";
+@import  "tachyons/outlines";
+@import  "tachyons/overflow";
+@import  "tachyons/position";
+
+@import  "tachyons/skins-pseudo";
+@import  "tachyons-custom/skins-pseudo";
+
+@import  "tachyons/skins";
+@import  "tachyons-custom/_skins";
+
+// @import  "tachyons/spacing";
+@import  "tachyons-overrides/spacing";
+
+@import  "tachyons/styles";
+@import  "tachyons/tables";
+@import  "tachyons/text-align";
+@import  "tachyons/text-decoration";
+@import  "tachyons/text-transform";
+
+// @import  "tachyons/type-scale";
+@import  "tachyons-overrides/type-scale";
+
+@import  "tachyons/typography";
+
+@import  "tachyons/utilities";
+@import  "tachyons-custom/utilities";
+
+@import  "tachyons/vertical-align";
+@import  "tachyons/visibility";
+@import  "tachyons/white-space";
+
+@import  "tachyons/widths";
+@import  "tachyons-custom/widths";
+
+@import  "tachyons/word-break";
+@import  "tachyons/z-index";
+
+@import  "skins";

@@ -1,0 +1,59 @@
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/*
+
+   BORDER WIDTHS
+   Docs: http://tachyons.io/docs/themes/borders/
+
+   Base:
+     bw = border-width
+
+   Modifiers:
+     6  = 6st step in border-width scale
+     7  = 7th step in border-width scale
+     8  = 8th step in border-width scale
+     9  = 9th step in border-width scale
+     10 = 10th step in border-width scale
+
+   Media Query Extensions:
+     -ns = not-small
+     -m  = medium
+     -l  = large
+
+*/
+
+.bw6 { border-width      : 3rem; }
+.bw7 { border-width      : 4rem; }
+.bw8 { border-width      : 5rem; }
+.bw9 { border-width      : 6rem; }
+.bw10 { border-width     : 7rem; }
+
+
+@media #{$breakpoint-not-small} {
+  .bw6-ns { border-width : 3rem; }
+  .bw7-ns { border-width : 4rem; }
+  .bw8-ns { border-width : 5rem; }
+  .bw9-ns { border-width : 6rem; }
+  .bw10-ns { border-width: 7rem; }
+}
+
+@media #{$breakpoint-medium} {
+  .bw6-m { border-width  : 3rem; }
+  .bw7-m { border-width  : 4rem; }
+  .bw8-m { border-width  : 5rem; }
+  .bw9-m { border-width  : 6rem; }
+  .bw10-m { border-width : 7rem; }
+}
+
+@media #{$breakpoint-large} {
+  .bw6-l { border-width  : 3rem; }
+  .bw7-l { border-width  : 4rem; }
+  .bw8-l { border-width  : 5rem; }
+  .bw9-l { border-width  : 6rem; }
+  .bw10-l { border-width : 7rem; }
+}

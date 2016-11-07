@@ -1,0 +1,207 @@
+.hover-darkest-gray { @include hover-focus { color    : $darkest-gray; } }
+.hover-darker-gray { @include hover-focus { color     : $darker-gray; } }
+.hover-dark-gray { @include hover-focus { color       : $dark-gray; } }
+.hover-gray { @include hover-focus { color            : $gray; } }
+.hover-light-gray { @include hover-focus { color      : $light-gray; } }
+.hover-lighter-gray { @include hover-focus { color    : $lighter-gray; } }
+.hover-lightest-gray { @include hover-focus { color   : $lightest-gray; } }
+.hover-washed-gray { @include hover-focus { color     : $washed-teal; } }
+
+.hover-darkest-red { @include hover-focus { color     : $darkest-red; } }
+.hover-darker-red { @include hover-focus { color      : $darker-red; } }
+.hover-lighter-red { @include hover-focus { color     : $lighter-red; } }
+.hover-lightest-red { @include hover-focus { color    : $lightest-red; } }
+.hover-washed-red { @include hover-focus { color      : $washed-red; } }
+
+.hover-darkest-orange { @include hover-focus { color  : $darkest-orange; } }
+.hover-darker-orange { @include hover-focus { color   : $darker-orange; } }
+.hover-dark-orange { @include hover-focus { color     : $dark-orange; } }
+.hover-light-orange { @include hover-focus { color    : $light-orange; } }
+.hover-lighter-orange { @include hover-focus { color  : $lighter-orange; } }
+.hover-lightest-orange { @include hover-focus { color : $lightest-orange; } }
+.hover-washed-orange { @include hover-focus { color   : $washed-orange; } }
+
+.hover-darkest-yellow { @include hover-focus { color  : $darkest-yellow; } }
+.hover-darker-yellow { @include hover-focus { color   : $darker-yellow; } }
+.hover-dark-yellow { @include hover-focus { color     : $dark-yellow; } }
+.hover-lighter-yellow { @include hover-focus { color  : $lighter-yellow; } }
+.hover-lightest-yellow { @include hover-focus { color : $lightest-yellow; } }
+.hover-washed-yellow { @include hover-focus { color   : $washed-yellow; } }
+
+.hover-darkest-purple { @include hover-focus { color  : $darkest-purple; } }
+.hover-darker-purple { @include hover-focus { color   : $darker-purple; } }
+.hover-dark-purple { @include hover-focus { color     : $dark-purple; } }
+.hover-lighter-purple { @include hover-focus { color  : $lighter-purple; } }
+.hover-lightest-purple { @include hover-focus { color : $lightest-purple; } }
+.hover-washed-purple { @include hover-focus { color   : $washed-purple; } }
+
+.hover-darkest-pink { @include hover-focus { color    : $darkest-pink; } }
+.hover-darker-pink { @include hover-focus { color     : $darker-pink; } }
+.hover-dark-pink { @include hover-focus { color       : $dark-pink; } }
+.hover-lighter-pink { @include hover-focus { color    : $lighter-pink; } }
+.hover-lightest-pink { @include hover-focus { color   : $lightest-pink; } }
+.hover-washed-pink { @include hover-focus { color     : $washed-pink; } }
+
+.hover-darkest-green { @include hover-focus { color   : $darkest-green; } }
+.hover-darker-green { @include hover-focus { color    : $darker-green; } }
+.hover-light-green { @include hover-focus { color     : $light-green; } }
+.hover-lighter-green { @include hover-focus { color   : $lighter-green; } }
+.hover-lightest-green { @include hover-focus { color  : $lightest-green; } }
+.hover-washed-green { @include hover-focus { color    : $washed-green; } }
+
+.hover-darkest-teal { @include hover-focus { color    : $darkest-teal; } }
+.hover-darker-teal { @include hover-focus { color     : $darker-teal; } }
+.hover-dark-teal { @include hover-focus { color       : $dark-teal; } }
+.hover-teal { @include hover-focus { color            : $teal; } }
+.hover-light-teal { @include hover-focus { color      : $light-teal; } }
+.hover-lighter-teal { @include hover-focus { color    : $lighter-teal; } }
+.hover-lightest-teal { @include hover-focus { color   : $lightest-teal; } }
+.hover-washed-teal { @include hover-focus { color     : $washed-teal; } }
+
+.hover-darkest-blue { @include hover-focus { color    : $darkest-blue; } }
+.hover-darker-blue { @include hover-focus { color     : $darker-blue; } }
+.hover-dark-blue { @include hover-focus { color       : $dark-blue; } }
+.hover-lighter-blue { @include hover-focus { color    : $lighter-blue; } }
+.hover-lightest-blue { @include hover-focus { color   : $lightest-blue; } }
+.hover-washed-blue { @include hover-focus { color     : $washed-teal; } }
+
+
+.hover-bg-darkest-red { @include hover-focus { background-color    : $darkest-red; } }
+.hover-bg-darker-red { @include hover-focus { background-color     : $darker-red; } }
+.hover-bg-lighter-red { @include hover-focus { background-color    : $lighter-red; } }
+.hover-bg-lightest-red { @include hover-focus { background-color   : $lightest-red; } }
+.hover-bg-washed-red { @include hover-focus { background-color     : $washed-red; } }
+
+.hover-bg-darkest-orange { @include hover-focus { background-color : $darkest-orange; } }
+.hover-bg-darker-orange { @include hover-focus { background-color  : $darker-orange; } }
+.hover-bg-dark-orange { @include hover-focus { background-color    : $dark-orange; } }
+.hover-bg-light-orange { @include hover-focus { background-color   : $light-orange; } }
+.hover-bg-lighter-orange { @include hover-focus { background-color : $lighter-orange; } }
+.hover-bg-lightest-orange { @include hover-focus { background-color: $lightest-orange; } }
+.hover-bg-washed-orange { @include hover-focus { background-color  : $washed-orange; } }
+
+.hover-bg-darkest-yellow { @include hover-focus { background-color : $darkest-yellow; } }
+.hover-bg-darker-yellow { @include hover-focus { background-color  : $darker-yellow; } }
+.hover-bg-dark-yellow { @include hover-focus { background-color    : $dark-yellow; } }
+.hover-bg-lighter-yellow { @include hover-focus { background-color : $lighter-yellow; } }
+.hover-bg-lightest-yellow { @include hover-focus { background-color: $lightest-yellow; } }
+.hover-bg-washed-yellow { @include hover-focus { background-color  : $washed-yellow; } }
+
+.hover-bg-darkest-purple { @include hover-focus { background-color : $darkest-purple; } }
+.hover-bg-darker-purple { @include hover-focus { background-color  : $darker-purple; } }
+.hover-bg-dark-purple { @include hover-focus { background-color    : $dark-purple; } }
+.hover-bg-lighter-purple { @include hover-focus { background-color : $lighter-purple; } }
+.hover-bg-lightest-purple { @include hover-focus { background-color: $lightest-purple; } }
+.hover-bg-washed-purple { @include hover-focus { background-color  : $washed-purple; } }
+
+.hover-bg-darkest-pink { @include hover-focus { background-color   : $darkest-pink; } }
+.hover-bg-darker-pink { @include hover-focus { background-color    : $darker-pink; } }
+.hover-bg-dark-pink { @include hover-focus { background-color      : $dark-pink; } }
+.hover-bg-lighter-pink { @include hover-focus { background-color   : $lighter-pink; } }
+.hover-bg-lightest-pink { @include hover-focus { background-color  : $lightest-pink; } }
+.hover-bg-washed-pink { @include hover-focus { background-color    : $washed-pink; } }
+
+.hover-bg-darkest-green { @include hover-focus { background-color  : $darkest-green; } }
+.hover-bg-darker-green { @include hover-focus { background-color   : $darker-green; } }
+.hover-bg-light-green { @include hover-focus { background-color    : $light-green; } }
+.hover-bg-lighter-green { @include hover-focus { background-color  : $lighter-green; } }
+.hover-bg-lightest-green { @include hover-focus { background-color : $lightest-green; } }
+.hover-bg-washed-green { @include hover-focus { background-color   : $washed-green; } }
+
+.hover-bg-darkest-teal { @include hover-focus { background-color   : $darkest-teal; } }
+.hover-bg-darker-teal { @include hover-focus { background-color    : $darker-teal; } }
+.hover-bg-dark-teal { @include hover-focus { background-color      : $dark-teal; } }
+.hover-bg-teal { @include hover-focus { background-color           : $teal; } }
+.hover-bg-light-teal { @include hover-focus { background-color     : $light-teal; } }
+.hover-bg-lighter-teal { @include hover-focus { background-color   : $lighter-teal; } }
+.hover-bg-lightest-teal { @include hover-focus { background-color  : $lightest-teal; } }
+.hover-bg-washed-teal { @include hover-focus { background-color    : $washed-teal; } }
+
+.hover-bg-darkest-blue { @include hover-focus { background-color   : $darkest-blue; } }
+.hover-bg-darker-blue { @include hover-focus { background-color    : $darker-blue; } }
+.hover-bg-dark-blue { @include hover-focus { background-color      : $dark-blue; } }
+.hover-bg-lighter-blue { @include hover-focus { background-color   : $lighter-blue; } }
+.hover-bg-lightest-blue { @include hover-focus { background-color  : $lightest-blue; } }
+.hover-bg-washed-blue { @include hover-focus { background-color    : $washed-teal; } }
+
+
+.hover-b--darkest-gray { @include hover-focus { border-color   : $darkest-gray; } }
+.hover-b--darker-gray { @include hover-focus { border-color    : $darker-gray; } }
+.hover-b--dark-gray { @include hover-focus { border-color      : $dark-gray; } }
+.hover-b--gray { @include hover-focus { border-color           : $gray; } }
+.hover-b--light-gray { @include hover-focus { border-color     : $light-gray; } }
+.hover-b--lighter-gray { @include hover-focus { border-color   : $lighter-gray; } }
+.hover-b--lightest-gray { @include hover-focus { border-color  : $lightest-gray; } }
+.hover-b--washed-gray { @include hover-focus { border-color    : $washed-gray; } }
+
+.hover-b--darkest-red { @include hover-focus { border-color   : $darkest-red; } }
+.hover-b--darker-red { @include hover-focus { border-color    : $darker-red; } }
+.hover-b--dark-red { @include hover-focus { border-color      : $dark-red; } }
+.hover-b--red { @include hover-focus { border-color           : $red; } }
+.hover-b--light-red { @include hover-focus { border-color     : $light-red; } }
+.hover-b--lighter-red { @include hover-focus { border-color   : $lighter-red; } }
+.hover-b--lightest-red { @include hover-focus { border-color  : $lightest-red; } }
+.hover-b--washed-red { @include hover-focus { border-color    : $washed-red; } }
+
+.hover-b--darkest-orange { @include hover-focus { border-color   : $darkest-orange; } }
+.hover-b--darker-orange { @include hover-focus { border-color    : $darker-orange; } }
+.hover-b--dark-orange { @include hover-focus { border-color      : $dark-orange; } }
+.hover-b--orange { @include hover-focus { border-color           : $orange; } }
+.hover-b--light-orange { @include hover-focus { border-color     : $light-orange; } }
+.hover-b--lighter-orange { @include hover-focus { border-color   : $lighter-orange; } }
+.hover-b--lightest-orange { @include hover-focus { border-color  : $lightest-orange; } }
+.hover-b--washed-orange { @include hover-focus { border-color    : $washed-orange; } }
+
+.hover-b--darkest-yellow { @include hover-focus { border-color   : $darkest-yellow; } }
+.hover-b--darker-yellow { @include hover-focus { border-color    : $darker-yellow; } }
+.hover-b--dark-yellow { @include hover-focus { border-color      : $dark-yellow; } }
+.hover-b--yellow { @include hover-focus { border-color           : $yellow; } }
+.hover-b--light-yellow { @include hover-focus { border-color     : $light-yellow; } }
+.hover-b--lighter-yellow { @include hover-focus { border-color   : $lighter-yellow; } }
+.hover-b--lightest-yellow { @include hover-focus { border-color  : $lightest-yellow; } }
+.hover-b--washed-yellow { @include hover-focus { border-color    : $washed-yellow; } }
+
+.hover-b--darkest-purple { @include hover-focus { border-color   : $darkest-purple; } }
+.hover-b--darker-purple { @include hover-focus { border-color    : $darker-purple; } }
+.hover-b--dark-purple { @include hover-focus { border-color      : $dark-purple; } }
+.hover-b--purple { @include hover-focus { border-color           : $purple; } }
+.hover-b--light-purple { @include hover-focus { border-color     : $light-purple; } }
+.hover-b--lighter-purple { @include hover-focus { border-color   : $lighter-purple; } }
+.hover-b--lightest-purple { @include hover-focus { border-color  : $lightest-purple; } }
+.hover-b--washed-purple { @include hover-focus { border-color    : $washed-purple; } }
+
+.hover-b--darkest-pink { @include hover-focus { border-color   : $darkest-pink; } }
+.hover-b--darker-pink { @include hover-focus { border-color    : $darker-pink; } }
+.hover-b--dark-pink { @include hover-focus { border-color      : $dark-pink; } }
+.hover-b--pink { @include hover-focus { border-color           : $pink; } }
+.hover-b--light-pink { @include hover-focus { border-color     : $light-pink; } }
+.hover-b--lighter-pink { @include hover-focus { border-color   : $lighter-pink; } }
+.hover-b--lightest-pink { @include hover-focus { border-color  : $lightest-pink; } }
+.hover-b--washed-pink { @include hover-focus { border-color    : $washed-pink; } }
+
+.hover-b--darkest-green { @include hover-focus { border-color   : $darkest-green; } }
+.hover-b--darker-green { @include hover-focus { border-color    : $darker-green; } }
+.hover-b--dark-green { @include hover-focus { border-color      : $dark-green; } }
+.hover-b--green { @include hover-focus { border-color           : $green; } }
+.hover-b--light-green { @include hover-focus { border-color     : $light-green; } }
+.hover-b--lighter-green { @include hover-focus { border-color   : $lighter-green; } }
+.hover-b--lightest-green { @include hover-focus { border-color  : $lightest-green; } }
+.hover-b--washed-green { @include hover-focus { border-color    : $washed-green; } }
+
+.hover-b--darkest-teal { @include hover-focus { border-color   : $darkest-teal; } }
+.hover-b--darker-teal { @include hover-focus { border-color    : $darker-teal; } }
+.hover-b--dark-teal { @include hover-focus { border-color      : $dark-teal; } }
+.hover-b--teal { @include hover-focus { border-color           : $teal; } }
+.hover-b--light-teal { @include hover-focus { border-color     : $light-teal; } }
+.hover-b--lighter-teal { @include hover-focus { border-color   : $lighter-teal; } }
+.hover-b--lightest-teal { @include hover-focus { border-color  : $lightest-teal; } }
+.hover-b--washed-teal { @include hover-focus { border-color    : $washed-teal; } }
+
+.hover-b--darkest-blue { @include hover-focus { border-color   : $darkest-blue; } }
+.hover-b--darker-blue { @include hover-focus { border-color    : $darker-blue; } }
+.hover-b--dark-blue { @include hover-focus { border-color      : $dark-blue; } }
+.hover-b--blue { @include hover-focus { border-color           : $blue; } }
+.hover-b--light-blue { @include hover-focus { border-color     : $light-blue; } }
+.hover-b--lighter-blue { @include hover-focus { border-color   : $lighter-blue; } }
+.hover-b--lightest-blue { @include hover-focus { border-color  : $lightest-blue; } }
+.hover-b--washed-blue { @include hover-focus { border-color    : $washed-blue; } }

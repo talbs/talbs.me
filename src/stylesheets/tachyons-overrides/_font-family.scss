@@ -1,15 +1,41 @@
+
+// Converted Variables
+$font-family-sans-serif     : tb-gotham, 'avenir next', avenir, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif          : 'tb-sentinel', georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace      : Menlo, Monaco, Consolas, "Courier New", monospace !default;
+
+// Custom Media Query Variables
+
+
+/*
+
+   FONT FAMILY GROUPS
+   Docs: http://tachyons.io/docs/typography/font-family/
+
+*/
+
+
 .sans-serif {
-  font-family: 'tb-gotham',
-               'avenir next', avenir,
-               helvetica, 'helvetica neue',
-               ubuntu,
-               roboto, noto,
-               sans-serif;
+  font-family: $font-family-sans-serif;
 }
 
+
 .serif {
-  font-family: 'tb-sentinel',
-               georgia,
-               times,
-               serif;
+  font-family: $font-family-serif;
+}
+
+.system-sans-serif {
+  font-family: sans-serif;
+}
+
+.system-serif {
+  font-family: serif;
+}
+
+
+/* Monospaced Typefaces (for code) */
+
+/* From http://cssfontstack.com */
+code, .code {
+  font-family: $font-family-monospace;
 }

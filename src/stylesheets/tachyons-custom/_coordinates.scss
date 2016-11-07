@@ -1,0 +1,160 @@
+
+// Converted Variables
+
+
+// Custom Media Query Variables
+
+
+/*
+
+   COORDINATES
+   Docs                   : http://tachyons.io/docs/layout/position/
+
+   Use in combination with the position module.
+
+   Base                   :
+     top
+     bottom
+     right
+     left
+
+   Modifiers              :
+     -025  = literal value 0.25
+     -05   = literal value 0.5
+     -075  = literal value 0.75
+     --025 = literal value -0.25
+     --05  = literal value -0.5
+     --075 = literal value -0.75
+
+   Media Query Extensions :
+     -ns   = not-small
+     -m    = medium
+     -l    = large
+
+*/
+
+.top-025 { top            : 0.25rem; }
+.right-025 { right        : 0.25rem; }
+.bottom-025 { bottom      : 0.25rem; }
+.left-025 { left          : 0.25rem; }
+
+.top--025 { top           : -0.25rem; }
+.right--025 { right       : -0.25rem; }
+.bottom--025 { bottom     : -0.25rem; }
+.left--025 { left         : -0.25rem; }
+
+.top-050 { top            : 0.5rem; }
+.right-050 { right        : 0.5rem; }
+.bottom-050 { bottom      : 0.5rem; }
+.left-050 { left          : 0.5rem; }
+
+.top--050 { top           : -0.5rem; }
+.right--050 { right       : -0.5rem; }
+.bottom--050 { bottom     : -0.5rem; }
+.left--050 { left         : -0.5rem; }
+
+.top-075 { top            : 0.75rem; }
+.right-075 { right        : 0.75rem; }
+.bottom-075 { bottom      : 0.75rem; }
+.left-075 { left          : 0.75rem; }
+
+.top--075 { top           : -0.75rem; }
+.right--075 { right       : -0.75rem; }
+.bottom--075 { bottom     : -0.75rem; }
+.left--075 { left         : -0.75rem; }
+
+@media #{$breakpoint-not-small} {
+  .top-025-ns { top       : 0.25rem; }
+  .right-025-ns { right   : 0.25rem; }
+  .bottom-025-ns { bottom : 0.25rem; }
+  .left-025-ns { left     : 0.25rem; }
+
+  .top--025-ns { top      : -0.25rem; }
+  .right--025-ns { right  : -0.25rem; }
+  .bottom--025-ns { bottom: -0.25rem; }
+  .left--025-ns { left    : -0.25rem; }
+
+  .top-050-ns { top       : 0.5rem; }
+  .right-050-ns { right   : 0.5rem; }
+  .bottom-050-ns { bottom : 0.5rem; }
+  .left-050-ns { left     : 0.5rem; }
+
+  .top--050-ns { top      : -0.5rem; }
+  .right--050-ns { right  : -0.5rem; }
+  .bottom--050-ns { bottom: -0.5rem; }
+  .left--050-ns { left    : -0.5rem; }
+
+  .top-075-ns { top       : 0.75rem; }
+  .right-075-ns { right   : 0.75rem; }
+  .bottom-075-ns { bottom : 0.75rem; }
+  .left-075-ns { left     : 0.75rem; }
+
+  .top--075-ns { top      : -0.75rem; }
+  .right--075-ns { right  : -0.75rem; }
+  .bottom--075-ns { bottom: -0.75rem; }
+  .left--075-ns { left    : -0.75rem; }
+}
+
+@media #{$breakpoint-medium} {
+  .top-025-m { top        : 0.25rem; }
+  .right-025-m { right    : 0.25rem; }
+  .bottom-025-m { bottom  : 0.25rem; }
+  .left-025-m { left      : 0.25rem; }
+
+  .top--025-m { top       : -0.25rem; }
+  .right--025-m { right   : -0.25rem; }
+  .bottom--025-m { bottom : -0.25rem; }
+  .left--025-m { left     : -0.25rem; }
+
+  .top-050-m { top        : 0.5rem; }
+  .right-050-m { right    : 0.5rem; }
+  .bottom-050-m { bottom  : 0.5rem; }
+  .left-050-m { left      : 0.5rem; }
+
+  .top--050-m { top       : -0.5rem; }
+  .right--050-m { right   : -0.5rem; }
+  .bottom--050-m { bottom : -0.5rem; }
+  .left--050-m { left     : -0.5rem; }
+
+  .top-075-m { top        : 0.75rem; }
+  .right-075-m { right    : 0.75rem; }
+  .bottom-075-m { bottom  : 0.75rem; }
+  .left-075-m { left      : 0.75rem; }
+
+  .top--075-m { top       : -0.75rem; }
+  .right--075-m { right   : -0.75rem; }
+  .bottom--075-m { bottom : -0.75rem; }
+  .left--075-m { left     : -0.75rem; }
+}
+
+@media #{$breakpoint-large} {
+  .top-025-l { top        : 0.25rem; }
+  .right-025-l { right    : 0.25rem; }
+  .bottom-025-l { bottom  : 0.25rem; }
+  .left-025-l { left      : 0.25rem; }
+
+  .top--025-l { top       : -0.25rem; }
+  .right--025-l { right   : -0.25rem; }
+  .bottom--025-l { bottom : -0.25rem; }
+  .left--025-l { left     : -0.25rem; }
+
+  .top-050-l { top        : 0.5rem; }
+  .right-050-l { right    : 0.5rem; }
+  .bottom-050-l { bottom  : 0.5rem; }
+  .left-050-l { left      : 0.5rem; }
+
+  .top--050-l { top       : -0.5rem; }
+  .right--050-l { right   : -0.5rem; }
+  .bottom--050-l { bottom : -0.5rem; }
+  .left--050-l { left     : -0.5rem; }
+
+  .top-075-l { top        : 0.75rem; }
+  .right-075-l { right    : 0.75rem; }
+  .bottom-075-l { bottom  : 0.75rem; }
+  .left-075-l { left      : 0.75rem; }
+
+  .top--075-l { top       : -0.75rem; }
+  .right--075-l { right   : -0.75rem; }
+  .bottom--075-l { bottom : -0.75rem; }
+  .left--075-l { left     : -0.75rem; }
+}

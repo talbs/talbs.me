@@ -37,10 +37,7 @@
         "browsers": ["last 3 version"]
       },
       "sass": {
-        "indentedSyntax": true,
-        "includePaths": [
-          "./node_modules/tachyons-sass"
-        ]
+        "indentedSyntax": true
       },
       "extensions": ["sass", "scss", "css"]
     },

@@ -1,0 +1,125 @@
+
+// Converted Variables
+$typescale      : 1.25 !default; // major third
+
+$font-size-base : 1rem !default;
+
+$font-size1     : (($font-size-base / $typescale) / $typescale) !default;
+$font-size2     : ($font-size-base / $typescale) !default;
+$font-size3     : $font-size-base !default;
+$font-size4     : ($font-size3 * $typescale) !default;
+$font-size5     : ($font-size4 * $typescale) !default;
+$font-size6     : ($font-size5 * $typescale) !default;
+$font-size7     : ($font-size6 * $typescale) !default;
+$font-size8     : ($font-size7 * $typescale) !default;
+
+// Custom Media Query Variables
+
+
+/*
+
+   TYPE SCALE
+   Docs: http://tachyons.io/docs/typography/scale/
+
+   Base:
+    f = font-size
+
+   Modifiers
+     1 = 1st step in size scale
+     2 = 2nd step in size scale
+     3 = 3rd step in size scale
+     4 = 4th step in size scale
+     5 = 5th step in size scale
+     6 = 6th step in size scale
+
+   Media Query Extensions:
+     -ns = not-small
+     -m  = medium
+     -l  = large
+*/
+
+/*
+ * For Hero/Marketing Titles
+ *
+ * These generally are too large for mobile
+ * so be careful using them on smaller screens.
+ * */
+
+.f-headline {
+  font-size: $font-size6;
+}
+
+.f-subheadline {
+  font-size: $font-size5;
+}
+
+/* Type Scale */
+.f0 { font-size: 0; }
+.f1 { font-size: $font-size1; }
+.f2 { font-size: $font-size2; }
+.f3 { font-size: $font-size3; }
+.f4 { font-size: $font-size4; }
+.f5 { font-size: $font-size5; }
+.f6 { font-size: $font-size6; }
+.f7 { font-size: $font-size7; }
+.f8 { font-size: $font-size8; }
+
+@media #{$breakpoint-not-small}{
+  .f-headline-ns {
+    font-size: $font-size6;
+  }
+
+  .f-subheadline-ns {
+    font-size: $font-size5;
+  }
+
+  .f0-ns { font-size: 0; }
+  .f1-ns { font-size: $font-size1; }
+  .f2-ns { font-size: $font-size2; }
+  .f3-ns { font-size: $font-size3; }
+  .f4-ns { font-size: $font-size4; }
+  .f5-ns { font-size: $font-size5; }
+  .f6-ns { font-size: $font-size6; }
+  .f7-ns { font-size: $font-size7; }
+  .f8-ns { font-size: $font-size8; }
+}
+
+@media #{$breakpoint-medium} {
+  .f-headline-m {
+    font-size: $font-size6;
+  }
+
+  .f-subheadline-m {
+    font-size: $font-size5;
+  }
+
+  .f0-m { font-size: 0; }
+  .f1-m { font-size: $font-size1; }
+  .f2-m { font-size: $font-size2; }
+  .f3-m { font-size: $font-size3; }
+  .f4-m { font-size: $font-size4; }
+  .f5-m { font-size: $font-size5; }
+  .f6-m { font-size: $font-size6; }
+  .f7-m { font-size: $font-size7; }
+  .f8-m { font-size: $font-size8; }
+}
+
+@media #{$breakpoint-large} {
+  .f-headline-l {
+    font-size: $font-size6;
+  }
+
+  .f-subheadline-l {
+    font-size: $font-size5;
+  }
+
+  .f0-l { font-size: 0; }
+  .f1-l { font-size: $font-size1; }
+  .f2-l { font-size: $font-size2; }
+  .f3-l { font-size: $font-size3; }
+  .f4-l { font-size: $font-size4; }
+  .f5-l { font-size: $font-size5; }
+  .f6-l { font-size: $font-size6; }
+  .f7-l { font-size: $font-size7; }
+  .f8-l { font-size: $font-size8; }
+}

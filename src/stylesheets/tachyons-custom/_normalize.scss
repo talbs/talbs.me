@@ -1,0 +1,25 @@
+
+// Converted Variables
+$font-size-root: 14px;
+
+// Custom Media Query Variables
+$font-size-root-ns: 16px;
+$font-size-root-m: 16px;
+$font-size-root-l: 16px;
+
+html {
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-root;
+
+  @media #{$breakpoint-not-small}{
+    font-size: $font-size-root-ns;
+  }
+
+  @media #{$breakpoint-medium} {
+    font-size: $font-size-root-m;
+  }
+
+  @media #{$breakpoint-large} {
+    font-size: $font-size-root-l;
+  }
+}

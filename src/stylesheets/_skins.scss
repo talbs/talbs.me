@@ -1,28 +1,8 @@
-// utilities
-.sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
-}
-
-.sr-only-focusable {
-  &:active,
-  &:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-  }
-}
-
 // decorative
+.deco--avatar {
+  filter: grayscale(20%)
+}
+
 .deco--grid {
 
   &:before {
@@ -44,11 +24,15 @@
   height: 0.25rem;
   background: repeating-linear-gradient(
     to right,
-    $yellow,
-    $yellow 2rem,
-    $gold 2rem,
-    $gold 4rem,
-    $orange 4rem,
-    $orange 6rem
+    $blue,
+    $blue 2rem,
+    $lighter-blue 2rem,
+    $lighter-blue 4rem,
+    $lightest-blue 4rem,
+    $lightest-blue 6rem,
+    $light-blue 6rem,
+    $light-blue 8rem,
+    $darkest-blue 8rem,
+    $darkest-blue 10rem
   );
 }

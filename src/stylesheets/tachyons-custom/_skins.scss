@@ -1,0 +1,207 @@
+// background colors
+.bg-darkest-gray { background-color     : $darkest-gray; }
+.bg-darker-gray { background-color      : $darker-gray; }
+.bg-dark-gray { background-color        : $dark-gray; }
+.bg-gray { background-color             : $gray; }
+.bg-light-gray { background-color       : $light-gray; }
+.bg-lighter-gray { background-color     : $lighter-gray; }
+.bg-lightest-gray { background-color    : $lightest-gray; }
+.bg-washed-gray { background-color      : $washed-gray; }
+
+.bg-darkest-red { background-color      : $darkest-red; }
+.bg-darker-red { background-color       : $darker-red; }
+.bg-lighter-red { background-color      : $lighter-red; }
+.bg-lightest-red { background-color     : $lightest-red; }
+.bg-washed-red { background-color       : $washed-red; }
+
+.bg-darkest-orange { background-color   : $darkest-orange; }
+.bg-darker-orange { background-color    : $darker-orange; }
+.bg-dark-orange { background-color      : $dark-orange; }
+.bg-light-orange { background-color     : $light-orange; }
+.bg-lighter-orange { background-color   : $lighter-orange; }
+.bg-lightest-orange { background-color  : $lightest-orange; }
+.bg-washed-orange { background-color    : $washed-orange; }
+
+.bg-darkest-yellow { background-color   : $darkest-yellow; }
+.bg-darker-yellow { background-color    : $darker-yellow; }
+.bg-dark-yellow { background-color      : $dark-yellow; }
+.bg-lighter-yellow { background-color   : $lighter-yellow; }
+.bg-lightest-yellow { background-color  : $lightest-yellow; }
+.bg-washed-yellow { background-color    : $washed-yellow; }
+
+.bg-darkest-purple { background-color   : $darkest-purple; }
+.bg-darker-purple { background-color    : $darker-purple; }
+.bg-dark-purple { background-color      : $dark-purple; }
+.bg-lighter-purple { background-color   : $lighter-purple; }
+.bg-lightest-purple { background-color  : $lightest-purple; }
+.bg-washed-purple { background-color    : $washed-purple; }
+
+.bg-darkest-pink { background-color     : $darkest-pink; }
+.bg-darker-pink { background-color      : $darker-pink; }
+.bg-dark-pink { background-color        : $dark-pink; }
+.bg-lighter-pink { background-color     : $lighter-pink; }
+.bg-lightest-pink { background-color    : $lightest-pink; }
+.bg-washed-pink { background-color      : $washed-pink; }
+
+.bg-darkest-green { background-color    : $darkest-green; }
+.bg-darker-green { background-color     : $darker-green; }
+.bg-light-green { background-color      : $light-green; }
+.bg-lighter-green { background-color    : $lighter-green; }
+.bg-lightest-green { background-color   : $lightest-green; }
+.bg-washed-green { background-color     : $washed-green; }
+
+.bg-darkest-teal { background-color     : $darkest-teal; }
+.bg-darker-teal { background-color      : $darker-teal; }
+.bg-dark-teal { background-color        : $dark-teal; }
+.bg-teal { background-color             : $teal; }
+.bg-light-teal { background-color       : $light-teal; }
+.bg-lighter-teal { background-color     : $lighter-teal; }
+.bg-lightest-teal { background-color    : $lightest-teal; }
+.bg-washed-teal { background-color      : $washed-teal; }
+
+.bg-darkest-blue { background-color     : $darkest-blue; }
+.bg-darker-blue { background-color      : $darker-blue; }
+.bg-dark-blue { background-color        : $dark-blue; }
+.bg-lighter-blue { background-color     : $lighter-blue; }
+.bg-washed-blue { background-color      : $washed-blue; }
+
+// text colors
+.darkest-gray { color                   : $darkest-gray; }
+.darker-gray { color                    : $darker-gray; }
+.dark-gray { color                      : $dark-gray; }
+.gray { color                           : $gray; }
+.light-gray { color                     : $light-gray; }
+.lighter-gray { color                   : $lighter-gray; }
+.lightest-gray { color                  : $lightest-gray; }
+.washed-gray { color                    : $washed-gray; }
+
+.darkest-red { color                    : $darkest-red; }
+.darker-red { color                     : $darker-red; }
+.lighter-red { color                    : $lighter-red; }
+.lightest-red { color                   : $lightest-red; }
+.washed-red { color                     : $washed-red; }
+
+.darkest-orange { color                 : $darkest-orange; }
+.darker-orange { color                  : $darker-orange; }
+.dark-orange { color                    : $dark-orange; }
+.light-orange { color                   : $light-orange; }
+.lighter-orange { color                 : $lighter-orange; }
+.lightest-orange { color                : $lightest-orange; }
+.washed-orange { color                  : $washed-orange; }
+
+.darkest-yellow { color                 : $darkest-yellow; }
+.darker-yellow { color                  : $darker-yellow; }
+.dark-yellow { color                    : $dark-yellow; }
+.lighter-yellow { color                 : $lighter-yellow; }
+.lightest-yellow { color                : $lightest-yellow; }
+.washed-yellow { color                  : $washed-yellow; }
+
+.darkest-purple { color                 : $darkest-purple; }
+.darker-purple { color                  : $darker-purple; }
+.dark-purple { color                    : $dark-purple; }
+.lighter-purple { color                 : $lighter-purple; }
+.lightest-purple { color                : $lightest-purple; }
+.washed-purple { color                  : $washed-purple; }
+
+.darkest-pink { color                   : $darkest-pink; }
+.darker-pink { color                    : $darker-pink; }
+.dark-pink { color                      : $dark-pink; }
+.lighter-pink { color                   : $lighter-pink; }
+.lightest-pink { color                  : $lightest-pink; }
+.washed-pink { color                    : $washed-pink; }
+
+.darkest-green { color                  : $darkest-green; }
+.darker-green { color                   : $darker-green; }
+.light-green { color                    : $light-green; }
+.lighter-green { color                  : $lighter-green; }
+.lightest-green { color                 : $lightest-green; }
+.washed-green { color                   : $washed-green; }
+
+.darkest-teal { color                   : $darkest-teal; }
+.darker-teal { color                    : $darker-teal; }
+.dark-teal { color                      : $dark-teal; }
+.teal { color                           : $teal; }
+.light-teal { color                     : $light-teal; }
+.lighter-teal { color                   : $lighter-teal; }
+.lightest-teal { color                  : $lightest-teal; }
+.washed-teal { color                    : $washed-teal; }
+
+.darkest-blue { color                   : $darkest-blue; }
+.darker-blue { color                    : $darker-blue; }
+.dark-blue { color                      : $dark-blue; }
+.lighter-blue { color                   : $lighter-blue; }
+.lightest-blue { color                  : $lightest-blue; }
+.washed-blue { color                    : $washed-blue; }
+
+// font awesome specific
+.bg-darkest-info { background-color     : $darkest-info; }
+.bg-darker-info { background-color      : $darker-info; }
+.bg-dark-info { background-color        : $dark-info; }
+.bg-info { background-color             : $info; }
+.bg-light-info { background-color       : $light-info; }
+.bg-lighter-info { background-color     : $lighter-info; }
+.bg-lightest-info { background-color    : $lightest-info; }
+.bg-washed-info { background-color      : $washed-info; }
+
+.bg-darkest-success { background-color  : $darkest-success; }
+.bg-darker-success { background-color   : $darker-success; }
+.bg-dark-success { background-color     : $dark-success; }
+.bg-success { background-color          : $success; }
+.bg-light-success { background-color    : $light-success; }
+.bg-lighter-success { background-color  : $lighter-success; }
+.bg-lightest-success { background-color : $lightest-success; }
+.bg-washed-success { background-color   : $washed-success; }
+
+.bg-darkest-danger { background-color   : $darkest-danger; }
+.bg-darker-danger { background-color    : $darker-danger; }
+.bg-dark-danger { background-color      : $dark-danger; }
+.bg-danger { background-color           : $danger; }
+.bg-light-danger { background-color     : $light-danger; }
+.bg-lighter-danger { background-color   : $lighter-danger; }
+.bg-lightest-danger { background-color  : $lightest-danger; }
+.bg-washed-danger { background-color    : $washed-danger; }
+
+.bg-darkest-warning { background-color  : $darkest-warning; }
+.bg-darker-warning { background-color   : $darker-warning; }
+.bg-dark-warning { background-color     : $dark-warning; }
+.bg-warning { background-color          : $warning; }
+.bg-light-warning { background-color    : $light-warning; }
+.bg-lighter-warning { background-color  : $lighter-warning; }
+.bg-lightest-warning { background-color : $lightest-warning; }
+.bg-washed-warning { background-color   : $washed-warning; }
+
+.darkest-info { color                   : $darkest-info; }
+.darker-info { color                    : $darker-info; }
+.dark-info { color                      : $dark-info; }
+.info { color                           : $info; }
+.light-info { color                     : $light-info; }
+.lighter-info { color                   : $lighter-info; }
+.lightest-info { color                  : $lightest-info; }
+.washed-info { color                    : $washed-info; }
+
+.darkest-success { color                : $darkest-success; }
+.darker-success { color                 : $darker-success; }
+.dark-success { color                   : $dark-success; }
+.success { color                        : $success; }
+.light-success { color                  : $light-success; }
+.lighter-success { color                : $lighter-success; }
+.lightest-success { color               : $lightest-success; }
+.washed-success { color                 : $washed-success; }
+
+.darkest-danger { color                 : $darkest-danger; }
+.darker-danger { color                  : $darker-danger; }
+.dark-danger { color                    : $dark-danger; }
+.danger { color                         : $danger; }
+.light-danger { color                   : $light-danger; }
+.lighter-danger { color                 : $lighter-danger; }
+.lightest-danger { color                : $lightest-danger; }
+.washed-danger { color                  : $washed-danger; }
+
+.darkest-warning { color                : $darkest-warning; }
+.darker-warning { color                 : $darker-warning; }
+.dark-warning { color                   : $dark-warning; }
+.warning { color                        : $warning; }
+.light-warning { color                  : $light-warning; }
+.lighter-warning { color                : $lighter-warning; }
+.lightest-warning { color               : $lightest-warning; }
+.washed-warning { color                 : $washed-warning; }
