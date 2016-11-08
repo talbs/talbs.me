@@ -1,13 +1,13 @@
 <ul class="list ph2 mv0 flex flex-row items-center justify-between" data-name="nav--elsewhere">
   {% for item in social_links %}
   <li data-name="nav--elsewhere__item--{{ item.id }}">
-    <a class="db ph2 pv3 link blue hover-darker-blue" href="{{ item.url }}">
+    <a class="db ph2 pv3 link gold hover-orange" href="{{ item.url }}">
       <i class="tb tb-{{ item.id }} tb-lg" title="{{ item.name }}"></i>
     </a>
   </li>
   {% endfor %}
   <li data-name="nav--elsewhere__item--email">
-    <a class="db ph2 pv3 link blue hover-darker-blue" href="mailto:hi.talbs@gmail.com">
+    <a class="db ph2 pv3 link gold hover-orange" href="mailto:hi.talbs@gmail.com">
       <i class="tb tb-email tb-lg" title="Contact {{nickname}}"></i>
     </a>
   </li>

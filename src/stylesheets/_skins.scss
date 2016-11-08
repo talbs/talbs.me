@@ -13,7 +13,7 @@
     top: -50%;
     left: -50%;
     z-index: -1;
-    background-image: url('https://img.fortawesome.com/47947f7d/tiny-grid.svg');
+    background-image: url('https://img.fortawesome.com/47947f7d/tiny-grid-dark.svg');
     background-position: 0 0;
     background-repeat: repeat;
     transform: rotate(45deg);
@@ -24,15 +24,15 @@
   height: 0.25rem;
   background: repeating-linear-gradient(
     to right,
-    $blue,
-    $blue 2rem,
-    $lighter-blue 2rem,
-    $lighter-blue 4rem,
-    $lightest-blue 4rem,
-    $lightest-blue 6rem,
-    $light-blue 6rem,
-    $light-blue 8rem,
-    $darkest-blue 8rem,
-    $darkest-blue 10rem
+    $yellow,
+    $yellow 2rem,
+    $gold 2rem,
+    $gold 4rem,
+    $orange 4rem,
+    $orange 6rem,
+    $light-yellow 6rem,
+    $light-yellow 8rem,
+    $light-orange 8rem,
+    $light-orange 10rem
   );
 }

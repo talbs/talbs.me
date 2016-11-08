@@ -10,7 +10,7 @@
 {% block title %}Brian Talbot{% endblock %}
 {% block description %}Designer, Photographer, Analogy User{% endblock %}
 
-{% block body_class %}w-100 bg-light-blue animated fadeIn{% endblock %}
+{% block body_class %}w-100 bg-darkest-gray animated fadeIn{% endblock %}
 
 {% block content %}
 <div class="deco--grid relative h-100 overflow-hidden">
@@ -19,14 +19,14 @@
     <div class="bg-white center w-100 mw4 darker-gray tc shadow-2">
       <div class="deco--striped"></div>
 
-      <img class="br-100 ba bw3 w4 mb0 b--white relative top--1 deco--avatar" src="https://img.fortawesome.com/47947f7d/talbs.png" alt="Brian Talbot">
+      <img class="br-100 ba bw3 w4 mb0 b--white mt--4 deco--avatar" src="https://img.fortawesome.com/47947f7d/talbs.png" alt="Brian Talbot">
 
       <main class="ph4 pt0 pb4" data-name="content--main">
         <h1 class="serif f8 lh-title mt0 mb1">{{ name }}</h1>
         <p class="sans-serif f4 mv0"><span class="sr-only">is a </span>{{ description }}</p>
       </main>
 
-      <aside class="f4 shadow-inset-1 b--light-blue bg-washed-blue pa2" data-name="content--aside">
+      <aside class="f4 bt b--lighter-yellow bg-washed-yellow pa2" data-name="content--aside">
         {% include "shared/nav-elsewhere.html" %}
       </aside>
     </div>
