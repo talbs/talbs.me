@@ -1,11 +1,11 @@
 {
   "name": "talbs-me",
   "scripts": {
-    "build": "node build.js",
-    "check": "node build.js --check",
-    "dev": "node serve.js & node --watch-path=index.html --watch-path=styles.css --watch-path=page.js --watch-path=enhance.js --watch-path=clock.js --watch-path=schedule.js --watch-path=sky.js --watch-path=statuses.js --watch-path=links.js --watch-path=tray.js --watch-path=stars.js --watch-path=music.js --watch-path=day.js --watch-path=prune.js --watch-path=weather.js build.js",
-    "format": "prettier --write '*.{js,html,css,json}' '.github/**/*.yml'",
-    "test": "prettier --check '*.{js,html,css,json}' '.github/**/*.yml' && eslint styles.css && node --test && TZ=Asia/Tokyo node --test && node build.js --check"
+    "build": "node tools/build.js",
+    "check": "node tools/build.js --check",
+    "dev": "node tools/serve.js & node --watch-path=src --watch-path=assets --watch-path=tools tools/build.js",
+    "format": "prettier --write '{src,tools,test}/**/*.{js,html,css}' '*.{js,json}' '.github/**/*.yml'",
+    "test": "prettier --check '{src,tools,test}/**/*.{js,html,css}' '*.{js,json}' '.github/**/*.yml' && eslint src/styles.css && node --test && TZ=Asia/Tokyo node --test && node tools/build.js --check"
   },
   "type": "module",
   "private": true,

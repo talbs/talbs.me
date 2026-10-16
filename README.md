@@ -8,9 +8,14 @@ Built with esbuild into `dist/` and deployed to GitHub Pages by Actions.
     npm run dev    # http://localhost:4321, rebuilds on save
     npm test
 
+- `src/` is the page: markup, styles, scripts, and the copy in `statuses.js` and `links.js`.
+- `assets/` holds files that ship as-is (favicon, share image, custom icons).
+- `tools/` builds and serves the site, and holds the local proof page.
+- `test/` has the unit tests.
+
 ## Add or change a status
 
-Edit `statuses.js`. Each block (`sleeping`, `morning`, `workday`, `weekend`, `evening`) has a list of lines.
+Edit `src/statuses.js`. Each block (`sleeping`, `morning`, `workday`, `weekend`, `evening`) has a list of lines.
 
 ```js
 { text: 'Dying in the Path of Pain again…', skin: 'dekatron', with: { icon: 'gamepad-modern', label: 'Hollow Knight', url: 'https://www.hollowknight.com/' } }
@@ -26,7 +31,7 @@ The line changes every 10 minutes and is the same for every visitor.
 
 ## Add or change a link
 
-Edit `links.js`. Each entry needs a `section` from `SECTIONS`, a `title`, a short `note`, an `https://` `url`, and an `icon` (add `family: 'brands'` for a logo). The build fails on a missing field or an empty section.
+Edit `src/links.js`. Each entry needs a `section` from `SECTIONS`, a `title`, a short `note`, an `https://` `url`, and an `icon` (add `family: 'brands'` for a logo, or put a custom SVG in `assets/` and use its filename). The build fails on a missing field or an empty section.
 
 ## Preview any time
 

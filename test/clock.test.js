@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { brianClock, zonedDate, previewDate, sunOverride } from './clock.js';
-import { blockFor } from './schedule.js';
+import { brianClock, zonedDate, previewDate, sunOverride } from '../src/clock.js';
+import { blockFor } from '../src/schedule.js';
 
 const et = (year, month, dayOfMonth, hour, minute = 0) =>
   brianClock(zonedDate({ year, month, dayOfMonth, hour, minute }));
@@ -72,8 +72,8 @@ test('sunOverride reads ?sun= only when it is a number', () => {
   assert.equal(sunOverride(new URLSearchParams('')), null);
 });
 
-import { eligibleLines, eligibleErrors, pickLine, SKINS, BLOCK_SKINS } from './schedule.js';
-import { pools, errors } from './statuses.js';
+import { eligibleLines, eligibleErrors, pickLine, SKINS, BLOCK_SKINS } from '../src/schedule.js';
+import { pools, errors } from '../src/statuses.js';
 
 test('eligibleLines filters by month and fills the block default state', () => {
   const july = eligibleLines(pools.weekend, et(2026, 7, 11, 14), 'weekend');
@@ -199,7 +199,7 @@ test('pickLine carries the skin and chip, falling back to the block default', ()
   assert.equal(eligibleErrors(errors, et(2026, 10, 6, 10), 'workday')[0].skin, 'flipdot');
 });
 
-import { sunElevation } from './sky.js';
+import { sunElevation } from '../src/sky.js';
 
 const near = (actual, expected, tolerance, label) =>
   assert.ok(Math.abs(actual - expected) <= tolerance, `${label}: ${actual.toFixed(2)} vs ${expected}`);
@@ -234,7 +234,7 @@ import {
   HEADER_SPOTS,
   DIAL_SPOTS,
   sunSpot,
-} from './sky.js';
+} from '../src/sky.js';
 
 const at = (month, dayOfMonth, hour, minute) => zonedDate({ year: 2026, month, dayOfMonth, hour, minute });
 
@@ -321,8 +321,8 @@ test('overlay composites like the browser does', () => {
   assert.equal(overlay('#123456', '#ffffff', 0), '#123456');
 });
 
-import { contextFor, shortTime } from './clock.js';
-import { nextSunEvent, moonPhase, moonTip } from './sky.js';
+import { contextFor, shortTime } from '../src/clock.js';
+import { nextSunEvent, moonPhase, moonTip } from '../src/sky.js';
 
 const withinMinutes = (a, b, minutes) => Math.abs(a - b) <= minutes * 60000;
 
@@ -407,7 +407,7 @@ test('contextFor shows the moon from sunset on, and sunrise only in its last 3 h
   assert.equal(contextFor(plain, at(10, 14, 5, 30), -14).icon, 'sunrise');
 });
 
-import { firstPick } from './schedule.js';
+import { firstPick } from '../src/schedule.js';
 
 test('firstPick never opens on an error line', () => {
   const erroring = slotsOf(daysFrom(30)[0])
@@ -422,7 +422,7 @@ test('firstPick never opens on an error line', () => {
     assert.deepEqual(firstPick(calm, pools, errors), pickLine(calm, pools, errors));
 });
 
-import { oklch } from './sky.js';
+import { oklch } from '../src/sky.js';
 
 test('the sky never goes gray between twilight and full day', () => {
   for (let i = -30; i <= 300; i++) {
@@ -472,7 +472,7 @@ test('the card surface takes a cool hue from the sky and never turns brown', () 
   assert.ok(Math.abs(oklch(noon.surface)[2] - oklch(noon.top)[2]) < 2);
 });
 
-import { sunPosition, skyDetail } from './sky.js';
+import { sunPosition, skyDetail } from '../src/sky.js';
 
 // Published azimuths for Boston (timeanddate.com, 2026): June sunrise 56°, sunset 304°; December sunrise 122°.
 test('sunPosition points the sun the right way at sunrise, noon, and sunset', () => {
@@ -512,7 +512,7 @@ test('skyDetail marks how low the sun is', () => {
   assert.equal(skyDetail(-4, 250).sunLow, 1);
 });
 
-import { timeTip } from './clock.js';
+import { timeTip } from '../src/clock.js';
 
 test('timeTip gives Boston a voice through the day', () => {
   assert.equal(timeTip(1), 'it’s wicked late heah.');

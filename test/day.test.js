@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { zonedDate, brianClock } from './clock.js';
-import { minuteOf, dateAtMinute, dayStops, nearestStop } from './day.js';
+import { zonedDate, brianClock } from '../src/clock.js';
+import { minuteOf, dateAtMinute, dayStops, nearestStop } from '../src/day.js';
 
 const at = (month, dayOfMonth, hour = 12, minute = 0) => zonedDate({ year: 2026, month, dayOfMonth, hour, minute });
 const near = (actual, expected, tolerance, label) =>

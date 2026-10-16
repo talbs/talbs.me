@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { makeStars, starCount } from './stars.js';
+import { makeStars, starCount } from '../src/stars.js';
 
 test('makeStars is the same sky every time', () => {
   assert.deepEqual(makeStars(50), makeStars(50));

@@ -13,35 +13,35 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./node_modules/@fontsource/chivo/files/chivo-latin-400-normal.woff2') format('woff2');
+  src: url('../node_modules/@fontsource/chivo/files/chivo-latin-400-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: Chivo;
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('./node_modules/@fontsource/chivo/files/chivo-latin-300-normal.woff2') format('woff2');
+  src: url('../node_modules/@fontsource/chivo/files/chivo-latin-300-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: Chivo;
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./node_modules/@fontsource/chivo/files/chivo-latin-500-normal.woff2') format('woff2');
+  src: url('../node_modules/@fontsource/chivo/files/chivo-latin-500-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Chivo Mono';
   font-style: normal;
   font-weight: 300;
   font-display: optional;
-  src: url('./node_modules/@fontsource/chivo-mono/files/chivo-mono-latin-300-normal.woff2') format('woff2');
+  src: url('../node_modules/@fontsource/chivo-mono/files/chivo-mono-latin-300-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Chivo Mono';
   font-style: normal;
   font-weight: 400;
   font-display: optional;
-  src: url('./node_modules/@fontsource/chivo-mono/files/chivo-mono-latin-400-normal.woff2') format('woff2');
+  src: url('../node_modules/@fontsource/chivo-mono/files/chivo-mono-latin-400-normal.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Chivo Fallback';
