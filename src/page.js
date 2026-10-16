@@ -22,6 +22,13 @@ const EASE_OUT = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
 const params = new URLSearchParams(location.search);
 const isFaked = ['at', 'hour', 'day', 'month'].some(key => params.has(key));
 const tally = (name, data) => window.umami?.track(name, data);
+const failedSources = new Set();
+// Once per source per visit: Last.fm is polled every two minutes, and one long visit shouldn't flood the numbers.
+function tallyFailure(source, error) {
+  if (failedSources.has(source)) return;
+  failedSources.add(source);
+  tally('Fetch failed', { source, reason: error?.name ?? 'Error' });
+}
 // Umami checks this key before every send, so ?stats=off keeps Brian's own visits out of the numbers.
 const stats = params.get('stats');
 try {
@@ -293,9 +300,11 @@ async function checkWeather() {
   weatherFetchedAt = Date.now();
   try {
     const response = await fetch(weatherUrl(now()), { signal: AbortSignal.timeout(FETCH_TIMEOUT) });
-    hourly = (await response.json()).hourly ?? null;
-  } catch {
+    hourly = (await response.json()).hourly;
+    if (!hourly) throw new TypeError('no hourly forecast');
+  } catch (error) {
     hourly = null;
+    tallyFailure('weather', error);
   }
   update();
 }
@@ -306,7 +315,8 @@ function trackBefore(date) {
   if (!pastTracks.has(slot)) {
     const answer = recentTracks(`${LASTFM}&to=${Math.floor(date / 1000)}`)
       .then(tracks => tracks.find(item => !item['@attr']?.nowplaying) ?? null)
-      .catch(() => {
+      .catch(error => {
+        tallyFailure('lastfm', error);
         pastTracks.delete(slot);
         return undefined;
       });
@@ -338,8 +348,9 @@ async function checkMusic() {
   if (document.hidden) return;
   try {
     track = params.has('music') ? (previewTrack(params.get('music'), now()) ?? null) : (await recentTracks(LASTFM))[0];
-  } catch {
+  } catch (error) {
     track = null;
+    tallyFailure('lastfm', error);
   }
   showMusic(shownAt);
 }
@@ -419,7 +430,10 @@ function setUpScrubber() {
     const nowMinute = minuteOf(now());
     if (scrubber.value > nowMinute) {
       scrubber.value = nowMinute;
-      peekLine ||= PEEK_LINES[Math.floor(Math.random() * PEEK_LINES.length)];
+      if (!peekLine) {
+        tally('Peek');
+        peekLine = PEEK_LINES[Math.floor(Math.random() * PEEK_LINES.length)];
+      }
     } else {
       peekLine = '';
     }
@@ -490,6 +504,7 @@ document.addEventListener('click', event => {
   tally('Link', { from: link.closest('#tray, #bio, .cell')?.id, to });
 });
 tell.addEventListener('tell-dance', () => {
+  tally('Dance');
   isDancing = true;
   setLine(false);
 });
