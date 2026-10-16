@@ -14,7 +14,19 @@ const TYPES = {
 };
 const port = Number(process.argv[2] || 4321);
 
-// Gzip like GitHub Pages, so local Lighthouse numbers match production.
+function send(res, status, file) {
+  const body = readFileSync(file);
+  const type = TYPES[extname(file)] || 'application/octet-stream';
+  const isText = /text|javascript|svg/.test(type);
+  res.writeHead(status, {
+    'Content-Type': type,
+    'Cache-Control': 'no-cache',
+    ...(isText && { 'Content-Encoding': 'gzip' }),
+  });
+  res.end(isText ? gzipSync(body) : body);
+}
+
+// Gzip and 404.html like GitHub Pages, so local pages and Lighthouse numbers match production.
 createServer((req, res) => {
   try {
     const url = decodeURIComponent(new URL(req.url, 'http://x').pathname);
@@ -23,16 +35,12 @@ createServer((req, res) => {
     let file = isProof ? fileURLToPath(new URL('proof.html', import.meta.url)) : normalize(join(DIST, url));
     if (!isProof && !file.startsWith(DIST)) return res.writeHead(403).end();
     if (statSync(file).isDirectory()) file = join(file, 'index.html');
-    const body = readFileSync(file);
-    const type = TYPES[extname(file)] || 'application/octet-stream';
-    const isText = /text|javascript|svg/.test(type);
-    res.writeHead(200, {
-      'Content-Type': type,
-      'Cache-Control': 'no-cache',
-      ...(isText && { 'Content-Encoding': 'gzip' }),
-    });
-    res.end(isText ? gzipSync(body) : body);
+    send(res, 200, file);
   } catch {
-    res.writeHead(404).end();
+    try {
+      send(res, 404, join(DIST, '404.html'));
+    } catch {
+      res.writeHead(404).end();
+    }
   }
 }).listen(port, '127.0.0.1', () => console.log(`http://localhost:${port}/`));
