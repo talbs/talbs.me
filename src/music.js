@@ -11,7 +11,7 @@ export const FETCH_TIMEOUT = 8000;
 export const LASTFM_PROFILE = 'https://www.last.fm/user/B-Tal';
 // Holds the row while Last.fm loads, and stands in when it fails or has nothing.
 export const RESTING = {
-  icon: 'headphones',
+  icon: 'music',
   text: 'Last.fm',
   url: LASTFM_PROFILE,
   tip: 'Listening history, on Last.fm.',
@@ -24,11 +24,11 @@ export const recentTracks = url =>
     .then(json => [].concat(json.recenttracks.track));
 
 // isThen: the page shows a past moment, and `now` is that moment. A track that started within ten minutes of it counts as
-// playing then. The boombox only ever means live right now, so past moments always get headphones.
+// playing then. The boombox only ever means live right now, so past moments always get notes.
 export function musicCell(track, now, isThen = false) {
   const artist = track?.artist?.['#text'];
   if (!artist) return RESTING;
-  const cell = { text: artist, url: track.url.split('/_/')[0], icon: 'headphones' };
+  const cell = { text: artist, url: track.url.split('/_/')[0], icon: 'music' };
   if (track['@attr']?.nowplaying === 'true') {
     if (isThen) return { ...cell, label: 'Playing now', tip: 'Playing now, not back then.' };
     return { ...cell, icon: 'boombox', label: 'Now playing', isLive: true, tip: 'Playing now, via Last.fm.' };

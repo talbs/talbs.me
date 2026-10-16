@@ -198,3 +198,10 @@ export const errors = [
   { text: 'Error: Out of coffee.', blocks: ['morning'] },
   { text: 'Error: Stabilizer rattle detected.', blocks: ['evening', 'weekend'] },
 ];
+
+// The 404's lines. One shows per visit; the first is the no-JS line.
+export const lost = [
+  'Up at 4:04, looking for that page…',
+  'Checked under the keyboard. Nothing…',
+  'Pretty sure it was here yesterday…',
+];

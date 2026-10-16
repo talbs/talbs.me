@@ -304,3 +304,30 @@ export function contrast(a, b) {
   const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (hi + 0.05) / (lo + 0.05);
 }
+
+// Everything the page paints for a moment, so the page and the build (for the 404's no-JS sky) agree.
+export function skyVars(date, pinnedElevation) {
+  const sun = sunPosition(date);
+  const elevation = pinnedElevation ?? sun.elevation;
+  const sky = skyAt(elevation, isRising(date));
+  const detail = skyDetail(elevation, sun.azimuth);
+  const ink = headerInk(sky, detail);
+  const vars = {
+    '--sky-top': sky.top,
+    '--sky-bottom': sky.bottom,
+    '--key': sky.key,
+    '--key-top': sky.keyTop,
+    '--surface': sky.surface,
+    '--surface-deep': sky.surfaceDeep,
+    '--sun-x': detail.sunX,
+    '--sun-y': detail.sunY,
+    '--sun-strength': detail.sunStrength,
+    '--sun-low': detail.sunLow,
+    '--stars': detail.stars,
+    '--header-wash': ink.wash,
+    '--header-ink': ink.isDark ? OFF_BLACK : OFF_WHITE,
+    '--wash-ink': ink.isDark ? OFF_WHITE : OFF_BLACK,
+    '--dial-ink': isDarkDial(sky, detail) ? OFF_BLACK : OFF_WHITE,
+  };
+  return { elevation, vars };
+}

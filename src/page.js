@@ -1,7 +1,7 @@
 import { brianClock, previewDate, sunOverride, contextFor, shortTime, timeTip, capitalize } from './clock.js';
 import { pickLine, firstPick } from './schedule.js';
-import { sunPosition, skyDetail, isRising, skyAt, headerInk, isDarkDial, CARD, OFF_WHITE, OFF_BLACK } from './sky.js';
-import { pools, errors } from './statuses.js';
+import { skyVars, CARD } from './sky.js';
+import { pools, errors, lost } from './statuses.js';
 import { musicCell, previewTrack, recentTracks, FETCH_TIMEOUT, RESTING, TEN_MINUTES } from './music.js';
 import { weatherUrl, weatherAt, weatherIcon, weatherWords } from './weather.js';
 import { minuteOf, dateAtMinute, dayStops, nearestStop } from './day.js';
@@ -38,7 +38,22 @@ try {
 const pinnedSun = sunOverride(params);
 const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
-const now = () => (isFaked ? new Date(fakedStart.getTime() + Date.now() - loadedAt) : new Date());
+// IS_LOST is set per page by tools/build.js: true only on the 404.
+const lostAt = IS_LOST && dateAtMinute(new Date(), 244);
+const lostPick = {
+  text: lost[Math.floor(Math.random() * lost.length)],
+  skin: 'eyes',
+  state: 'error',
+  context: { icon: 'ghost', text: location.pathname, tip: 'Not here at 4:04 either.' },
+  music: {
+    icon: 'music',
+    text: 'Missing',
+    url: 'https://www.last.fm/music/Everything+But+the+Girl/_/Missing',
+    tip: 'Everything but the Girl, on repeat at 4:04.',
+  },
+  timeTip: 'nobody’s up but us.',
+};
+const now = () => lostAt || (isFaked ? new Date(fakedStart.getTime() + Date.now() - loadedAt) : new Date());
 const isCalm = matchMedia('(prefers-reduced-motion: reduce)');
 
 const root = document.documentElement;
@@ -223,38 +238,17 @@ function loadTrayIcons() {
 }
 
 function paintSky(date) {
-  const sun = sunPosition(date);
-  const elevation = pinnedSun ?? sun.elevation;
-  const sky = skyAt(elevation, isRising(date));
-  const detail = skyDetail(elevation, sun.azimuth);
-  const ink = headerInk(sky, detail);
-  const values = {
-    '--sky-top': sky.top,
-    '--sky-bottom': sky.bottom,
-    '--key': sky.key,
-    '--key-top': sky.keyTop,
-    '--surface': sky.surface,
-    '--surface-deep': sky.surfaceDeep,
-    '--sun-x': detail.sunX,
-    '--sun-y': detail.sunY,
-    '--sun-strength': detail.sunStrength,
-    '--sun-low': detail.sunLow,
-    '--stars': detail.stars,
-    '--header-wash': ink.wash,
-    '--header-ink': ink.isDark ? OFF_BLACK : OFF_WHITE,
-    '--wash-ink': ink.isDark ? OFF_WHITE : OFF_BLACK,
-    '--dial-ink': isDarkDial(sky, detail) ? OFF_BLACK : OFF_WHITE,
-  };
-  for (const [name, value] of Object.entries(values)) {
+  const { elevation, vars } = skyVars(date, pinnedSun ?? undefined);
+  for (const [name, value] of Object.entries(vars)) {
     const text = String(value);
     if (root.style.getPropertyValue(name) !== text) root.style.setProperty(name, text);
   }
-  root.classList.toggle('has-stars', detail.stars > 0);
+  root.classList.toggle('has-stars', vars['--stars'] > 0);
   return elevation;
 }
 
 function showStatus(date, elevation, isInstant) {
-  const pick = (currentPick ? pickLine : firstPick)(brianClock(date), pools, errors);
+  const pick = IS_LOST ? lostPick : (currentPick ? pickLine : firstPick)(brianClock(date), pools, errors);
   currentPick = pick;
   setLine(isInstant);
   document.title = `${pick.text} · Brian Talbot`;
@@ -262,7 +256,7 @@ function showStatus(date, elevation, isInstant) {
   tell.setAttribute('skin', pick.skin);
   tell.setAttribute('state', peekLine ? 'error' : pick.state);
   const time = shortTime(date);
-  const tip = timeTip(brianClock(date).hour);
+  const tip = IS_LOST ? lostPick.timeTip : timeTip(brianClock(date).hour);
   const weather = weatherAt(hourly, date);
   // '--°' holds the temperature's width until the forecast lands; a day with no forecast falls back to the city.
   setCell(document.getElementById('time'), {
@@ -273,7 +267,7 @@ function showStatus(date, elevation, isInstant) {
     datetime: date.toISOString(),
     tip: weather ? `${capitalize(weatherWords(weather.code))} in Boston: ${tip}` : capitalize(tip),
   });
-  setCell(document.getElementById('context'), contextFor(pick, date, elevation));
+  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation));
 }
 
 function paintFavicon() {
@@ -327,10 +321,11 @@ function trackBefore(date) {
 
 // More than ten minutes from the real time counts as a past moment; the ?music= preview always counts as now.
 function showMusic(date) {
+  if (IS_LOST) return setCell(document.getElementById('music'), lostPick.music);
   if (track === undefined) return;
   const music = document.getElementById('music');
   clearTimeout(pastTimer);
-  if (params.has('music') || Math.abs(date - Date.now()) <= TEN_MINUTES) {
+  if (IS_LOST || params.has('music') || Math.abs(date - Date.now()) <= TEN_MINUTES) {
     setCell(music, musicCell(track, params.has('music') ? now() : Date.now()));
     return;
   }
@@ -581,7 +576,7 @@ document.addEventListener('keydown', event => {
   }
 });
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) return;
+  if (document.hidden || IS_LOST) return;
   snap();
   checkMusic();
   checkWeather();
@@ -596,7 +591,7 @@ day.hidden = false;
 highlight.hidden = false;
 // After unhiding, so the first paint of the cells lands under is-snapping and skips their fade-in.
 snap();
-setTimeout(tick, untilNextMinute());
+if (!IS_LOST) setTimeout(tick, untilNextMinute());
 addEventListener(
   'load',
   () => {
@@ -605,9 +600,11 @@ addEventListener(
       .then(() => customElements.whenDefined('tiny-tell'))
       .then(() => requestAnimationFrame(() => requestAnimationFrame(paintFavicon)))
       .catch(() => {});
-    enhanced.then(setUpScrubber).catch(() => {});
-    checkMusic();
     checkWeather();
+    // The 404 is frozen: no scrubber, no polling, and its song never changes.
+    if (IS_LOST) return tally('404', { path: location.pathname });
+    checkMusic();
+    enhanced.then(setUpScrubber).catch(() => {});
     setInterval(checkMusic, 120000);
   },
   { once: true }

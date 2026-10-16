@@ -22,7 +22,7 @@ test('a live track shows its artist, linked, and says it’s playing', () => {
 
 test('a live track viewed from another time stays linked but stops claiming it’s playing then', () => {
   assert.deepEqual(musicCell(track({ '@attr': { nowplaying: 'true' } }), NOW, true), {
-    icon: 'headphones',
+    icon: 'music',
     label: 'Playing now',
     text: 'The Octopus Project',
     url: 'https://www.last.fm/music/The+Octopus+Project',
@@ -33,13 +33,13 @@ test('a live track viewed from another time stays linked but stops claiming it�
 test('a past moment shows what was playing then, or what played last before it', () => {
   const at = minutesBefore => track({ date: { uts: String((NOW - minutesBefore * 60000) / 1000) } });
   assert.deepEqual(musicCell(at(4), NOW, true), {
-    icon: 'headphones',
+    icon: 'music',
     label: 'Playing then',
     text: 'The Octopus Project',
     url: 'https://www.last.fm/music/The+Octopus+Project',
     tip: 'Playing then, via Last.fm.',
   });
-  assert.equal(musicCell(at(42), NOW, true).icon, 'headphones');
+  assert.equal(musicCell(at(42), NOW, true).icon, 'music');
   assert.equal(musicCell(at(42), NOW, true).tip, 'Last played 42m ago');
 });
 
@@ -50,7 +50,7 @@ test('the last played track says how long ago', () => {
   assert.equal(ago(125), 'Last played 2h ago');
   assert.equal(ago(60 * 50), 'Last played 2d ago');
   assert.ok(!musicCell(track({ date: { uts: '0' } }), NOW).isLive);
-  assert.equal(musicCell(track({ date: { uts: '0' } }), NOW).icon, 'headphones');
+  assert.equal(musicCell(track({ date: { uts: '0' } }), NOW).icon, 'music');
 });
 
 test('without a track, the row stays and quietly links to the Last.fm profile', () => {

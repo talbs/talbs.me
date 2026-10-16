@@ -4,6 +4,10 @@ import { basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { SECTIONS, links } from '../src/links.js';
+import { lost } from '../src/statuses.js';
+import { lostPage } from './lost.js';
+import { skyVars } from '../src/sky.js';
+import { dateAtMinute } from '../src/day.js';
 import { renderTray, validateLinks } from './tray.js';
 import { pruneSelectors, pruneTokens } from './prune.js';
 
@@ -53,14 +57,21 @@ for (const file of styles.outputFiles) {
 }
 if (!font) throw new Error('build: no Chivo 400 font in the CSS bundle');
 
-const page = await build({
-  entryPoints: [`${SRC}page.js`],
-  bundle: true,
-  minify: true,
-  write: false,
-  format: 'iife',
-  logLevel: 'warning',
-});
+// One bundle per page: IS_LOST is a build-time constant, so each page drops the other's dead branches.
+const bundlePage = async isLost =>
+  (
+    await build({
+      entryPoints: [`${SRC}page.js`],
+      bundle: true,
+      minify: true,
+      write: false,
+      format: 'iife',
+      define: { IS_LOST: String(isLost) },
+      logLevel: 'warning',
+    })
+  ).outputFiles[0].text;
+const js = await bundlePage(false);
+const lostJs = await bundlePage(true);
 await build({
   entryPoints: [`${SRC}enhance.js`],
   bundle: true,
@@ -69,29 +80,42 @@ await build({
   outfile: `${DIST}enhance.js`,
   logLevel: 'warning',
 });
-const js = page.outputFiles[0].text;
-const scripts = js + (await readFile(`${DIST}enhance.js`, 'utf8'));
+const scripts = js + lostJs + (await readFile(`${DIST}enhance.js`, 'utf8'));
 const template = await readFile(`${SRC}index.html`, 'utf8');
+const slider = await readFile(`${SRC}slider.html`, 'utf8');
+const wayBack = await readFile(`${SRC}way-back.html`, 'utf8');
 const tray = renderTray(links, SECTIONS);
-const used = new Set((template + tray + scripts).match(/\bwa-[\w-]+/g));
+const used = new Set((template + slider + wayBack + tray + scripts).match(/\bwa-[\w-]+/g));
 css = pruneTokens(pruneSelectors(css, used), scripts);
 css = (await transform(css, { loader: 'css', minify: true })).code.trim();
 
-const html = fill(template, {
+const shared = {
   font: `<link rel="preload" href="${font}" as="font" type="font/woff2" crossorigin>`,
   css: `<style>${css}</style>`,
-  js: `<script>${js}</script>`,
   links: tray,
+};
+const html = fill(template, { ...shared, js: `<script>${js}</script>`, day: slider });
+const lostSky = skyVars(dateAtMinute(new Date(), 244)).vars;
+const lostHtml = fill(lostPage(template, lost[0], lostSky), {
+  ...shared,
+  js: `<script>${lostJs}</script>`,
+  day: wayBack,
 });
 await writeFile(`${DIST}index.html`, html);
+await writeFile(`${DIST}404.html`, lostHtml);
 for (const file of ['favicon.svg', 'og.png', ...links.map(link => link.icon).filter(icon => icon.endsWith('.svg'))]) {
   await copyFile(`${ASSETS}${file}`, `${DIST}${file}`);
 }
 
 if (isCheck) {
-  const kb = gzipKb(html);
-  if (kb > HTML_BUDGET_KB) throw new Error(`index.html is ${kb.toFixed(1)} KB gzip, over ${HTML_BUDGET_KB} KB`);
-  console.log(`index.html ${kb.toFixed(1)} KB gzip`);
+  for (const [name, page] of [
+    ['index.html', html],
+    ['404.html', lostHtml],
+  ]) {
+    const kb = gzipKb(page);
+    if (kb > HTML_BUDGET_KB) throw new Error(`${name} is ${kb.toFixed(1)} KB gzip, over ${HTML_BUDGET_KB} KB`);
+    console.log(`${name} ${kb.toFixed(1)} KB gzip`);
+  }
   const loads = [
     ...html.matchAll(/<(?:script|link|img|iframe)\b[^>]*\b(?:src|href)="(https?:[^"]+)"/g),
     ...css.matchAll(/url\(["']?(https?:[^)"']+)/g),
