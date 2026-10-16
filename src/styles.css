@@ -72,6 +72,11 @@
   inherits: true;
   initial-value: 0;
 }
+@property --at {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
 @property --dial-ink {
   syntax: '<color>';
   inherits: true;
@@ -502,6 +507,13 @@ tiny-tell {
   .meta {
     flex-direction: row;
   }
+  /* A missing path can be any length, so on the 404 it truncates instead of wrapping the row. */
+  :root:has(.way-back) .meta {
+    flex-wrap: nowrap;
+  }
+  :root:has(.way-back) #music {
+    flex-shrink: 0;
+  }
 }
 .meta[hidden] {
   display: none;
@@ -588,6 +600,57 @@ tiny-tell {
 .day wa-slider:state(dragging)::part(thumb) {
   scale: 1.25;
 }
+/* The 404's stand-in for the slider: the same rail, its thumb stuck at 4:04 (244 of 1440 minutes), placed the way
+   the slider places its own thumb. */
+.way-back {
+  --at: calc(244 / 1440);
+  --thumb-at: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--at));
+  display: flex;
+  align-items: center;
+  gap: var(--wa-space-m);
+  min-block-size: var(--thumb);
+  color: var(--dial-ink);
+  font: 400 var(--type-small) / 1 var(--wa-font-family-code);
+  text-decoration: none;
+}
+.way-back:is(:hover, :focus-visible) {
+  --at: 1;
+}
+.way-back .rail {
+  position: relative;
+  flex: 1;
+  block-size: 6px;
+  border-radius: var(--wa-border-radius-pill);
+  scale: 1 0.4;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklch, var(--dial-ink) 55%, transparent) var(--thumb-at),
+    color-mix(in oklch, var(--dial-ink) 25%, transparent) 0
+  );
+}
+.way-back .rail::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: var(--thumb-at);
+  inline-size: var(--thumb);
+  aspect-ratio: 1;
+  border-radius: var(--wa-border-radius-pill);
+  background: var(--dial-ink);
+  translate: -50% -50%;
+  /* At rest, the same squash-undo as the slider's thumb; hovered, its hover size and ring. */
+  scale: 0.5 1.25;
+  box-shadow: 0 0 0 0 transparent;
+}
+.way-back:is(:hover, :focus-visible) .rail {
+  scale: 1;
+}
+.way-back:is(:hover, :focus-visible) .rail::after {
+  scale: 1;
+  box-shadow:
+    0 0 0 4px color-mix(in oklch, var(--dial-ink) 30%, transparent),
+    var(--wa-shadow-s);
+}
 /* Duotone icons default to off-white with the sky key. Weather icons override with Hello Weather-style Look Bright
    colors; which layer is the main shape varies by icon. */
 wa-icon[family='sharp-duotone'] {
@@ -609,6 +672,12 @@ wa-icon[name='cloud-sun'] {
 }
 wa-icon[name='moon'] {
   --secondary-color: #d1c0ff;
+}
+/* The eyes take the card's surface, so they read as holes in the sheet. */
+wa-icon[name='ghost'] {
+  --primary-color: var(--surface);
+  --secondary-color: #d1c0ff;
+  scale: 1.12;
 }
 wa-icon[name='cloud-moon'] {
   --secondary-color: #b8a0fe;
@@ -738,6 +807,17 @@ a:focus-visible {
   }
 }
 @media (prefers-reduced-motion: no-preference) {
+  .way-back {
+    transition: --at 560ms var(--ease-unfold);
+  }
+  .way-back .rail {
+    transition: scale var(--wa-transition-normal) var(--ease-out);
+  }
+  .way-back .rail::after {
+    transition:
+      scale var(--wa-transition-normal) var(--ease-out),
+      box-shadow var(--wa-transition-normal) var(--ease-out);
+  }
   .day wa-slider::part(track),
   .day wa-slider::part(thumb) {
     transition:

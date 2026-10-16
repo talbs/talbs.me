@@ -29,6 +29,8 @@ Edit `src/statuses.js`. Each block (`sleeping`, `morning`, `workday`, `weekend`,
 
 The line changes every 10 minutes and is the same for every visitor.
 
+The 404 page has its own lines in `lost`. It's the same card, frozen at 4:04 a.m.; one line shows per visit, and the first is the one readers without JavaScript see.
+
 ## Add or change a link
 
 Edit `src/links.js`. Each entry needs a `section` from `SECTIONS`, a `title`, a short `note`, an `https://` `url`, and an `icon` (add `family: 'brands'` for a logo, or put a custom SVG in `assets/` and use its filename). The build fails on a missing field or an empty section.
