@@ -1,0 +1,919 @@
+@import '@awesome.me/webawesome/dist/styles/themes/default.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/layout.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/align-items.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/text.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/border-radius.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/gap.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/flex-wrap.css';
+@import '@awesome.me/webawesome/dist/styles/utilities/visually-hidden.css';
+@import 'tiny-tells/reserve.css';
+
+@font-face {
+  font-family: Chivo;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./node_modules/@fontsource/chivo/files/chivo-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: Chivo;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./node_modules/@fontsource/chivo/files/chivo-latin-300-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: Chivo;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./node_modules/@fontsource/chivo/files/chivo-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Chivo Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: optional;
+  src: url('./node_modules/@fontsource/chivo-mono/files/chivo-mono-latin-300-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Chivo Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('./node_modules/@fontsource/chivo-mono/files/chivo-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Chivo Fallback';
+  src: local('Arial'), local('ArialMT');
+  ascent-override: 87.6679%;
+  descent-override: 23.3159%;
+  line-gap-override: 0%;
+  size-adjust: 107.2228%;
+}
+
+@property --primary-opacity {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+@property --header-ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fafbfd;
+}
+@property --wash-ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0f1115;
+}
+@property --header-wash {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --dial-ink {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fafbfd;
+}
+@property --sky-top {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0479ff;
+}
+@property --sky-bottom {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1baeee;
+}
+@property --key {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #48b9f3;
+}
+@property --key-top {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #87b2e5;
+}
+@property --surface {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #272d34;
+}
+@property --surface-deep {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1f242a;
+}
+:root {
+  --off-white: #fafbfd;
+  --off-black: #0f1115;
+  --meta: #a8afb7;
+  --wa-tooltip-content-color: color-mix(in oklch, var(--off-white) 85%, transparent);
+  --type-status: 1rem;
+  --type-tell: 2rem;
+  --type-small: var(--wa-font-size-xs);
+  --type-name: var(--wa-font-size-s);
+  --stack-half: 6.5rem;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-move: cubic-bezier(0.2, 0, 0, 1);
+  --ease-detent: cubic-bezier(0.3, 1.25, 0.5, 1);
+  --ease-unfold: cubic-bezier(0.16, 1, 0.3, 1);
+  --entrance: 600ms;
+  --gutter: clamp(var(--wa-space-xl), 8vw, var(--wa-space-4xl));
+  --wa-transition-fast: 100ms;
+  --wa-transition-normal: 200ms;
+  --wa-transition-slow: 400ms;
+  --wa-transition-easing: var(--ease-out);
+  --wa-color-focus: var(--key);
+  --wa-focus-ring-width: 2px;
+  --wa-font-family-body: Chivo, 'Chivo Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wa-font-family-code: 'Chivo Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Without JS nothing paints these, and an unset one would void the whole sky gradient. */
+  --sun-x: 50;
+  --sun-y: 100;
+  --sun-strength: 0;
+  --sun-low: 0;
+  --stars: 0;
+  transition: 2s ease-in-out;
+  transition-property:
+    --sky-top, --sky-bottom, --key, --key-top, --surface, --surface-deep, --header-ink, --wash-ink, --header-wash,
+    --dial-ink;
+}
+@media (width >= 30rem) {
+  :root {
+    --type-status: 1.125rem;
+    --type-tell: 2.25rem;
+    --type-small: var(--wa-font-size-s);
+    --type-name: var(--wa-font-size-m);
+    --stack-half: 5.25rem;
+  }
+}
+@media (width >= 40rem) {
+  :root {
+    --type-status: 1.25rem;
+    --type-tell: 2.5rem;
+    --stack-half: 3.875rem;
+  }
+}
+:root:is(.is-scrubbing, .is-snapping),
+:root:is(.is-scrubbing, .is-snapping) :is(.stars, .cell-body) {
+  transition: none;
+}
+:root.is-ticking {
+  transition-property: --header-ink, --wash-ink, --header-wash, --dial-ink;
+}
+:where(*, *::before, *::after) {
+  box-sizing: border-box;
+}
+/* The page never scrolls; an open tray too tall to fit scrolls main instead. */
+body {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  block-size: 100dvh;
+  margin: 0;
+  overflow-x: clip;
+  background: var(--sky-bottom);
+  color: var(--off-white);
+}
+/* Depth, back to front: the sky, the header, the stars, then the card and slider. The header sits in the sky, so
+   whatever crosses the sky crosses it too. */
+.sky,
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.starfield {
+  z-index: 1;
+}
+/* A faint grain dithers the sky's long, low-contrast fades, which 8-bit color would otherwise show as stripes. */
+.starfield::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+main,
+.day {
+  position: relative;
+  z-index: 2;
+}
+.sky::before {
+  content: '';
+  position: absolute;
+  inset: -15% 0;
+  /* The box overhangs the viewport by 15% top and bottom, so the sun's y maps into its middle 77%. */
+  --sun-spot: color-mix(in oklch, oklch(from var(--sky-bottom) calc(l + 0.12) c h), #ffb646 calc(var(--sun-low) * 45%));
+  /* Top layer: a wash of the opposite ink behind the header, only as strong as the sky needs (none most of the day).
+     Painted here rather than over the sky: a faint layer composited on top of it shows 8-bit stripes. */
+  --wash: calc(var(--header-wash) * 100%);
+  background:
+    linear-gradient(
+      color-mix(in oklab, var(--wash-ink) var(--wash), transparent) 30%,
+      color-mix(in oklab, var(--wash-ink) calc(var(--wash) * 0.7), transparent) 37%,
+      color-mix(in oklab, var(--wash-ink) calc(var(--wash) * 0.35), transparent) 44%,
+      color-mix(in oklab, var(--wash-ink) calc(var(--wash) * 0.1), transparent) 50%,
+      transparent 57%
+    ),
+    radial-gradient(
+      circle calc(60vmax * (1 + 0.3 * var(--sun-low))) at calc(var(--sun-x) * 1%) calc(11.5% + var(--sun-y) * 0.77%) in
+        oklab,
+      /* Eased stops, so the glow's edge dissolves instead of ending in a ring. */
+      color-mix(in oklch, var(--sun-spot) calc(var(--sun-strength) * 100%), transparent),
+      color-mix(in oklch, var(--sun-spot) calc(var(--sun-strength) * 62%), transparent) 30%,
+      color-mix(in oklch, var(--sun-spot) calc(var(--sun-strength) * 28%), transparent) 58%,
+      color-mix(in oklch, var(--sun-spot) calc(var(--sun-strength) * 8%), transparent) 82%,
+      transparent
+    ),
+    /* oklab, not oklch: between a blue top and a gold bottom it fades through a soft neutral instead of magenta. */
+    linear-gradient(in oklab, var(--sky-top), var(--sky-bottom));
+}
+.stars {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: var(--field, 0);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  opacity: var(--stars);
+  color: var(--off-white);
+}
+.star {
+  position: absolute;
+  inline-size: var(--size);
+  aspect-ratio: 1;
+  background: currentColor;
+  opacity: 0.55;
+}
+/* Empty until enhance.js adds the stars, so they fade in rather than pop. */
+.stars:empty {
+  opacity: 0;
+}
+:root:not(.has-stars) .stars {
+  display: none;
+}
+/* The card sits about centered (--stack-half is roughly half of it, closed). When the tray opens, the bottom gap gives
+   way first, then the top one. */
+main {
+  display: grid;
+  grid-template-rows:
+    minmax(var(--wa-space-m), calc(50% - var(--stack-half)))
+    auto
+    minmax(var(--wa-space-m), 1fr);
+  justify-items: center;
+  overflow-y: auto;
+  padding-inline: var(--gutter);
+}
+.stage {
+  grid-row: 2;
+  inline-size: min(100%, 40rem);
+}
+.intro,
+.day {
+  inline-size: min(100% - 2 * var(--gutter), 40rem);
+  margin-inline: auto;
+}
+.intro {
+  padding-block: var(--wa-space-xl) var(--wa-space-m);
+  color: var(--header-ink);
+  font: 400 var(--type-small) / 1.4 var(--wa-font-family-code);
+}
+.intro h1 {
+  font: 500 var(--type-name) / 1.3 var(--wa-font-family-body);
+}
+.intro .bio {
+  line-height: var(--wa-line-height-normal);
+}
+.card {
+  --rule: color-mix(in oklch, var(--key) 20%, var(--surface));
+  --inset: var(--wa-space-m);
+  container: card / inline-size;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  /* Transparent so the sky does the edge; forced-colors mode still draws it. */
+  border: var(--wa-panel-border-width) var(--wa-panel-border-style) transparent;
+  background: var(--surface);
+  box-shadow: var(--wa-shadow-s);
+}
+@container card (width >= 28rem) {
+  .card > * {
+    --inset: var(--wa-space-l);
+  }
+}
+.card:has(> .tray[open]:not(.is-closing)) {
+  box-shadow: var(--wa-shadow-m);
+}
+.card.is-folded:has(> .tray[open]:not(.is-closing)) {
+  grid-template-rows: auto 0fr;
+}
+.card.is-folded:has(> .tray[open]:not(.is-closing)) .meta {
+  visibility: hidden;
+}
+.tray > summary,
+.cell {
+  padding: var(--wa-space-m) var(--inset);
+}
+.tray > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.tray > summary::-webkit-details-marker {
+  display: none;
+}
+.tray > summary:focus-visible {
+  outline: var(--wa-focus-ring);
+  outline-offset: -3px;
+}
+.tray[open]:not(.is-closing) > summary,
+.card:has(> .tray[open]:not(.is-closing)) .cell {
+  background: var(--surface-deep);
+}
+.tray::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+.tray[open]:not(.is-closing)::details-content {
+  grid-template-rows: 1fr;
+}
+tiny-tell {
+  --tell-size: var(--type-tell);
+  --tell-color-working: var(--key);
+  --tell-color-idle: var(--meta);
+  --tell-color-dance: oklch(from var(--key-top) l calc(c * 1.4) h);
+  /* Look Bright success, warning, and danger at 70, their steps for dark surfaces. */
+  --tell-color-done: #43c667;
+  --tell-color-warning: #ff9164;
+  --tell-color-error: #ff8e90;
+  flex: none;
+}
+.line {
+  flex: 1;
+  font-size: var(--type-status);
+  line-height: 1.25;
+}
+/* The tell's dots sit an eighth of its size inside its box, the chevron's ink 1.5px inside its own; the margin evens the
+   visible gaps to the card's edges. */
+.chev {
+  flex: none;
+  margin-inline-end: calc(var(--type-tell) / 8 - 1.5px);
+  inline-size: var(--type-small);
+  block-size: var(--type-small);
+  color: var(--meta);
+  opacity: 0.75;
+}
+.card:is(:hover, :focus-within) .chev,
+.tray[open]:not(.is-closing) .chev {
+  opacity: 1;
+}
+.tray > summary:hover .chev {
+  color: var(--key);
+}
+.tray[open]:not(.is-closing) .chev {
+  rotate: 180deg;
+}
+.tray nav {
+  position: relative;
+  min-block-size: 0;
+  overflow: hidden;
+}
+.tray nav::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1.5rem;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events: none;
+}
+.tray nav.is-at-end::after {
+  opacity: 0;
+}
+.scroll {
+  position: relative;
+  max-block-size: clamp(6rem, var(--tray-room, 60dvh) - 2 * var(--wa-space-m), 32rem);
+  overflow-y: auto;
+  padding-block-end: 0.5rem;
+}
+.heading {
+  margin: 0;
+  padding: 1.25rem var(--inset) 0.5rem;
+  color: var(--key-top);
+  font: 400 var(--wa-font-size-xs) / 1 var(--wa-font-family-code);
+}
+.heading::after {
+  content: '';
+  flex: 1;
+  block-size: 1px;
+  background: var(--rule);
+}
+.launcher {
+  margin: 0;
+}
+.launcher a {
+  display: grid;
+  grid-template-columns: 1.25em auto minmax(0, 1fr);
+  justify-items: start;
+  align-items: center;
+  gap: 0.75rem;
+  min-block-size: 2.5rem;
+  padding: 0 var(--inset);
+  text-decoration: none;
+}
+.launcher a:focus-visible {
+  outline-offset: -2px;
+}
+.launcher .ic {
+  display: grid;
+  place-items: center;
+}
+/* Optical sizes, measured: each mark scaled so its ink weighs about the same. */
+.launcher .ic wa-icon {
+  scale: var(--optical, 1);
+}
+.launcher .ic:is([data-icon='envelope'], [data-icon='bluesky']) {
+  --optical: 0.9;
+}
+.launcher .ic[data-icon='hat-chef'] {
+  --optical: 0.92;
+}
+.launcher .ic:is([data-icon='github'], [data-icon='create.svg']) {
+  --optical: 1.06;
+}
+.launcher .ic[data-icon='lastfm'] {
+  --optical: 1.25;
+}
+.launcher .note {
+  justify-self: end;
+  max-inline-size: 100%;
+  color: var(--meta);
+  font: 300 var(--wa-font-size-xs) / 1.4 var(--wa-font-family-code);
+  letter-spacing: 0.01em;
+}
+/* Narrow cards stack the note under the name rather than cutting it off. */
+@container card (width < 26rem) {
+  .launcher a {
+    grid-template-columns: 1.25em minmax(0, 1fr);
+    row-gap: var(--wa-space-3xs);
+    padding-block: var(--wa-space-s);
+  }
+  .launcher .note {
+    grid-column: 2;
+    justify-self: start;
+    white-space: normal;
+  }
+}
+.highlight {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 2.5rem;
+  background: color-mix(in oklab, var(--off-white) 7%, transparent);
+  box-shadow: inset 2px 0 0 var(--key);
+  pointer-events: none;
+  opacity: 0;
+}
+.tray[open]:not(.is-closing) .highlight {
+  opacity: 1;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+  overflow: hidden;
+  margin: 0;
+  flex-wrap: wrap;
+  gap: 1px;
+  border-block-start: 1px solid var(--rule);
+  background: var(--rule);
+  color: var(--meta);
+  font: 300 var(--type-small) / var(--wa-line-height-condensed) var(--wa-font-family-code);
+  letter-spacing: 0.01em;
+}
+@container card (width >= 28rem) {
+  .meta {
+    flex-direction: row;
+  }
+}
+.meta[hidden] {
+  display: none;
+}
+.cell {
+  flex: 1 1 auto;
+  background: var(--surface);
+}
+.cell:not([hidden], :has(~ .cell:not([hidden]))) {
+  flex-grow: 999;
+}
+.cell-body {
+  display: inline-flex;
+  max-inline-size: 100%;
+  vertical-align: top;
+}
+.is-quiet .cell-body {
+  opacity: 0.85;
+}
+.cell-cut {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+.cell-cut .cell-body {
+  min-inline-size: 0;
+}
+.cell-cut .cell-body > :last-child {
+  min-inline-size: 0;
+  padding-block: 0.4em;
+  margin-block: -0.4em;
+}
+.day {
+  --thumb: 18px;
+  --dial-height: 14px;
+  padding-block: var(--wa-space-m) var(--wa-space-xl);
+}
+/* flow-root keeps the inner track's top margin inside the slider instead of collapsing out of it. */
+.day wa-slider {
+  --wa-focus-ring: var(--wa-focus-ring-style) var(--wa-focus-ring-width) var(--dial-ink);
+  --track-size: 6px;
+  --thumb-width: var(--thumb);
+  --thumb-height: var(--thumb);
+  display: flow-root;
+}
+/* The upgraded slider is this tall; reserving it keeps the row still when it upgrades. */
+.day wa-slider:not(:defined) {
+  block-size: var(--dial-height);
+}
+/* Rides over the thumb so the slider's tooltip points at it; the thumb's center stops half its width from each end. */
+.thumb-anchor {
+  position: absolute;
+  inset-block-start: var(--wa-space-m);
+  inset-inline-start: calc(var(--thumb) / 2 + (100% - var(--thumb)) * var(--at, 0));
+  block-size: var(--dial-height);
+  pointer-events: none;
+}
+.day wa-slider::part(track) {
+  scale: 1 0.4;
+  border-radius: var(--wa-border-radius-pill);
+  background: color-mix(in oklch, var(--dial-ink) 25%, transparent);
+}
+.day wa-slider::part(indicator) {
+  border-radius: var(--wa-border-radius-pill);
+  background: color-mix(in oklch, var(--dial-ink) 55%, transparent);
+}
+.day wa-slider::part(thumb) {
+  outline-offset: 6px;
+  border: 0;
+  border-radius: var(--wa-border-radius-circle);
+  background: var(--dial-ink);
+  /* The thumb sits inside the track, so it undoes the track's squash to stay round. */
+  scale: 0.5 1.25;
+  box-shadow: 0 0 0 0 transparent;
+}
+.day wa-slider:is(:hover, :state(focused), :state(dragging))::part(track) {
+  scale: 1;
+}
+.day wa-slider:is(:hover, :state(focused), :state(dragging))::part(thumb) {
+  scale: 1;
+  box-shadow:
+    0 0 0 4px color-mix(in oklch, var(--dial-ink) 30%, transparent),
+    var(--wa-shadow-s);
+}
+.day wa-slider:state(dragging)::part(thumb) {
+  scale: 1.25;
+}
+/* Duotone icons default to off-white with the sky key. Weather icons override with Hello Weather-style Look Bright
+   colors; which layer is the main shape varies by icon. */
+wa-icon[family='sharp-duotone'] {
+  --sun: #ffbf18;
+  --dawn: #e97331;
+  --primary-color: var(--key);
+  --secondary-color: var(--off-white);
+  --secondary-opacity: 1;
+}
+wa-icon[name^='cloud-'] {
+  --primary-color: #dce5ff;
+}
+wa-icon[name='sun'] {
+  --primary-color: var(--sun);
+  --secondary-color: var(--dawn);
+}
+wa-icon[name='cloud-sun'] {
+  --secondary-color: var(--sun);
+}
+wa-icon[name='moon'] {
+  --secondary-color: #d1c0ff;
+}
+wa-icon[name='cloud-moon'] {
+  --secondary-color: #b8a0fe;
+}
+wa-icon[name='cloud'] {
+  --secondary-color: #dce5ff;
+}
+wa-icon[name='cloud-fog'] {
+  --primary-color: #bac8ff;
+  --secondary-color: #95abff;
+}
+wa-icon:is([name='cloud-drizzle'], [name='cloud-snow']) {
+  --secondary-color: #93d0ff;
+}
+wa-icon[name='cloud-rain'] {
+  --secondary-color: #5bb5fe;
+}
+wa-icon[name='cloud-showers-heavy'] {
+  --secondary-color: #4a99e4;
+}
+wa-icon[name='cloud-sleet'] {
+  --secondary-color: #2fbfd5;
+}
+wa-icon[name='cloud-bolt'] {
+  --primary-color: #95abff;
+  --secondary-color: var(--sun);
+}
+wa-icon:is([name='sunrise'], [name='sunset']) {
+  --primary-color: var(--dawn);
+  --secondary-color: var(--sun);
+}
+wa-icon[name='sunset'] {
+  --secondary-color: oklch(84.389% 0.12224 47.981);
+}
+wa-icon[src='create.svg'] {
+  --gem-top: #ff9164;
+  --gem-point: #f46a45;
+}
+wa-icon[src='tiny-tells.svg'] {
+  --eyes: #b8a0fe;
+  color: #c5cad5;
+}
+/* Brand marks take their product's own color, nudged lighter where the real one is too dark for the card. */
+wa-icon[name='web-awesome'] {
+  color: #f46a45;
+}
+wa-icon[name='font-awesome'] {
+  color: #418fde;
+}
+wa-icon[name='github'] {
+  color: #f0f6fc;
+}
+wa-icon[name='linkedin'] {
+  color: #70b5f9;
+}
+wa-icon[name='bluesky'] {
+  color: #1185fe;
+}
+wa-icon[name='lastfm'] {
+  color: #f76563;
+}
+/* On the host, so the slotted text inherits it instead of whatever the cell it sits in uses. */
+wa-tooltip {
+  --max-width: min(64ch, 100vw - 2rem);
+  font: 300 var(--wa-tooltip-font-size) / 1.4 var(--wa-font-family-body);
+  letter-spacing: normal;
+}
+wa-tooltip::part(body) {
+  padding: 0.5em 0.75em;
+  font: inherit;
+}
+wa-tooltip:not(:defined) {
+  display: none;
+}
+wa-icon:not(:defined) {
+  display: inline-block;
+  vertical-align: -0.125em;
+  inline-size: 1.25em;
+  block-size: 1em;
+}
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: color-mix(in oklab, currentColor 34%, transparent);
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+}
+a:hover {
+  text-decoration-color: var(--key);
+  text-underline-offset: 0.27em;
+}
+a:active {
+  color: var(--key);
+}
+a:where(.appearance-plain) {
+  text-decoration-color: transparent;
+}
+.cell-body:has(a:hover) {
+  color: var(--key);
+}
+.intro a {
+  text-decoration-color: color-mix(in oklab, currentColor 22%, transparent);
+}
+.intro a:hover {
+  text-decoration-color: currentColor;
+}
+a:focus-visible {
+  outline: var(--wa-focus-ring);
+  outline-offset: 2px;
+}
+@media (forced-colors: active) {
+  .sky,
+  .starfield {
+    display: none;
+  }
+  .card {
+    border-color: CanvasText;
+  }
+  .launcher .is-active {
+    outline: 1px solid CanvasText;
+    outline-offset: -1px;
+  }
+  .cell + .cell {
+    border-inline-start: 1px solid CanvasText;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .day wa-slider::part(track),
+  .day wa-slider::part(thumb) {
+    transition:
+      scale var(--wa-transition-normal) var(--ease-out),
+      box-shadow var(--wa-transition-normal) var(--ease-out);
+  }
+  .stars {
+    transition: opacity 2s ease-in-out;
+    animation: turn 480s linear infinite;
+  }
+  .star {
+    animation: twinkle var(--duration) ease-in-out calc(var(--delay) * -1) infinite;
+  }
+  .tray nav::after {
+    transition: opacity var(--wa-transition-fast) var(--ease-out);
+  }
+  .sky::before {
+    animation: breathe 20s ease-in-out infinite alternate;
+  }
+  /* 100 BPM: a small squash on each beat, a half-pixel lift, then rest. The speakers flash with each hit. */
+  .is-live wa-icon {
+    transform-origin: 50% 100%;
+    animation:
+      thump 0.6s var(--ease-out) infinite,
+      speakers 0.6s ease-out infinite;
+  }
+  .card {
+    animation: rise var(--entrance) var(--ease-move) backwards;
+    transition:
+      scale var(--wa-transition-fast) var(--ease-out),
+      box-shadow var(--wa-transition-normal) var(--ease-move),
+      grid-template-rows var(--wa-transition-normal) var(--ease-in);
+  }
+  .card:has(> .tray[open]:not(.is-closing)) {
+    transition-duration: var(--wa-transition-fast), var(--wa-transition-slow), 560ms;
+    transition-timing-function: var(--ease-out), var(--ease-move), var(--ease-unfold);
+  }
+  .card:has(summary:active):not(:has(tiny-tell:active)) {
+    scale: 0.985;
+  }
+  .tray > summary,
+  .cell {
+    transition: background-color var(--wa-transition-slow) var(--ease-move);
+  }
+  .cell-body {
+    transition:
+      color var(--wa-transition-fast) var(--ease-out),
+      opacity var(--wa-transition-slow) var(--ease-out);
+  }
+  /* Opening unfolds fast then settles long, like a drawer on good slides; closing gets out of the way. */
+  .tray::details-content {
+    transition:
+      grid-template-rows var(--wa-transition-normal) var(--ease-in),
+      content-visibility var(--wa-transition-normal) allow-discrete;
+  }
+  .tray[open]:not(.is-closing)::details-content {
+    transition: grid-template-rows 560ms var(--ease-unfold);
+  }
+  .meta {
+    transition: visibility var(--wa-transition-normal);
+  }
+  .card:has(> .tray[open]:not(.is-closing)) .meta {
+    transition-duration: 560ms;
+  }
+  .chev {
+    transition:
+      rotate var(--wa-transition-normal) var(--ease-move),
+      translate var(--wa-transition-fast) var(--ease-in),
+      opacity var(--wa-transition-fast) var(--ease-in),
+      color var(--wa-transition-fast) var(--ease-out);
+  }
+  .tray[open]:not(.is-closing) .chev {
+    transition:
+      rotate var(--wa-transition-slow) var(--ease-detent),
+      translate var(--wa-transition-normal) var(--ease-out),
+      opacity var(--wa-transition-normal) var(--ease-out),
+      color var(--wa-transition-fast) var(--ease-out);
+  }
+  .tray > summary:active:not(:has(tiny-tell:active)) .chev {
+    translate: 0 2px;
+  }
+  .launcher li {
+    opacity: 0;
+    translate: 0 -6px;
+    transition: opacity var(--wa-transition-fast) var(--ease-in);
+  }
+  .tray[open]:not(.is-closing) .launcher li {
+    --delay: calc(60ms + var(--i) * 22ms);
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity 320ms var(--ease-out) var(--delay),
+      translate 420ms var(--ease-unfold) var(--delay);
+  }
+  .highlight {
+    transition: opacity var(--wa-transition-fast) var(--ease-in);
+  }
+  .tray[open]:not(.is-closing) .highlight {
+    transition: opacity var(--wa-transition-normal) var(--ease-out) 120ms;
+  }
+  @starting-style {
+    .cell-body {
+      opacity: 0;
+    }
+    .tray[open]:not(.is-closing) .launcher li {
+      opacity: 0;
+      translate: 0 -6px;
+    }
+    .tray[open]:not(.is-closing) .highlight {
+      opacity: 0;
+    }
+  }
+  .tray[open]:not(.is-closing) .highlight.is-keyed {
+    transition:
+      opacity var(--wa-transition-normal) var(--ease-out) 120ms,
+      translate var(--wa-transition-fast) var(--ease-move);
+  }
+  a {
+    transition-property: text-decoration-color, text-underline-offset;
+    transition-duration: var(--wa-transition-fast);
+    transition-timing-function: var(--ease-in);
+  }
+  a:hover {
+    transition-duration: var(--wa-transition-normal);
+    transition-timing-function: var(--ease-out);
+  }
+}
+@keyframes turn {
+  to {
+    rotate: 1turn;
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+@keyframes thump {
+  0%,
+  55%,
+  100% {
+    scale: 1;
+    translate: 0;
+  }
+  12% {
+    scale: 1.035 0.965;
+  }
+  30% {
+    scale: 0.985 1.02;
+    translate: 0 -0.5px;
+  }
+}
+@keyframes speakers {
+  0%,
+  45%,
+  100% {
+    --primary-opacity: 1;
+  }
+  12% {
+    --primary-opacity: 0.7;
+  }
+}
+@keyframes breathe {
+  from {
+    transform: translateY(-6%);
+  }
+  to {
+    transform: translateY(6%);
+  }
+}
+@keyframes rise {
+  from {
+    translate: 0 8px;
+  }
+}
