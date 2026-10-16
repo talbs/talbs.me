@@ -21,6 +21,13 @@ const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
 const EASE_OUT = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
 const params = new URLSearchParams(location.search);
 const isFaked = ['at', 'hour', 'day', 'month'].some(key => params.has(key));
+const tally = (name, data) => window.umami?.track(name, data);
+// Umami checks this key before every send, so ?stats=off keeps Brian's own visits out of the numbers.
+const stats = params.get('stats');
+try {
+  if (stats === 'off') localStorage.setItem('umami.disabled', '1');
+  if (stats === 'on') localStorage.removeItem('umami.disabled');
+} catch {}
 const pinnedSun = sunOverride(params);
 const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
@@ -434,6 +441,7 @@ function setUpScrubber() {
   addEventListener('pointerup', release);
   addEventListener('pointercancel', release);
   scrubber.addEventListener('input', scrub);
+  scrubber.addEventListener('input', () => tally('Scrub'), { once: true });
   scrubber.addEventListener('blur', () => isScrubbing && settle());
   // Capture runs before the slider's own Page Up/Down, which would move by a fixed amount instead of to a stop.
   scrubber.addEventListener(
@@ -473,6 +481,14 @@ function tick() {
 }
 
 tell.addEventListener('click', event => event.preventDefault());
+// Every link on the page, tracked by where it sits and where it goes; Umami sends with keepalive, so it survives the navigation.
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href]');
+  if (!link) return;
+  const to =
+    link.protocol === 'mailto:' ? 'email' : `${link.host.replace(/^www\./, '')}${link.pathname.replace(/\/$/, '')}`;
+  tally('Link', { from: link.closest('#tray, #bio, .cell')?.id, to });
+});
 tell.addEventListener('tell-dance', () => {
   isDancing = true;
   setLine(false);
@@ -509,6 +525,7 @@ function fitTray() {
 addEventListener('resize', () => tray.open && fitTray(), { passive: true });
 tray.addEventListener('toggle', () => {
   if (!tray.open) return;
+  tally('Tray open');
   fitTray();
   scroller.scrollTop = 0;
   markEnd();
