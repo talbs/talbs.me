@@ -21,6 +21,20 @@ const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)';
 const EASE_OUT = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
 const params = new URLSearchParams(location.search);
 const isFaked = ['at', 'hour', 'day', 'month'].some(key => params.has(key));
+const tally = (name, data) => window.umami?.track(name, data);
+const failedSources = new Set();
+// Once per source per visit: Last.fm is polled every two minutes, and one long visit shouldn't flood the numbers.
+function tallyFailure(source, error) {
+  if (failedSources.has(source)) return;
+  failedSources.add(source);
+  tally('Fetch failed', { source, reason: error?.name ?? 'Error' });
+}
+// Umami checks this key before every send, so ?stats=off keeps Brian's own visits out of the numbers.
+const stats = params.get('stats');
+try {
+  if (stats === 'off') localStorage.setItem('umami.disabled', '1');
+  if (stats === 'on') localStorage.removeItem('umami.disabled');
+} catch {}
 const pinnedSun = sunOverride(params);
 const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
@@ -286,9 +300,11 @@ async function checkWeather() {
   weatherFetchedAt = Date.now();
   try {
     const response = await fetch(weatherUrl(now()), { signal: AbortSignal.timeout(FETCH_TIMEOUT) });
-    hourly = (await response.json()).hourly ?? null;
-  } catch {
+    hourly = (await response.json()).hourly;
+    if (!hourly) throw new TypeError('no hourly forecast');
+  } catch (error) {
     hourly = null;
+    tallyFailure('weather', error);
   }
   update();
 }
@@ -299,7 +315,8 @@ function trackBefore(date) {
   if (!pastTracks.has(slot)) {
     const answer = recentTracks(`${LASTFM}&to=${Math.floor(date / 1000)}`)
       .then(tracks => tracks.find(item => !item['@attr']?.nowplaying) ?? null)
-      .catch(() => {
+      .catch(error => {
+        tallyFailure('lastfm', error);
         pastTracks.delete(slot);
         return undefined;
       });
@@ -331,8 +348,9 @@ async function checkMusic() {
   if (document.hidden) return;
   try {
     track = params.has('music') ? (previewTrack(params.get('music'), now()) ?? null) : (await recentTracks(LASTFM))[0];
-  } catch {
+  } catch (error) {
     track = null;
+    tallyFailure('lastfm', error);
   }
   showMusic(shownAt);
 }
@@ -412,7 +430,10 @@ function setUpScrubber() {
     const nowMinute = minuteOf(now());
     if (scrubber.value > nowMinute) {
       scrubber.value = nowMinute;
-      peekLine ||= PEEK_LINES[Math.floor(Math.random() * PEEK_LINES.length)];
+      if (!peekLine) {
+        tally('Peek');
+        peekLine = PEEK_LINES[Math.floor(Math.random() * PEEK_LINES.length)];
+      }
     } else {
       peekLine = '';
     }
@@ -434,6 +455,7 @@ function setUpScrubber() {
   addEventListener('pointerup', release);
   addEventListener('pointercancel', release);
   scrubber.addEventListener('input', scrub);
+  scrubber.addEventListener('input', () => tally('Scrub'), { once: true });
   scrubber.addEventListener('blur', () => isScrubbing && settle());
   // Capture runs before the slider's own Page Up/Down, which would move by a fixed amount instead of to a stop.
   scrubber.addEventListener(
@@ -473,7 +495,16 @@ function tick() {
 }
 
 tell.addEventListener('click', event => event.preventDefault());
+// Every link on the page, tracked by where it sits and where it goes; Umami sends with keepalive, so it survives the navigation.
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href]');
+  if (!link) return;
+  const to =
+    link.protocol === 'mailto:' ? 'email' : `${link.host.replace(/^www\./, '')}${link.pathname.replace(/\/$/, '')}`;
+  tally('Link', { from: link.closest('#tray, #bio, .cell')?.id, to });
+});
 tell.addEventListener('tell-dance', () => {
+  tally('Dance');
   isDancing = true;
   setLine(false);
 });
@@ -509,6 +540,7 @@ function fitTray() {
 addEventListener('resize', () => tray.open && fitTray(), { passive: true });
 tray.addEventListener('toggle', () => {
   if (!tray.open) return;
+  tally('Tray open');
   fitTray();
   scroller.scrollTop = 0;
   markEnd();

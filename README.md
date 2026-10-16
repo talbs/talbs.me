@@ -41,6 +41,7 @@ Run `npm run dev` and add URL parameters:
 - `?hour=3&day=Sat&month=7` fakes parts of the clock instead
 - `?sun=-2` pins the sun's elevation in degrees, for tuning the sky
 - `?music=live`, `last`, or `off` fakes the Last.fm row
+- `?stats=off` keeps this browser out of the Umami numbers (`?stats=on` undoes it)
 
 `http://localhost:4321/proof` lines up the card at several times of day, and you can add frames for any moment.
 

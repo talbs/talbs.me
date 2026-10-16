@@ -12,6 +12,7 @@ const SRC = `${ROOT}src/`;
 const ASSETS = `${ROOT}assets/`;
 const DIST = `${ROOT}dist/`;
 const HTML_BUDGET_KB = 24;
+const ALLOWED_HOSTS = ['www.talbs.me', 'cloud.umami.is'];
 const isCheck = process.argv.includes('--check');
 
 const problems = validateLinks(links, SECTIONS);
@@ -95,7 +96,7 @@ if (isCheck) {
     ...html.matchAll(/<(?:script|link|img|iframe)\b[^>]*\b(?:src|href)="(https?:[^"]+)"/g),
     ...css.matchAll(/url\(["']?(https?:[^)"']+)/g),
   ].map(match => new URL(match[1]).host);
-  const strays = [...new Set(loads)].filter(host => host !== 'www.talbs.me');
+  const strays = [...new Set(loads)].filter(host => !ALLOWED_HOSTS.includes(host));
   if (strays.length) throw new Error(`index.html loads from ${strays.join(', ')}`);
   const pageIds = (await readFile(`${SRC}page.js`, 'utf8')).matchAll(/getElementById\('([\w-]+)'\)/g);
   for (const [, id] of pageIds) {
