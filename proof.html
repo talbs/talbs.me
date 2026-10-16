@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>talbs.me proof</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 1rem;
+        background: #111317;
+        color: #e8eaee;
+        font:
+          14px/1.4 ui-sans-serif,
+          system-ui,
+          sans-serif;
+      }
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-block-end: 1rem;
+      }
+      input,
+      select,
+      button {
+        font: inherit;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+      figure {
+        margin: 0;
+      }
+      figcaption a {
+        color: inherit;
+      }
+      iframe {
+        display: block;
+        inline-size: 100%;
+        aspect-ratio: 390 / 700;
+        border: 0;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="custom">
+      <input
+        name="at"
+        type="datetime-local"
+        value="2026-10-15T18:00"
+        aria-label="Boston date and time"
+      />
+      <select
+        name="music"
+        aria-label="Music"
+      >
+        <option value="">real music</option>
+        <option>live</option>
+        <option>last</option>
+        <option>off</option>
+      </select>
+      <button>Add frame</button>
+    </form>
+    <div
+      class="grid"
+      id="grid"
+    ></div>
+    <script type="module">
+      const presets = [
+        ['Sunrise', 'at=2026-10-15T07:00'],
+        ['Morning', 'at=2026-10-15T09:30'],
+        ['Noon', 'at=2026-10-15T12:45'],
+        ['Golden hour', 'at=2026-10-15T17:30'],
+        ['Sunset', 'at=2026-10-15T18:05'],
+        ['Dusk', 'at=2026-10-15T18:40'],
+        ['Night', 'at=2026-10-15T22:00'],
+        ['Full moon night', 'at=2026-10-26T23:00'],
+        ['Summer noon', 'at=2026-06-21T12:45'],
+        ['Winter sunset', 'at=2026-12-21T16:14'],
+        ['Music live', 'at=2026-10-15T13:00&music=live'],
+        ['Music last played', 'at=2026-10-15T13:00&music=last'],
+      ];
+      const grid = document.getElementById('grid');
+      const addFrame = (label, query) => {
+        const figure = document.createElement('figure');
+        const link = Object.assign(document.createElement('a'), { href: `/?${query}`, textContent: label });
+        const caption = document.createElement('figcaption');
+        caption.append(link);
+        const frame = Object.assign(document.createElement('iframe'), { src: `/?${query}`, title: label });
+        figure.append(caption, frame);
+        grid.append(figure);
+      };
+      presets.forEach(([label, query]) => addFrame(label, query));
+      document.getElementById('custom').addEventListener('submit', event => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const query = new URLSearchParams([...data].filter(([, value]) => value)).toString();
+        addFrame(query, query);
+      });
+    </script>
+  </body>
+</html>
