@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { musicCell, previewTrack, RESTING } from './music.js';
+import { musicCell, previewTrack, RESTING } from '../src/music.js';
 
 const NOW = Date.UTC(2026, 9, 15, 20, 0);
 const track = extra => ({

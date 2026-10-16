@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
-import { SECTIONS, links } from './links.js';
-import { validateLinks, renderTray } from './tray.js';
-import { pools } from './statuses.js';
+import { SECTIONS, links } from '../src/links.js';
+import { validateLinks, renderTray } from '../tools/tray.js';
+import { pools } from '../src/statuses.js';
 
 const entry = (overrides = {}) => ({
   section: 'Now',
@@ -31,7 +31,8 @@ test('every custom SVG icon a status chip names ships with the site, through its
 test('every custom SVG icon a link names ships with the site', () => {
   const svgs = links.filter(link => link.icon.endsWith('.svg'));
   assert.ok(svgs.length > 0, 'expected the Create gem');
-  for (const link of svgs) assert.ok(existsSync(new URL(link.icon, import.meta.url)), `${link.icon} is missing`);
+  for (const link of svgs)
+    assert.ok(existsSync(new URL(`../assets/${link.icon}`, import.meta.url)), `${link.icon} is missing`);
 });
 
 test('an email link ships without its address in the HTML', () => {

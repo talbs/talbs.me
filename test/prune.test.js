@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pruneTokens, pruneSelectors } from './prune.js';
+import { pruneTokens, pruneSelectors } from '../tools/prune.js';
 
 test('pruneTokens drops Web Awesome tokens nothing uses and keeps the chain that is used', () => {
   const css =

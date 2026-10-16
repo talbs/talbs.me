@@ -2,7 +2,7 @@ import css from '@eslint/css';
 
 export default [
   {
-    files: ['styles.css'],
+    files: ['src/styles.css'],
     language: 'css/css',
     plugins: { css },
     rules: {

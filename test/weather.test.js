@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { zonedDate } from './clock.js';
-import { weatherIcon, weatherWords, weatherAt, weatherUrl } from './weather.js';
+import { zonedDate } from '../src/clock.js';
+import { weatherIcon, weatherWords, weatherAt, weatherUrl } from '../src/weather.js';
 
 test('weatherIcon maps each WMO group to a Font Awesome icon, by day and night', () => {
   assert.equal(weatherIcon(0, true), 'sun');
