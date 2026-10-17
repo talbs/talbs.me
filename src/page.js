@@ -105,7 +105,7 @@ function makeIcon(name, family = 'sharp-duotone', label = '') {
   return icon;
 }
 
-function setCell(
+function fillCell(
   cell,
   {
     icon = '',
@@ -157,6 +157,71 @@ function setCell(
   if (tooltip && tooltip.textContent !== tip) tooltip.textContent = tip;
 }
 
+const LEAVE = [
+  { opacity: 1, translate: '0 0' },
+  { opacity: 0, translate: '0 -0.35em' },
+];
+const enter = () =>
+  isCalm.matches
+    ? [{ opacity: 0 }, { opacity: 1 }]
+    : [
+        { opacity: 0, translate: '0 0.5em' },
+        { opacity: 1, translate: '0 0' },
+      ];
+const flips = new Map();
+
+// The time cell leads with the clock and the moon with its percent lit; both tick without any data landing.
+const dataOf = ({ icon = '', label = '', url = '', text = '', datetime }) =>
+  [icon, label, url, text.replace(datetime ? /^\S+/ : /^\d+%/, '')].join('|');
+
+function setCell(cell, props, isInstant = false) {
+  const data = dataOf(props);
+  const isLanding = cell.dataset.data !== undefined && cell.dataset.data !== data && !cell.hidden;
+  cell.dataset.data = data;
+  const flip = flips.get(cell);
+  if (isInstant || isScrubbing) {
+    flip?.animations.forEach(animation => animation.cancel());
+    flips.delete(cell);
+    cell.classList.remove('is-flipping');
+  } else if (flip) {
+    flip.props = props;
+    return;
+  } else if (isLanding) {
+    return flipCell(cell, props);
+  }
+  fillCell(cell, props);
+}
+
+// A tab whose animation timeline has stopped (paused or in the background) would otherwise hold a move forever, and the
+// content behind it with it.
+const settled = animation =>
+  Promise.race([
+    animation.finished.catch(() => {}),
+    new Promise(resolve => setTimeout(resolve, animation.effect.getTiming().duration + 100)),
+  ]).then(() => {
+    if (animation.playState === 'running') animation.cancel();
+  });
+
+async function flipCell(cell, props) {
+  const flip = { props, animations: [] };
+  const move = (keyframes, options) => {
+    const animation = cell.querySelector('.cell-body').animate(keyframes, options);
+    flip.animations.push(animation);
+    return settled(animation);
+  };
+  flips.set(cell, flip);
+  cell.classList.add('is-flipping');
+  if (!isCalm.matches) {
+    await move(LEAVE, { duration: 100, easing: EASE_IN, fill: 'forwards' });
+    if (flips.get(cell) !== flip) return;
+  }
+  flip.animations.forEach(animation => animation.cancel());
+  flips.delete(cell);
+  fillCell(cell, flip.props);
+  await move(enter(), { duration: 200, easing: EASE_OUT });
+  if (!flips.has(cell)) cell.classList.remove('is-flipping');
+}
+
 const wantedLine = () => (isDancing ? DANCE_LINE : peekLine || currentPick.text);
 
 function animateLine(keyframes, options) {
@@ -173,24 +238,11 @@ function placeLine() {
 async function swapLine() {
   const id = ++swapId;
   if (!isCalm.matches) {
-    const leave = animateLine(
-      [
-        { opacity: 1, translate: '0 0' },
-        { opacity: 0, translate: '0 -0.35em' },
-      ],
-      { duration: 100, easing: EASE_IN, fill: 'forwards' }
-    );
-    await leave.finished.catch(() => {});
+    await settled(animateLine(LEAVE, { duration: 100, easing: EASE_IN, fill: 'forwards' }));
     if (id !== swapId) return;
   }
   placeLine();
-  const enter = isCalm.matches
-    ? [{ opacity: 0 }, { opacity: 1 }]
-    : [
-        { opacity: 0, translate: '0 0.5em' },
-        { opacity: 1, translate: '0 0' },
-      ];
-  animateLine(enter, { duration: 200, easing: EASE_OUT });
+  settled(animateLine(enter(), { duration: 200, easing: EASE_OUT }));
 }
 
 function setLine(isInstant) {
@@ -268,15 +320,19 @@ function showStatus(date, elevation, isInstant) {
   const tip = IS_LOST ? lostPick.timeTip : timeTip(clock.hour, clock.month);
   const weather = weatherAt(hourly, date);
   // '--°' holds the temperature's width until the forecast lands; a day with no forecast falls back to the city.
-  setCell(document.getElementById('time'), {
-    icon: weather ? weatherIcon(weather.code, weather.isDay) : 'clock',
-    label: weather ? weatherWords(weather.code) : '',
-    text: weather ? `${time} · ${weather.temp}°` : hourly === undefined ? `${time} · --°` : `${time} Boston`,
-    url: 'https://time.is/Boston',
-    datetime: date.toISOString(),
-    tip: weather ? `${capitalize(weatherWords(weather.code))} in Boston: ${tip}` : capitalize(tip),
-  });
-  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation, coverAt));
+  setCell(
+    document.getElementById('time'),
+    {
+      icon: weather ? weatherIcon(weather.code, weather.isDay) : 'clock',
+      label: weather ? weatherWords(weather.code) : '',
+      text: weather ? `${time} · ${weather.temp}°` : hourly === undefined ? `${time} · --°` : `${time} Boston`,
+      url: 'https://time.is/Boston',
+      datetime: date.toISOString(),
+      tip: weather ? `${capitalize(weatherWords(weather.code))} in Boston: ${tip}` : capitalize(tip),
+    },
+    isInstant
+  );
+  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation, coverAt), isInstant);
 }
 
 function paintFavicon() {
@@ -329,13 +385,13 @@ function trackBefore(date) {
 }
 
 // More than ten minutes from the real time counts as a past moment; the ?music= preview always counts as now.
-function showMusic(date) {
-  if (IS_LOST) return setCell(document.getElementById('music'), lostPick.music);
+function showMusic(date, isInstant) {
+  if (IS_LOST) return setCell(document.getElementById('music'), lostPick.music, isInstant);
   if (track === undefined) return;
   const music = document.getElementById('music');
   clearTimeout(pastTimer);
   if (IS_LOST || params.has('music') || Math.abs(date - Date.now()) <= TEN_MINUTES) {
-    setCell(music, musicCell(track, params.has('music') ? now() : Date.now()));
+    setCell(music, musicCell(track, params.has('music') ? now() : Date.now()), isInstant);
     return;
   }
   music.classList.add('is-quiet');
@@ -362,7 +418,7 @@ async function checkMusic() {
 function render(date, isInstant) {
   shownAt = date;
   showStatus(date, paintSky(date), isInstant);
-  showMusic(date);
+  showMusic(date, isInstant);
   if (document.hidden) paintFavicon();
   else requestAnimationFrame(paintFavicon);
 }

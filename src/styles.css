@@ -168,7 +168,8 @@
   }
 }
 :root:is(.is-scrubbing, .is-snapping),
-:root:is(.is-scrubbing, .is-snapping) :is(.stars, .veil, .clouds, .cell-body) {
+:root:is(.is-scrubbing, .is-snapping) :is(.stars, .veil, .clouds, .cell-body),
+.is-flipping .cell-body {
   transition: none;
 }
 :root.is-ticking {
@@ -886,7 +887,7 @@ a:focus-visible {
       opacity 2s ease-in-out,
       display 2s allow-discrete;
   }
-  /* West to east, which is leftward facing south; the far layer drifts at about half the speed. */
+  /* West to east, which is leftward facing south. */
   .drift {
     animation: drift 280s linear infinite;
   }
