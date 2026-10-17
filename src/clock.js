@@ -86,18 +86,22 @@ export const shortTime = date => shortTimeFormat.format(date).replace(/\s/gu, ''
 
 // Fragments that follow "<weather> in Boston: …", or stand alone capitalized when there's no forecast.
 const TIME_TIPS = [
-  [0, 'it’s wicked late heah.'],
-  [5, 'Dunks is already open.'],
-  [7, 'iced coffee is a year-round thing here.'],
-  [10, 'the T is running late. Again.'],
-  [12, 'a frappe is a milkshake.'],
-  [14, 'Storrow just ate another truck.'],
-  [17, '93 is a pahkin’ lot.'],
-  [19, 'the Sox are on somewhere.'],
-  [22, 'it’s getting wicked late.'],
+  { at: 0, text: 'it’s wicked late heah.' },
+  { at: 5, text: 'Dunks is already open.' },
+  { at: 7, text: 'iced coffee is a year-round thing here.' },
+  { at: 10, text: 'the T is running late. Again.' },
+  { at: 12, text: 'everybody’s jaywalking to lunch.' },
+  { at: 14, text: 'Storrow just ate another truck.' },
+  { at: 17, text: '93 is a pahkin’ lot.' },
+  { at: 19, text: 'the Sox are on somewhere.', months: [4, 5, 6, 7, 8, 9] },
+  { at: 19, text: 'it’s wicked dahk already. It’s October.', months: [10] },
+  { at: 19, text: 'it’s been dark since 4:30.', months: [11, 12, 1] },
+  { at: 19, text: 'the snowbanks are black by now.', months: [2, 3] },
+  { at: 22, text: 'it’s getting wicked late.' },
 ];
 
-export const timeTip = hour => TIME_TIPS.findLast(([from]) => hour >= from)[1];
+export const timeTip = (hour, month) =>
+  TIME_TIPS.findLast(tip => hour >= tip.at && (!tip.months || tip.months.includes(month))).text;
 
 const SUN_TIPS = { sunset: 'Sunset: gonna be a beauty.', sunrise: 'Sunrise: coffee first.' };
 

@@ -256,7 +256,8 @@ function showStatus(date, elevation, isInstant) {
   tell.setAttribute('skin', pick.skin);
   tell.setAttribute('state', peekLine ? 'error' : pick.state);
   const time = shortTime(date);
-  const tip = IS_LOST ? lostPick.timeTip : timeTip(brianClock(date).hour);
+  const clock = brianClock(date);
+  const tip = IS_LOST ? lostPick.timeTip : timeTip(clock.hour, clock.month);
   const weather = weatherAt(hourly, date);
   // '--°' holds the temperature's width until the forecast lands; a day with no forecast falls back to the city.
   setCell(document.getElementById('time'), {

@@ -515,9 +515,21 @@ test('skyDetail marks how low the sun is', () => {
 import { timeTip } from '../src/clock.js';
 
 test('timeTip gives Boston a voice through the day', () => {
-  assert.equal(timeTip(1), 'it’s wicked late heah.');
-  assert.equal(timeTip(5), 'Dunks is already open.');
-  assert.equal(timeTip(17), '93 is a pahkin’ lot.');
-  assert.equal(timeTip(22), 'it’s getting wicked late.');
-  for (let hour = 0; hour < 24; hour++) assert.ok(timeTip(hour), `hour ${hour} has a line`);
+  assert.equal(timeTip(1, 10), 'it’s wicked late heah.');
+  assert.equal(timeTip(5, 10), 'Dunks is already open.');
+  assert.equal(timeTip(12, 6), 'everybody’s jaywalking to lunch.');
+  assert.equal(timeTip(17, 10), '93 is a pahkin’ lot.');
+  assert.equal(timeTip(22, 10), 'it’s getting wicked late.');
+  for (let month = 1; month <= 12; month++) {
+    for (let hour = 0; hour < 24; hour++) assert.ok(timeTip(hour, month), `${month}/${hour} has a line`);
+  }
+});
+
+test('timeTip’s 7pm line follows the month', () => {
+  for (const month of [4, 7, 9]) assert.equal(timeTip(19, month), 'the Sox are on somewhere.');
+  assert.equal(timeTip(21, 9), 'the Sox are on somewhere.');
+  assert.equal(timeTip(19, 10), 'it’s wicked dahk already. It’s October.');
+  for (const month of [11, 12, 1]) assert.equal(timeTip(19, month), 'it’s been dark since 4:30.');
+  assert.equal(timeTip(19, 2), 'the snowbanks are black by now.');
+  assert.equal(timeTip(20, 3), 'the snowbanks are black by now.');
 });
