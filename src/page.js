@@ -3,7 +3,7 @@ import { pickLine, firstPick } from './schedule.js';
 import { skyVars, CARD } from './sky.js';
 import { pools, errors, lost } from './statuses.js';
 import { musicCell, previewTrack, recentTracks, FETCH_TIMEOUT, RESTING, TEN_MINUTES } from './music.js';
-import { weatherUrl, weatherAt, weatherIcon, weatherWords } from './weather.js';
+import { weatherUrl, weatherAt, weatherIcon, weatherWords, cloudsFor } from './weather.js';
 import { minuteOf, dateAtMinute, dayStops, nearestStop, contextFor } from './day.js';
 
 const LASTFM =
@@ -36,6 +36,7 @@ try {
   if (stats === 'on') localStorage.removeItem('umami.disabled');
 } catch {}
 const pinnedSun = sunOverride(params);
+const fakeCover = params.has('clouds') ? Number(params.get('clouds')) || 0 : null;
 const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
 // IS_LOST is set per page by tools/build.js: true only on the 404.
@@ -238,13 +239,19 @@ function loadTrayIcons() {
   }
 }
 
+const coverAt = date => fakeCover ?? weatherAt(hourly, date)?.cover;
+
 function paintSky(date) {
   const { elevation, vars } = skyVars(date, pinnedSun ?? undefined);
+  const { clouds, veil } = cloudsFor(coverAt(date), elevation);
+  vars['--clouds'] = clouds;
+  vars['--veil'] = veil;
   for (const [name, value] of Object.entries(vars)) {
     const text = String(value);
     if (root.style.getPropertyValue(name) !== text) root.style.setProperty(name, text);
   }
   root.classList.toggle('has-stars', vars['--stars'] > 0);
+  root.classList.toggle('has-clouds', clouds > 0);
   return elevation;
 }
 
@@ -269,7 +276,7 @@ function showStatus(date, elevation, isInstant) {
     datetime: date.toISOString(),
     tip: weather ? `${capitalize(weatherWords(weather.code))} in Boston: ${tip}` : capitalize(tip),
   });
-  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation));
+  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation, coverAt));
 }
 
 function paintFavicon() {

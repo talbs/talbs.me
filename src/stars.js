@@ -2,7 +2,7 @@ const SEED = 7;
 const PER_SCREEN = 80;
 
 // mulberry32: tiny and seedable, so every visitor sees the same sky.
-function random(seed) {
+export function random(seed) {
   let a = seed >>> 0;
   return () => {
     a = (a + 0x6d2b79f5) >>> 0;
