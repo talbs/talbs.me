@@ -40,7 +40,8 @@ const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
 // IS_LOST is set per page by tools/build.js: true only on the 404.
 const lostAt = IS_LOST && dateAtMinute(new Date(), 244);
-const lostPick = {
+// Behind IS_LOST so the home page bundle drops the 404's lines.
+const lostPick = IS_LOST && {
   text: lost[Math.floor(Math.random() * lost.length)],
   skin: 'eyes',
   state: 'error',

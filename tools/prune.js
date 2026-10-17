@@ -47,9 +47,25 @@ function selectorsOf(prelude) {
   return [...parts, prelude.slice(start)].map(part => part.trim());
 }
 
-// Drops selectors that need a Web Awesome class the page never uses, and rules left with none.
+const outsideParens = selector => selector.replace(/\([^()]*(?:\([^()]*\)[^()]*)*\)/g, '()');
+
+// Every name a page's markup and scripts could put in a class attribute. `--wa-…` custom properties aren't classes.
+export const usedNames = text => new Set(text.match(/(?<![\w-])[\w-]+/g));
+
+// Drops selectors that need a class the page never uses, and rules left with none. Inside :is() a class is one of several
+// alternatives, so only Web Awesome classes are checked there.
 export function pruneSelectors(css, used) {
-  const isUsed = selector => [...selector.matchAll(/\.(wa-[\w-]+)/g)].every(([, name]) => used.has(name));
+  const usedList = [...used];
+  const isUsed = selector => {
+    const outside = outsideParens(selector);
+    return (
+      [...selector.matchAll(/\.(wa-[\w-]+)/g)].every(([, name]) => used.has(name)) &&
+      [...outside.replace(/\[[^\]]*\]/g, '').matchAll(/\.([_a-zA-Z][\w-]*)/g)].every(([, name]) => used.has(name)) &&
+      [...outside.matchAll(/\[class\*=["']?(wa-[\w-]+)/g)].every(([, part]) =>
+        usedList.some(name => name.includes(part))
+      )
+    );
+  };
   let out = '';
   let i = 0;
   while (i < css.length) {
