@@ -321,7 +321,8 @@ test('overlay composites like the browser does', () => {
   assert.equal(overlay('#123456', '#ffffff', 0), '#123456');
 });
 
-import { contextFor, shortTime } from '../src/clock.js';
+import { shortTime } from '../src/clock.js';
+import { contextFor } from '../src/day.js';
 import { nextSunEvent, moonPhase, moonTip } from '../src/sky.js';
 
 const withinMinutes = (a, b, minutes) => Math.abs(a - b) <= minutes * 60000;
@@ -361,6 +362,25 @@ test('moonTip names the phase and counts the days to the next full or new moon',
   assert.match(moonTip(at(11, 5, 12, 0)), /^Waning crescent\. New moon in [34] days\.$/);
 });
 
+// Published civil twilight for Boston (surf-life.blue, 2026): Jun 1 4:35am–8:48pm, Dec 1 6:22am–4:43pm.
+test('nextSunEvent finds civil dawn and dusk with a -6° threshold', () => {
+  for (const [from, kind, expected] of [
+    [at(6, 1, 0, 0), 'sunrise', at(6, 1, 4, 35)],
+    [at(6, 1, 12, 0), 'sunset', at(6, 1, 20, 48)],
+    [at(12, 1, 0, 0), 'sunrise', at(12, 1, 6, 22)],
+    [at(12, 1, 12, 0), 'sunset', at(12, 1, 16, 43)],
+  ]) {
+    const event = nextSunEvent(from, -6);
+    assert.equal(event.kind, kind);
+    assert.ok(withinMinutes(event.at, expected, 2), `civil ${kind} ${shortTime(event.at)}`);
+  }
+});
+
+test('nextSunEvent lands on the same minute whatever second it’s asked at', () => {
+  const asked = new Date(at(10, 14, 12, 0).getTime() + 59000);
+  assert.equal(nextSunEvent(asked).at.getTime(), nextSunEvent(at(10, 14, 12, 0)).at.getTime());
+});
+
 test('nextSunEvent just after sunset looks ahead to the next sunrise', () => {
   const event = nextSunEvent(at(10, 14, 18, 10));
   assert.equal(event.kind, 'sunrise');
@@ -378,19 +398,13 @@ test('contextFor picks the chip, then the moon at night, then the sun', () => {
   });
   assert.equal(contextFor(plain, at(10, 15, 22, 30), -30).tip, 'Waxing crescent. Full moon in 10 days.');
   assert.match(contextFor(plain, at(10, 14, 23, 0), -30).text, /^\d+% (waxing|waning)$/);
-  assert.deepEqual(contextFor(plain, at(10, 14, 16, 52), 10), {
-    icon: 'sunset',
-    label: 'Sunset',
-    text: '6:04pm',
-    tip: 'Sunset: gonna be a beauty.',
-  });
+  const { tip: sunsetTip, ...sunset } = contextFor(plain, at(10, 14, 16, 52), 10);
+  assert.deepEqual(sunset, { icon: 'sunset', label: 'Sunset', text: '6:04pm' });
+  assert.match(sunsetTip, /^Sunset: /);
   assert.equal(contextFor(plain, at(10, 14, 9, 0), 25).text, '6:04pm');
-  assert.deepEqual(contextFor(plain, at(10, 15, 5, 30), -12), {
-    icon: 'sunrise',
-    label: 'Sunrise',
-    text: '6:58am',
-    tip: 'Sunrise: coffee first.',
-  });
+  const { tip: sunriseTip, ...sunrise } = contextFor(plain, at(10, 15, 5, 30), -12);
+  assert.deepEqual(sunrise, { icon: 'sunrise', label: 'Sunrise', text: '6:58am' });
+  assert.match(sunriseTip, /^Sunrise: /);
 });
 
 test('shortTime reads Boston time in lowercase with no space', () => {

@@ -1,5 +1,3 @@
-import { HORIZON, moonPhase, moonTip, nextSunEvent } from './sky.js';
-
 const TIME_ZONE = 'America/New_York';
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -102,20 +100,3 @@ const TIME_TIPS = [
 
 export const timeTip = (hour, month) =>
   TIME_TIPS.findLast(tip => hour >= tip.at && (!tip.months || tip.months.includes(month))).text;
-
-const SUN_TIPS = { sunset: 'Sunset: gonna be a beauty.', sunrise: 'Sunrise: coffee first.' };
-
-export function contextFor(pick, date, elevation) {
-  if (pick.with) {
-    const { label, ...chip } = pick.with;
-    return { ...chip, text: label, tip: `Open ${label}` };
-  }
-  const next = nextSunEvent(date);
-  const minutes = next ? Math.round((next.at - date) / 60000) : Infinity;
-  if (elevation < HORIZON && !(next?.kind === 'sunrise' && minutes <= 180)) {
-    const moon = moonPhase(date);
-    return { icon: 'moon', text: `${moon.lit}% ${moon.phase}`, tip: moonTip(date) };
-  }
-  if (!next) return { icon: '', text: '' };
-  return { icon: next.kind, label: capitalize(next.kind), text: shortTime(next.at), tip: SUN_TIPS[next.kind] };
-}

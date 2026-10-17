@@ -1,10 +1,10 @@
-import { brianClock, previewDate, sunOverride, contextFor, shortTime, timeTip, capitalize } from './clock.js';
+import { brianClock, previewDate, sunOverride, shortTime, timeTip, capitalize } from './clock.js';
 import { pickLine, firstPick } from './schedule.js';
 import { skyVars, CARD } from './sky.js';
 import { pools, errors, lost } from './statuses.js';
 import { musicCell, previewTrack, recentTracks, FETCH_TIMEOUT, RESTING, TEN_MINUTES } from './music.js';
 import { weatherUrl, weatherAt, weatherIcon, weatherWords } from './weather.js';
-import { minuteOf, dateAtMinute, dayStops, nearestStop } from './day.js';
+import { minuteOf, dateAtMinute, dayStops, nearestStop, contextFor } from './day.js';
 
 const LASTFM =
   'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=B-Tal&limit=1&format=json&api_key=727679ecf88465a0ca161d4d8c5efabf';
