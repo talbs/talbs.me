@@ -330,6 +330,16 @@ main {
   grid-row: 2;
   inline-size: min(100%, 40rem);
 }
+/* On a tall portrait screen a centered closed card floats in the sky, so it sits under the header and the tray opens
+   down into the room below. */
+@media (orientation: portrait) and (height >= 50rem) {
+  main {
+    grid-template-rows:
+      minmax(var(--wa-space-m), 6rem)
+      auto
+      minmax(var(--wa-space-m), 1fr);
+  }
+}
 .intro,
 .day {
   inline-size: min(100% - 2 * var(--gutter), 40rem);
@@ -466,7 +476,6 @@ tiny-tell {
   }
   .scroll {
     max-block-size: none;
-    overflow-y: visible;
   }
 }
 .heading {
