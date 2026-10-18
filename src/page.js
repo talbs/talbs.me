@@ -577,11 +577,13 @@ const markEnd = () =>
 
 scroller.addEventListener('scroll', markEnd, { passive: true });
 // The list gets whatever main has left, so the open card never outgrows main and clips. Short of about five rows,
-// the meta row folds away and the list takes its space too.
+// the meta row folds away and the list takes its space too. Where the stylesheet has uncapped the list (short
+// viewports, where the page scrolls instead), nothing folds.
 function fitTray() {
+  const isCapped = getComputedStyle(scroller).maxBlockSize !== 'none';
   const base = card.offsetHeight - nav.offsetHeight - meta.offsetHeight + meta.clientTop;
   const room = main.clientHeight - base;
-  const isFolded = room - meta.scrollHeight < FOLD_BELOW;
+  const isFolded = isCapped && room - meta.scrollHeight < FOLD_BELOW;
   card.classList.toggle('is-folded', isFolded);
   scroller.style.setProperty('--tray-room', `${isFolded ? room : room - meta.scrollHeight}px`);
 }
@@ -600,7 +602,8 @@ rows.forEach((row, i) => {
   row.addEventListener('pointerenter', () => moveHighlight(i));
   row.addEventListener('focus', () => moveHighlight(i, true));
 });
-document.addEventListener('pointerdown', event => {
+// A tap, not a touch-down, so dragging the scrolled page past the card leaves the tray open.
+document.addEventListener('click', event => {
   if (isOpen() && !tray.contains(event.target) && !event.target.closest('a')) setOpen(false);
 });
 tray.addEventListener('focusout', event => {

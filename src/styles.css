@@ -457,6 +457,18 @@ tiny-tell {
   overflow-y: auto;
   padding-block-end: 0.5rem;
 }
+/* Shorter than about three rows of list (a phone on its side), fitting the open tray in the viewport would crop it to
+   a row, so the page scrolls instead: the body grows past the viewport and the list shows every row. */
+@media (height < 28rem) {
+  body {
+    block-size: auto;
+    min-block-size: 100dvh;
+  }
+  .scroll {
+    max-block-size: none;
+    overflow-y: visible;
+  }
+}
 .heading {
   margin: 0;
   padding: 1.25rem var(--inset) 0.5rem;
