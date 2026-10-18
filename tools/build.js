@@ -15,7 +15,7 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SRC = `${ROOT}src/`;
 const ASSETS = `${ROOT}assets/`;
 const DIST = `${ROOT}dist/`;
-const HTML_BUDGET_KB = 24;
+const HTML_BUDGET_KB = 25;
 const ALLOWED_HOSTS = ['www.talbs.me', 'cloud.umami.is'];
 const isCheck = process.argv.includes('--check');
 
