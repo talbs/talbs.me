@@ -49,5 +49,5 @@ export function weatherAt(hourly, date) {
 export function cloudsFor(cover, elevation) {
   const amount = (cover ?? 0) / 50;
   const light = clamp(elevation / 2, 0, 1);
-  return { clouds: round(clamp(amount, 0, 1) * 0.6 * light), veil: round(clamp(amount - 1, 0, 1) * 0.6 * light) };
+  return { clouds: round(clamp(amount, 0, 1) * 0.5 * light), veil: round(clamp(amount - 1, 0, 1) * 0.6 * light) };
 }

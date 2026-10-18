@@ -57,10 +57,10 @@ test('weatherAt reads no cover as clear', () => {
 
 test('cloudsFor grows the clouds to 50% cover, then the veil to 100%', () => {
   assert.deepEqual(cloudsFor(0, 30), { clouds: 0, veil: 0 });
-  assert.deepEqual(cloudsFor(25, 30), { clouds: 0.3, veil: 0 });
-  assert.deepEqual(cloudsFor(50, 30), { clouds: 0.6, veil: 0 });
-  assert.deepEqual(cloudsFor(75, 30), { clouds: 0.6, veil: 0.3 });
-  assert.deepEqual(cloudsFor(100, 30), { clouds: 0.6, veil: 0.6 });
+  assert.deepEqual(cloudsFor(25, 30), { clouds: 0.25, veil: 0 });
+  assert.deepEqual(cloudsFor(50, 30), { clouds: 0.5, veil: 0 });
+  assert.deepEqual(cloudsFor(75, 30), { clouds: 0.5, veil: 0.3 });
+  assert.deepEqual(cloudsFor(100, 30), { clouds: 0.5, veil: 0.6 });
   assert.deepEqual(cloudsFor(null, 30), { clouds: 0, veil: 0 });
   assert.deepEqual(cloudsFor(undefined, 30), { clouds: 0, veil: 0 });
 });
@@ -68,9 +68,9 @@ test('cloudsFor grows the clouds to 50% cover, then the veil to 100%', () => {
 // Measured: under 100% cover the off-white header ink of a winter dusk fell to 3.7:1. That ink only shows below 0°.
 // The fade starts at 2°, not 6°, so sunset keeps its clouds: at 5:45pm in October the sun is still 2° up.
 test('cloudsFor fades the clouds out over the last 2° of sun, gone by the horizon', () => {
-  assert.deepEqual(cloudsFor(100, 6), { clouds: 0.6, veil: 0.6 });
-  assert.deepEqual(cloudsFor(100, 2), { clouds: 0.6, veil: 0.6 });
-  assert.deepEqual(cloudsFor(100, 1), { clouds: 0.3, veil: 0.3 });
+  assert.deepEqual(cloudsFor(100, 6), { clouds: 0.5, veil: 0.6 });
+  assert.deepEqual(cloudsFor(100, 2), { clouds: 0.5, veil: 0.6 });
+  assert.deepEqual(cloudsFor(100, 1), { clouds: 0.25, veil: 0.3 });
   assert.deepEqual(cloudsFor(100, 0), { clouds: 0, veil: 0 });
   assert.deepEqual(cloudsFor(100, -4), { clouds: 0, veil: 0 });
 });

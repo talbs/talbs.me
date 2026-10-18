@@ -24,7 +24,8 @@ const FAR = {
   ],
 };
 
-// Overhead (top) clouds are big and round, toward the horizon small and flat. Each is 1–3 puffs, densest in the middle.
+// Overhead (top) clouds are big and round, toward the horizon small, flat, and hazed out. Each is 1–3 puffs, densest in
+// the middle.
 function layer({ seed, scale, fade, rows }) {
   const next = random(seed);
   const puffs = [];
@@ -45,7 +46,7 @@ function layer({ seed, scale, fade, rows }) {
           y: round(cy + (next() - 0.5) * size * 0.18 + edge * size * 0.06, 1),
           w: round(w, 1),
           h: round(w * (0.55 - depth * 0.3 + next() * 0.12), 1),
-          o: round((0.6 + next() * 0.3) * (1 - edge * 0.3) * fade),
+          o: round((0.6 + next() * 0.3) * (1 - edge * 0.3) * (1 - depth * 0.45) * fade),
         });
         // The spike drew a swell delay here; the draw stays so the approved layout does too.
         next();

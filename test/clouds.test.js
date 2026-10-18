@@ -11,9 +11,9 @@ test('makeClouds lays out the spike’s 51 puffs', () => {
   const { near, far } = makeClouds();
   assert.equal(near.length, 20);
   assert.equal(far.length, 31);
-  assert.deepEqual(near[0], { x: 42.8, y: 10.9, w: 33.8, h: 21.1, o: 0.67 });
-  assert.deepEqual(near[1], { x: 87.3, y: 15.4, w: 18.6, h: 11.1, o: 0.69 });
-  assert.deepEqual(far[0], { x: 16.8, y: 8.4, w: 17.4, h: 9.7, o: 0.48 });
+  assert.deepEqual(near[0], { x: 42.8, y: 10.9, w: 33.8, h: 21.1, o: 0.64 });
+  assert.deepEqual(near[1], { x: 87.3, y: 15.4, w: 18.6, h: 11.1, o: 0.65 });
+  assert.deepEqual(far[0], { x: 16.8, y: 8.4, w: 17.4, h: 9.7, o: 0.46 });
 });
 
 test('the far layer is fainter and every puff sits on the screen’s height', () => {
