@@ -71,6 +71,7 @@ const meta = document.getElementById('meta');
 const main = document.querySelector('main');
 const card = tray.closest('.card');
 const FOLD_BELOW = 320;
+const TAP_SLOP = 10;
 const rows = [...nav.querySelectorAll('a')];
 const day = document.getElementById('day');
 const scrubber = document.getElementById('scrubber');
@@ -577,11 +578,13 @@ const markEnd = () =>
 
 scroller.addEventListener('scroll', markEnd, { passive: true });
 // The list gets whatever main has left, so the open card never outgrows main and clips. Short of about five rows,
-// the meta row folds away and the list takes its space too.
+// the meta row folds away and the list takes its space too. Where the stylesheet has uncapped the list (short
+// viewports, where the page scrolls instead), nothing folds.
 function fitTray() {
+  const isCapped = getComputedStyle(scroller).maxBlockSize !== 'none';
   const base = card.offsetHeight - nav.offsetHeight - meta.offsetHeight + meta.clientTop;
   const room = main.clientHeight - base;
-  const isFolded = room - meta.scrollHeight < FOLD_BELOW;
+  const isFolded = isCapped && room - meta.scrollHeight < FOLD_BELOW;
   card.classList.toggle('is-folded', isFolded);
   scroller.style.setProperty('--tray-room', `${isFolded ? room : room - meta.scrollHeight}px`);
 }
@@ -600,8 +603,13 @@ rows.forEach((row, i) => {
   row.addEventListener('pointerenter', () => moveHighlight(i));
   row.addEventListener('focus', () => moveHighlight(i, true));
 });
-document.addEventListener('pointerdown', event => {
-  if (isOpen() && !tray.contains(event.target) && !event.target.closest('a')) setOpen(false);
+// A tap, not a touch-down, so dragging the scrolled page past the card leaves the tray open. Pointer events rather
+// than click, which iOS Safari withholds from document listeners when the target is a bare element like the sky.
+let downAt = { x: 0, y: 0 };
+document.addEventListener('pointerdown', event => (downAt = { x: event.clientX, y: event.clientY }), { passive: true });
+document.addEventListener('pointerup', event => {
+  const isTap = Math.hypot(event.clientX - downAt.x, event.clientY - downAt.y) < TAP_SLOP;
+  if (isTap && isOpen() && !tray.contains(event.target) && !event.target.closest('a')) setOpen(false);
 });
 tray.addEventListener('focusout', event => {
   if (isOpen() && event.relatedTarget && !tray.contains(event.relatedTarget)) setOpen(false);
