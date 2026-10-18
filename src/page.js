@@ -71,6 +71,7 @@ const meta = document.getElementById('meta');
 const main = document.querySelector('main');
 const card = tray.closest('.card');
 const FOLD_BELOW = 320;
+const TAP_SLOP = 10;
 const rows = [...nav.querySelectorAll('a')];
 const day = document.getElementById('day');
 const scrubber = document.getElementById('scrubber');
@@ -602,9 +603,13 @@ rows.forEach((row, i) => {
   row.addEventListener('pointerenter', () => moveHighlight(i));
   row.addEventListener('focus', () => moveHighlight(i, true));
 });
-// A tap, not a touch-down, so dragging the scrolled page past the card leaves the tray open.
-document.addEventListener('click', event => {
-  if (isOpen() && !tray.contains(event.target) && !event.target.closest('a')) setOpen(false);
+// A tap, not a touch-down, so dragging the scrolled page past the card leaves the tray open. Pointer events rather
+// than click, which iOS Safari withholds from document listeners when the target is a bare element like the sky.
+let downAt = { x: 0, y: 0 };
+document.addEventListener('pointerdown', event => (downAt = { x: event.clientX, y: event.clientY }), { passive: true });
+document.addEventListener('pointerup', event => {
+  const isTap = Math.hypot(event.clientX - downAt.x, event.clientY - downAt.y) < TAP_SLOP;
+  if (isTap && isOpen() && !tray.contains(event.target) && !event.target.closest('a')) setOpen(false);
 });
 tray.addEventListener('focusout', event => {
   if (isOpen() && event.relatedTarget && !tray.contains(event.relatedTarget)) setOpen(false);
