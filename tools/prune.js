@@ -47,7 +47,16 @@ function selectorsOf(prelude) {
   return [...parts, prelude.slice(start)].map(part => part.trim());
 }
 
-const outsideParens = selector => selector.replace(/\([^()]*(?:\([^()]*\)[^()]*)*\)/g, '()');
+const outsideParens = selector => {
+  let depth = 0;
+  let out = '';
+  for (const ch of selector) {
+    if (ch === '(') depth++;
+    if (depth === 0) out += ch;
+    if (ch === ')') depth--;
+  }
+  return out;
+};
 
 // Every name a page's markup and scripts could put in a class attribute. `--wa-…` custom properties aren't classes.
 export const usedNames = text => new Set(text.match(/(?<![\w-])[\w-]+/g));

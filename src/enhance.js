@@ -18,19 +18,22 @@ field.append(
   })
 );
 
-// Each puff is drawn three times, a screen apart, so the drift loops without a seam.
-document.querySelector('.clouds').append(
+// Each puff repeats a field to the right so the drift loops without a seam, and to the left only when it spills past
+// the right edge, which is the one case that copy can show.
+document.querySelector('.clouds')?.append(
   ...Object.entries(makeClouds()).map(([depth, puffs]) => {
     const drift = document.createElement('div');
     drift.className = `drift ${depth}`;
     drift.append(
       ...puffs.flatMap(puff =>
-        [-1, 0, 1].map(copy => {
-          const shape = document.createElement('i');
-          shape.className = 'puff';
-          shape.style.cssText = `--x:${puff.x};--y:${puff.y};--w:${puff.w};--h:${puff.h};--o:${puff.o};--copy:${copy}`;
-          return shape;
-        })
+        [-1, 0, 1]
+          .filter(copy => copy !== -1 || puff.x + puff.w / 2 > 100)
+          .map(copy => {
+            const shape = document.createElement('i');
+            shape.className = 'puff';
+            shape.style.cssText = `--x:${puff.x + copy * 100};--y:${puff.y};--w:${puff.w};--h:${puff.h};--o:${puff.o}`;
+            return shape;
+          })
       )
     );
     return drift;

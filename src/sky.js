@@ -1,7 +1,7 @@
 const BOSTON = { lat: 42.36, lon: -71.06 };
 const RAD = Math.PI / 180;
 
-const clamp = (n, low, high) => Math.min(high, Math.max(low, n));
+export const clamp = (n, low, high) => Math.min(high, Math.max(low, n));
 
 // NOAA solar position approximation, geometric (no refraction). Azimuth is degrees clockwise from north.
 export function sunPosition(date, { lat, lon } = BOSTON) {

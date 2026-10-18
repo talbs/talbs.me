@@ -1,10 +1,10 @@
-import { brianClock, previewDate, sunOverride, shortTime, timeTip, capitalize } from './clock.js';
+import { brianClock, previewDate, sunOverride, shortTime, timeTip, capitalize, toInt } from './clock.js';
 import { pickLine, firstPick } from './schedule.js';
 import { skyVars, CARD } from './sky.js';
 import { pools, errors, lost } from './statuses.js';
 import { musicCell, previewTrack, recentTracks, FETCH_TIMEOUT, RESTING, TEN_MINUTES } from './music.js';
 import { weatherUrl, weatherAt, weatherIcon, weatherWords, cloudsFor } from './weather.js';
-import { minuteOf, dateAtMinute, dayStops, nearestStop, contextFor } from './day.js';
+import { minuteOf, dateAtMinute, stopsOn, nearestStop, contextFor } from './day.js';
 
 const LASTFM =
   'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=B-Tal&limit=1&format=json&api_key=727679ecf88465a0ca161d4d8c5efabf';
@@ -36,7 +36,7 @@ try {
   if (stats === 'on') localStorage.removeItem('umami.disabled');
 } catch {}
 const pinnedSun = sunOverride(params);
-const fakeCover = params.has('clouds') ? Number(params.get('clouds')) || 0 : null;
+const fakeCover = toInt(params.get('clouds'), 0, 100);
 const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
 // IS_LOST is set per page by tools/build.js: true only on the 404.
@@ -180,7 +180,7 @@ function setCell(cell, props, isInstant = false) {
   cell.dataset.data = data;
   const flip = flips.get(cell);
   if (isInstant || isScrubbing) {
-    flip?.animations.forEach(animation => animation.cancel());
+    flip?.leave?.cancel();
     flips.delete(cell);
     cell.classList.remove('is-flipping');
   } else if (flip) {
@@ -203,22 +203,19 @@ const settled = animation =>
   });
 
 async function flipCell(cell, props) {
-  const flip = { props, animations: [] };
-  const move = (keyframes, options) => {
-    const animation = cell.querySelector('.cell-body').animate(keyframes, options);
-    flip.animations.push(animation);
-    return settled(animation);
-  };
+  const flip = { props };
+  const body = () => cell.querySelector('.cell-body');
   flips.set(cell, flip);
   cell.classList.add('is-flipping');
   if (!isCalm.matches) {
-    await move(LEAVE, { duration: 100, easing: EASE_IN, fill: 'forwards' });
+    flip.leave = body().animate(LEAVE, { duration: 100, easing: EASE_IN, fill: 'forwards' });
+    await settled(flip.leave);
     if (flips.get(cell) !== flip) return;
+    flip.leave.cancel();
   }
-  flip.animations.forEach(animation => animation.cancel());
   flips.delete(cell);
   fillCell(cell, flip.props);
-  await move(enter(), { duration: 200, easing: EASE_OUT });
+  await settled(body().animate(enter(), { duration: 200, easing: EASE_OUT }));
   if (!flips.has(cell)) cell.classList.remove('is-flipping');
 }
 
@@ -445,18 +442,10 @@ function setUpScrubber() {
   scrubber.value = nowValue();
   isScrubberSet = true;
 
-  let stops = [];
-  let stopsDay = 0;
-  const stopsToday = () => {
-    const { dayOfMonth } = brianClock(now());
-    if (dayOfMonth !== stopsDay) {
-      stopsDay = dayOfMonth;
-      stops = Object.values(dayStops(now()))
-        .filter(stop => stop !== null)
-        .sort((a, b) => a - b);
-    }
-    return stops;
-  };
+  const stopsToday = () =>
+    Object.values(stopsOn(now()))
+      .filter(stop => stop !== null)
+      .sort((a, b) => a - b);
   let returnTimer = 0;
   let returnFrame = 0;
   // The page eases to now through its usual sky transition and one status swap; only the thumb glides.

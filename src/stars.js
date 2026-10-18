@@ -12,7 +12,7 @@ export function random(seed) {
   };
 }
 
-const round = n => Math.round(n * 100) / 100;
+export const round = (n, places = 2) => Math.round(n * 10 ** places) / 10 ** places;
 
 export function makeStars(count) {
   const next = random(SEED);

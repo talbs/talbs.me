@@ -39,7 +39,7 @@ export function zonedDate({ year, month, dayOfMonth, hour, minute }) {
   return new Date(ts);
 }
 
-const toInt = (value, min, max) => {
+export const toInt = (value, min, max) => {
   const n = Number.parseInt(value, 10);
   return Number.isNaN(n) ? null : Math.min(max, Math.max(min, n));
 };

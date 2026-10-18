@@ -34,9 +34,6 @@ test('nearestStop snaps inside the window and not outside it', () => {
   assert.equal(nearestStop(770, stops, 10), 763);
 });
 
-const MINUTE_LINE = /^a minute (earlier|later) than yesterday\.$/;
-const yesterdayOf = (month, dayOfMonth) => at(month, dayOfMonth - 1);
-
 test('sunTips puts sunrise before or after the 6:30 alarm', () => {
   assert.equal(sunTips('sunrise', at(6, 21))[0], 'before the alarm.');
   assert.equal(sunTips('sunrise', at(12, 21))[0], 'after the alarm.');
@@ -64,7 +61,7 @@ test('sunTips adds the minute line only when today moved exactly one minute', ()
   let seen = 0;
   for (let dayOfMonth = 2; dayOfMonth <= 31; dayOfMonth++) {
     for (const kind of ['sunrise', 'sunset']) {
-      const delta = dayStops(at(10, dayOfMonth))[kind] - dayStops(yesterdayOf(10, dayOfMonth))[kind];
+      const delta = dayStops(at(10, dayOfMonth))[kind] - dayStops(at(10, dayOfMonth - 1))[kind];
       const pool = sunTips(kind, at(10, dayOfMonth));
       if (Math.abs(delta) !== 1) {
         assert.equal(pool.length, 2, `Oct ${dayOfMonth} ${kind} moved ${delta}`);

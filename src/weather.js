@@ -1,4 +1,6 @@
 import { brianClock } from './clock.js';
+import { clamp } from './sky.js';
+import { round } from './stars.js';
 
 const WEATHER =
   'https://api.open-meteo.com/v1/forecast?latitude=42.36&longitude=-71.06&hourly=temperature_2m,weather_code,is_day,cloud_cover&temperature_unit=fahrenheit&timezone=America%2FNew_York';
@@ -42,12 +44,10 @@ export function weatherAt(hourly, date) {
   };
 }
 
-const round = n => Math.round(n * 100) / 100;
-
 // Shapes fill in up to half cover; past that, a flat veil closes over the sky. Both fade over the sun's last 2° and are
 // gone by the horizon, before the header ink turns off-white for twilight.
 export function cloudsFor(cover, elevation) {
   const amount = (cover ?? 0) / 50;
-  const light = Math.min(Math.max(elevation / 2, 0), 1);
-  return { clouds: round(Math.min(amount, 1) * 0.6 * light), veil: round(Math.max(0, amount - 1) * 0.6 * light) };
+  const light = clamp(elevation / 2, 0, 1);
+  return { clouds: round(clamp(amount, 0, 1) * 0.6 * light), veil: round(clamp(amount - 1, 0, 1) * 0.6 * light) };
 }

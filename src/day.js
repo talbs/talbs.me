@@ -40,14 +40,14 @@ export function nearestStop(minutes, stops, within) {
 const ALARM = 6 * 60 + 30;
 const stopsByDay = new Map();
 
-function stopsOn(date) {
+export function stopsOn(date) {
   const { dateKey } = brianClock(date);
   if (!stopsByDay.has(dateKey)) stopsByDay.set(dateKey, dayStops(date));
   return stopsByDay.get(dateKey);
 }
 
 // Only what the page can vouch for: a one-minute change is the only one worth saying, and a clock change isn't one.
-export function sunTips(kind, date, cover = null) {
+export function sunTips(kind, date, cover) {
   const clock = brianClock(date);
   const today = stopsOn(date)[kind];
   const delta = today - stopsOn(zonedDate({ ...clock, dayOfMonth: clock.dayOfMonth - 1, hour: 12, minute: 0 }))[kind];
@@ -60,7 +60,7 @@ export function sunTips(kind, date, cover = null) {
   return tips;
 }
 
-export function contextFor(pick, date, elevation, coverAt = () => null) {
+export function contextFor(pick, date, elevation, coverAt) {
   if (pick.with) {
     const { label, ...chip } = pick.with;
     return { ...chip, text: label, tip: `Open ${label}` };
@@ -72,7 +72,7 @@ export function contextFor(pick, date, elevation, coverAt = () => null) {
     return { icon: 'moon', text: `${moon.lit}% ${moon.phase}`, tip: moonTip(date) };
   }
   if (!next) return { icon: '', text: '' };
-  const tips = sunTips(next.kind, next.at, coverAt(next.at));
+  const tips = sunTips(next.kind, next.at, coverAt?.(next.at));
   const tip = tips[hash(`${brianClock(next.at).dateKey}:${next.kind}`) % tips.length];
   return {
     icon: next.kind,

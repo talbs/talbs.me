@@ -295,11 +295,11 @@ main,
 :root:not(.has-clouds) .clouds {
   display: none;
 }
-/* Unitless numbers from clouds.js, in percent of the field's width; --copy places the same puff a field to either side. */
+/* Unitless numbers from clouds.js, in percent of the field's width. */
 .puff {
   position: absolute;
   inset-block-start: calc(var(--y) * 1vh);
-  inset-inline-start: calc((var(--x) + var(--copy) * 100) * 1cqw);
+  inset-inline-start: calc(var(--x) * 1cqw);
   inline-size: calc(var(--w) * 1cqw);
   block-size: calc(var(--h) * 1cqw);
   translate: -50% -50%;
