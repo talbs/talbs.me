@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pruneTokens, pruneSelectors } from '../tools/prune.js';
+import { pruneTokens, pruneSelectors, usedNames } from '../tools/prune.js';
 
 test('pruneTokens drops Web Awesome tokens nothing uses and keeps the chain that is used', () => {
   const css =
@@ -30,11 +30,30 @@ test('pruneTokens handles a last declaration without a semicolon', () => {
 test('pruneSelectors drops Web Awesome class selectors nothing uses, rule by rule and inside layers', () => {
   const css =
     '@layer wa-utilities{.wa-cluster,.wa-stack{gap:1px}.wa-split{display:flex}}:where(:root),.wa-brand-red{--x:1}.mine{a:b}';
-  const out = pruneSelectors(css, new Set(['wa-cluster']));
+  const out = pruneSelectors(css, new Set(['wa-cluster', 'mine']));
   assert.equal(out, '@layer wa-utilities{.wa-cluster{gap:1px}}:where(:root){--x:1}.mine{a:b}');
 });
 
 test('pruneSelectors keeps selectors whose commas sit inside parentheses', () => {
   const css = '.wa-a:is(.x,.y),.wa-b:where(.p,.q){c:d}';
   assert.equal(pruneSelectors(css, new Set(['wa-b'])), '.wa-b:where(.p,.q){c:d}');
+});
+
+test('pruneSelectors drops [class*=wa-…] selectors no used class contains, outside of :is() lists', () => {
+  const css = '[class*=wa-body]{a:b}[class*="wa-stack"]>*{c:d}:is([class*=wa-flank],[class*=wa-stack])>x{e:f}';
+  assert.equal(
+    pruneSelectors(css, new Set(['wa-stack', 'wa-gap-s'])),
+    '[class*="wa-stack"]>*{c:d}:is([class*=wa-flank],[class*=wa-stack])>x{e:f}'
+  );
+});
+
+test('pruneSelectors drops selectors needing a class the page never uses, outside of :is() lists', () => {
+  const css = '.way-back .rail{a:b}.card{c:d}:root:has(.way-back) .card{e:f}';
+  assert.equal(pruneSelectors(css, new Set(['card'])), '.card{c:d}:root:has(.way-back) .card{e:f}');
+});
+
+test('usedNames reads class names from markup and scripts, not custom property names', () => {
+  const names = usedNames('<i class="cell wa-cluster">x.classList.add("is-live");a{b:var(--wa-font-size-xs)}');
+  for (const name of ['cell', 'wa-cluster', 'is-live']) assert.ok(names.has(name), name);
+  assert.ok(!names.has('wa-font-size-xs'));
 });

@@ -16,5 +16,6 @@ export function lostPage(template, line, vars) {
   html = swap(html, 'tell state', /(<tiny-tell[^>]*?state=")\w+"/, '$1error"');
   html = swap(html, 'status line', /(id="line"\s*>)[^<]*(<\/span)/, `$1${line}$2`);
   html = swap(html, 'day row', /(id="day")\s+hidden/, '$1');
+  html = swap(html, 'cloud layers', /\s*<div\s+class="veil"[^>]*><\/div>\s*<div\s+class="clouds"[^>]*><\/div>/, '');
   return html;
 }

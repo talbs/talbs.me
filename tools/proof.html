@@ -57,6 +57,15 @@
         value="2026-10-15T18:00"
         aria-label="Boston date and time"
       />
+      <input
+        name="clouds"
+        type="number"
+        min="0"
+        max="100"
+        step="5"
+        placeholder="cloud cover %"
+        aria-label="Cloud cover, percent"
+      />
       <select
         name="music"
         aria-label="Music"
@@ -84,6 +93,9 @@
         ['Full moon night', 'at=2026-10-26T23:00'],
         ['Summer noon', 'at=2026-06-21T12:45'],
         ['Winter sunset', 'at=2026-12-21T16:14'],
+        ['Clouds, 3pm at 50%', 'at=2026-10-15T15:00&clouds=50'],
+        ['Overcast, 3pm at 100%', 'at=2026-10-15T15:00&clouds=100'],
+        ['Clouds at sunset', 'at=2026-10-15T17:45&clouds=50'],
         ['Music live', 'at=2026-10-15T13:00&music=live'],
         ['Music last played', 'at=2026-10-15T13:00&music=last'],
       ];

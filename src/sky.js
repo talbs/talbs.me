@@ -1,7 +1,7 @@
 const BOSTON = { lat: 42.36, lon: -71.06 };
 const RAD = Math.PI / 180;
 
-const clamp = (n, low, high) => Math.min(high, Math.max(low, n));
+export const clamp = (n, low, high) => Math.min(high, Math.max(low, n));
 
 // NOAA solar position approximation, geometric (no refraction). Azimuth is degrees clockwise from north.
 export function sunPosition(date, { lat, lon } = BOSTON) {
@@ -248,12 +248,14 @@ export const isRising = date => sunElevation(new Date(date.getTime() + 600000)) 
 
 export const HORIZON = -0.833;
 
-export function nextSunEvent(date) {
-  let before = sunElevation(date);
+// Steps whole clock minutes, so the answer doesn't shift with the second it's asked at.
+export function nextSunEvent(date, threshold = HORIZON) {
+  const start = Math.floor(date.getTime() / 60000) * 60000;
+  let before = sunElevation(new Date(start));
   for (let minute = 1; minute <= 1440; minute++) {
-    const at = new Date(date.getTime() + minute * 60000);
+    const at = new Date(start + minute * 60000);
     const after = sunElevation(at);
-    if (before < HORIZON !== after < HORIZON) return { kind: after > before ? 'sunrise' : 'sunset', at };
+    if (before < threshold !== after < threshold) return { kind: after > before ? 'sunrise' : 'sunset', at };
     before = after;
   }
   return null;

@@ -1,10 +1,10 @@
-import { brianClock, previewDate, sunOverride, contextFor, shortTime, timeTip, capitalize } from './clock.js';
+import { brianClock, previewDate, sunOverride, shortTime, timeTip, capitalize, toInt } from './clock.js';
 import { pickLine, firstPick } from './schedule.js';
 import { skyVars, CARD } from './sky.js';
 import { pools, errors, lost } from './statuses.js';
 import { musicCell, previewTrack, recentTracks, FETCH_TIMEOUT, RESTING, TEN_MINUTES } from './music.js';
-import { weatherUrl, weatherAt, weatherIcon, weatherWords } from './weather.js';
-import { minuteOf, dateAtMinute, dayStops, nearestStop } from './day.js';
+import { weatherUrl, weatherAt, weatherIcon, weatherWords, cloudsFor } from './weather.js';
+import { minuteOf, dateAtMinute, stopsOn, nearestStop, contextFor } from './day.js';
 
 const LASTFM =
   'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=B-Tal&limit=1&format=json&api_key=727679ecf88465a0ca161d4d8c5efabf';
@@ -36,11 +36,13 @@ try {
   if (stats === 'on') localStorage.removeItem('umami.disabled');
 } catch {}
 const pinnedSun = sunOverride(params);
+const fakeCover = toInt(params.get('clouds'), 0, 100);
 const loadedAt = Date.now();
 const fakedStart = previewDate(new Date(), params);
 // IS_LOST is set per page by tools/build.js: true only on the 404.
 const lostAt = IS_LOST && dateAtMinute(new Date(), 244);
-const lostPick = {
+// Behind IS_LOST so the home page bundle drops the 404's lines.
+const lostPick = IS_LOST && {
   text: lost[Math.floor(Math.random() * lost.length)],
   skin: 'eyes',
   state: 'error',
@@ -103,7 +105,7 @@ function makeIcon(name, family = 'sharp-duotone', label = '') {
   return icon;
 }
 
-function setCell(
+function fillCell(
   cell,
   {
     icon = '',
@@ -155,6 +157,68 @@ function setCell(
   if (tooltip && tooltip.textContent !== tip) tooltip.textContent = tip;
 }
 
+const LEAVE = [
+  { opacity: 1, translate: '0 0' },
+  { opacity: 0, translate: '0 -0.35em' },
+];
+const enter = () =>
+  isCalm.matches
+    ? [{ opacity: 0 }, { opacity: 1 }]
+    : [
+        { opacity: 0, translate: '0 0.5em' },
+        { opacity: 1, translate: '0 0' },
+      ];
+const flips = new Map();
+
+// The time cell leads with the clock and the moon with its percent lit; both tick without any data landing.
+const dataOf = ({ icon = '', label = '', url = '', text = '', datetime }) =>
+  [icon, label, url, text.replace(datetime ? /^\S+/ : /^\d+%/, '')].join('|');
+
+function setCell(cell, props, isInstant = false) {
+  const data = dataOf(props);
+  const isLanding = cell.dataset.data !== undefined && cell.dataset.data !== data && !cell.hidden;
+  cell.dataset.data = data;
+  const flip = flips.get(cell);
+  if (isInstant || isScrubbing) {
+    flip?.leave?.cancel();
+    flips.delete(cell);
+    cell.classList.remove('is-flipping');
+  } else if (flip) {
+    flip.props = props;
+    return;
+  } else if (isLanding) {
+    return flipCell(cell, props);
+  }
+  fillCell(cell, props);
+}
+
+// A tab whose animation timeline has stopped (paused or in the background) would otherwise hold a move forever, and the
+// content behind it with it.
+const settled = animation =>
+  Promise.race([
+    animation.finished.catch(() => {}),
+    new Promise(resolve => setTimeout(resolve, animation.effect.getTiming().duration + 100)),
+  ]).then(() => {
+    if (animation.playState === 'running') animation.cancel();
+  });
+
+async function flipCell(cell, props) {
+  const flip = { props };
+  const body = () => cell.querySelector('.cell-body');
+  flips.set(cell, flip);
+  cell.classList.add('is-flipping');
+  if (!isCalm.matches) {
+    flip.leave = body().animate(LEAVE, { duration: 100, easing: EASE_IN, fill: 'forwards' });
+    await settled(flip.leave);
+    if (flips.get(cell) !== flip) return;
+    flip.leave.cancel();
+  }
+  flips.delete(cell);
+  fillCell(cell, flip.props);
+  await settled(body().animate(enter(), { duration: 200, easing: EASE_OUT }));
+  if (!flips.has(cell)) cell.classList.remove('is-flipping');
+}
+
 const wantedLine = () => (isDancing ? DANCE_LINE : peekLine || currentPick.text);
 
 function animateLine(keyframes, options) {
@@ -171,24 +235,11 @@ function placeLine() {
 async function swapLine() {
   const id = ++swapId;
   if (!isCalm.matches) {
-    const leave = animateLine(
-      [
-        { opacity: 1, translate: '0 0' },
-        { opacity: 0, translate: '0 -0.35em' },
-      ],
-      { duration: 100, easing: EASE_IN, fill: 'forwards' }
-    );
-    await leave.finished.catch(() => {});
+    await settled(animateLine(LEAVE, { duration: 100, easing: EASE_IN, fill: 'forwards' }));
     if (id !== swapId) return;
   }
   placeLine();
-  const enter = isCalm.matches
-    ? [{ opacity: 0 }, { opacity: 1 }]
-    : [
-        { opacity: 0, translate: '0 0.5em' },
-        { opacity: 1, translate: '0 0' },
-      ];
-  animateLine(enter, { duration: 200, easing: EASE_OUT });
+  settled(animateLine(enter(), { duration: 200, easing: EASE_OUT }));
 }
 
 function setLine(isInstant) {
@@ -237,13 +288,19 @@ function loadTrayIcons() {
   }
 }
 
+const coverAt = date => fakeCover ?? weatherAt(hourly, date)?.cover;
+
 function paintSky(date) {
   const { elevation, vars } = skyVars(date, pinnedSun ?? undefined);
+  const { clouds, veil } = cloudsFor(coverAt(date), elevation);
+  vars['--clouds'] = clouds;
+  vars['--veil'] = veil;
   for (const [name, value] of Object.entries(vars)) {
     const text = String(value);
     if (root.style.getPropertyValue(name) !== text) root.style.setProperty(name, text);
   }
   root.classList.toggle('has-stars', vars['--stars'] > 0);
+  root.classList.toggle('has-clouds', clouds > 0);
   return elevation;
 }
 
@@ -256,18 +313,23 @@ function showStatus(date, elevation, isInstant) {
   tell.setAttribute('skin', pick.skin);
   tell.setAttribute('state', peekLine ? 'error' : pick.state);
   const time = shortTime(date);
-  const tip = IS_LOST ? lostPick.timeTip : timeTip(brianClock(date).hour);
+  const clock = brianClock(date);
+  const tip = IS_LOST ? lostPick.timeTip : timeTip(clock.hour, clock.month);
   const weather = weatherAt(hourly, date);
   // '--°' holds the temperature's width until the forecast lands; a day with no forecast falls back to the city.
-  setCell(document.getElementById('time'), {
-    icon: weather ? weatherIcon(weather.code, weather.isDay) : 'clock',
-    label: weather ? weatherWords(weather.code) : '',
-    text: weather ? `${time} · ${weather.temp}°` : hourly === undefined ? `${time} · --°` : `${time} Boston`,
-    url: 'https://time.is/Boston',
-    datetime: date.toISOString(),
-    tip: weather ? `${capitalize(weatherWords(weather.code))} in Boston: ${tip}` : capitalize(tip),
-  });
-  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation));
+  setCell(
+    document.getElementById('time'),
+    {
+      icon: weather ? weatherIcon(weather.code, weather.isDay) : 'clock',
+      label: weather ? weatherWords(weather.code) : '',
+      text: weather ? `${time} · ${weather.temp}°` : hourly === undefined ? `${time} · --°` : `${time} Boston`,
+      url: 'https://time.is/Boston',
+      datetime: date.toISOString(),
+      tip: weather ? `${capitalize(weatherWords(weather.code))} in Boston: ${tip}` : capitalize(tip),
+    },
+    isInstant
+  );
+  setCell(document.getElementById('context'), pick.context ?? contextFor(pick, date, elevation, coverAt), isInstant);
 }
 
 function paintFavicon() {
@@ -320,13 +382,13 @@ function trackBefore(date) {
 }
 
 // More than ten minutes from the real time counts as a past moment; the ?music= preview always counts as now.
-function showMusic(date) {
-  if (IS_LOST) return setCell(document.getElementById('music'), lostPick.music);
+function showMusic(date, isInstant) {
+  if (IS_LOST) return setCell(document.getElementById('music'), lostPick.music, isInstant);
   if (track === undefined) return;
   const music = document.getElementById('music');
   clearTimeout(pastTimer);
   if (IS_LOST || params.has('music') || Math.abs(date - Date.now()) <= TEN_MINUTES) {
-    setCell(music, musicCell(track, params.has('music') ? now() : Date.now()));
+    setCell(music, musicCell(track, params.has('music') ? now() : Date.now()), isInstant);
     return;
   }
   music.classList.add('is-quiet');
@@ -353,7 +415,7 @@ async function checkMusic() {
 function render(date, isInstant) {
   shownAt = date;
   showStatus(date, paintSky(date), isInstant);
-  showMusic(date);
+  showMusic(date, isInstant);
   if (document.hidden) paintFavicon();
   else requestAnimationFrame(paintFavicon);
 }
@@ -380,18 +442,10 @@ function setUpScrubber() {
   scrubber.value = nowValue();
   isScrubberSet = true;
 
-  let stops = [];
-  let stopsDay = 0;
-  const stopsToday = () => {
-    const { dayOfMonth } = brianClock(now());
-    if (dayOfMonth !== stopsDay) {
-      stopsDay = dayOfMonth;
-      stops = Object.values(dayStops(now()))
-        .filter(stop => stop !== null)
-        .sort((a, b) => a - b);
-    }
-    return stops;
-  };
+  const stopsToday = () =>
+    Object.values(stopsOn(now()))
+      .filter(stop => stop !== null)
+      .sort((a, b) => a - b);
   let returnTimer = 0;
   let returnFrame = 0;
   // The page eases to now through its usual sky transition and one status swap; only the thumb glides.

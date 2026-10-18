@@ -25,7 +25,7 @@ export const BLOCK_SKINS = {
 };
 const slotOf = ({ hour, minute }) => hour * 6 + Math.floor(minute / 10);
 
-function hash(text) {
+export function hash(text) {
   let h = 0x811c9dc5;
   for (const ch of text) {
     h ^= ch.codePointAt(0);

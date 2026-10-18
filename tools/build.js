@@ -9,7 +9,7 @@ import { lostPage } from './lost.js';
 import { skyVars } from '../src/sky.js';
 import { dateAtMinute } from '../src/day.js';
 import { renderTray, validateLinks } from './tray.js';
-import { pruneSelectors, pruneTokens } from './prune.js';
+import { pruneSelectors, pruneTokens, usedNames } from './prune.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SRC = `${ROOT}src/`;
@@ -80,24 +80,33 @@ await build({
   outfile: `${DIST}enhance.js`,
   logLevel: 'warning',
 });
-const scripts = js + lostJs + (await readFile(`${DIST}enhance.js`, 'utf8'));
+const enhance = await readFile(`${DIST}enhance.js`, 'utf8');
+const scripts = js + lostJs + enhance;
 const template = await readFile(`${SRC}index.html`, 'utf8');
 const slider = await readFile(`${SRC}slider.html`, 'utf8');
 const wayBack = await readFile(`${SRC}way-back.html`, 'utf8');
 const tray = renderTray(links, SECTIONS);
-const used = new Set((template + slider + wayBack + tray + scripts).match(/\bwa-[\w-]+/g));
-css = pruneTokens(pruneSelectors(css, used), scripts);
-css = (await transform(css, { loader: 'css', minify: true })).code.trim();
+// Each page gets only the rules its own markup and scripts can match, so the 404's rail stays off the home page.
+const cssFor = async (...parts) => {
+  const pruned = pruneTokens(pruneSelectors(css, usedNames(parts.join('') + enhance)), scripts);
+  return `<style>${(await transform(pruned, { loader: 'css', minify: true })).code.trim()}</style>`;
+};
 
 const shared = {
   font: `<link rel="preload" href="${font}" as="font" type="font/woff2" crossorigin>`,
-  css: `<style>${css}</style>`,
   links: tray,
 };
-const html = fill(template, { ...shared, js: `<script>${js}</script>`, day: slider });
-const lostSky = skyVars(dateAtMinute(new Date(), 244)).vars;
-const lostHtml = fill(lostPage(template, lost[0], lostSky), {
+const html = fill(template, {
   ...shared,
+  css: await cssFor(template, slider, tray, js),
+  js: `<script>${js}</script>`,
+  day: slider,
+});
+const lostSky = skyVars(dateAtMinute(new Date(), 244)).vars;
+const lostTemplate = lostPage(template, lost[0], lostSky);
+const lostHtml = fill(lostTemplate, {
+  ...shared,
+  css: await cssFor(lostTemplate, wayBack, tray, lostJs),
   js: `<script>${lostJs}</script>`,
   day: wayBack,
 });
