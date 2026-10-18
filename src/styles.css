@@ -122,6 +122,8 @@
   --type-small: var(--wa-font-size-xs);
   --type-name: var(--wa-font-size-s);
   --stack-half: 6.5rem;
+  --stage-top: calc(50% - var(--stack-half));
+  --page-block: 100dvh;
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-move: cubic-bezier(0.2, 0, 0, 1);
@@ -167,6 +169,21 @@
     --stack-half: 3.875rem;
   }
 }
+/* Shorter than about three rows of list (a phone on its side), fitting the open tray in the viewport would crop it to
+   a row, so the page scrolls instead: the body grows past the viewport and the list shows every row. */
+@media (height < 28rem) {
+  :root {
+    --page-block: auto;
+    --list-cap: none;
+  }
+}
+/* On a tall portrait screen a centered closed card floats in the sky, so it parks under the header and the tray opens
+   down into the room below. */
+@media (orientation: portrait) and (height >= 50rem) {
+  :root {
+    --stage-top: 6rem;
+  }
+}
 :root:is(.is-scrubbing, .is-snapping),
 :root:is(.is-scrubbing, .is-snapping) :is(.stars, .veil, .clouds, .cell-body),
 .is-flipping .cell-body {
@@ -178,11 +195,13 @@
 :where(*, *::before, *::after) {
   box-sizing: border-box;
 }
-/* The page never scrolls; an open tray too tall to fit scrolls main instead. */
+/* The page fills the viewport and never scrolls, short viewports aside; an open tray too tall to fit scrolls main
+   instead. */
 body {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  block-size: 100dvh;
+  block-size: var(--page-block);
+  min-block-size: 100dvh;
   margin: 0;
   overflow-x: clip;
   background: var(--sky-bottom);
@@ -319,7 +338,7 @@ main,
 main {
   display: grid;
   grid-template-rows:
-    minmax(var(--wa-space-m), calc(50% - var(--stack-half)))
+    minmax(var(--wa-space-m), var(--stage-top))
     auto
     minmax(var(--wa-space-m), 1fr);
   justify-items: center;
@@ -329,16 +348,6 @@ main {
 .stage {
   grid-row: 2;
   inline-size: min(100%, 40rem);
-}
-/* On a tall portrait screen a centered closed card floats in the sky, so it sits under the header and the tray opens
-   down into the room below. */
-@media (orientation: portrait) and (height >= 50rem) {
-  main {
-    grid-template-rows:
-      minmax(var(--wa-space-m), 6rem)
-      auto
-      minmax(var(--wa-space-m), 1fr);
-  }
 }
 .intro,
 .day {
@@ -463,20 +472,10 @@ tiny-tell {
 }
 .scroll {
   position: relative;
-  max-block-size: clamp(6rem, var(--tray-room, 60dvh) - 2 * var(--wa-space-m), 32rem);
+  /* The cap's default lives here, not on :root, because --tray-room is set on this element. */
+  max-block-size: var(--list-cap, clamp(6rem, var(--tray-room, 60dvh) - 2 * var(--wa-space-m), 32rem));
   overflow-y: auto;
   padding-block-end: 0.5rem;
-}
-/* Shorter than about three rows of list (a phone on its side), fitting the open tray in the viewport would crop it to
-   a row, so the page scrolls instead: the body grows past the viewport and the list shows every row. */
-@media (height < 28rem) {
-  body {
-    block-size: auto;
-    min-block-size: 100dvh;
-  }
-  .scroll {
-    max-block-size: none;
-  }
 }
 .heading {
   margin: 0;
