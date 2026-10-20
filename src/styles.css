@@ -118,7 +118,7 @@
   --meta: #a8afb7;
   --wa-tooltip-content-color: color-mix(in oklch, var(--off-white) 85%, transparent);
   --type-status: 1rem;
-  --type-tell: 2rem;
+  --type-tell: 1.75rem;
   --type-small: var(--wa-font-size-xs);
   --type-name: var(--wa-font-size-s);
   --stack-half: 6.5rem;
@@ -494,7 +494,7 @@ tiny-tell {
 }
 .launcher a {
   display: grid;
-  grid-template-columns: 1.25em auto minmax(0, 1fr);
+  grid-template-columns: var(--type-tell) auto minmax(0, 1fr);
   justify-items: start;
   align-items: center;
   gap: 0.75rem;
@@ -506,6 +506,7 @@ tiny-tell {
   outline-offset: -2px;
 }
 .launcher .ic {
+  justify-self: center;
   display: grid;
   place-items: center;
 }
@@ -535,7 +536,7 @@ tiny-tell {
 /* Narrow cards stack the note under the name rather than cutting it off. */
 @container card (width < 26rem) {
   .launcher a {
-    grid-template-columns: 1.25em minmax(0, 1fr);
+    grid-template-columns: var(--type-tell) minmax(0, 1fr);
     row-gap: var(--wa-space-3xs);
     padding-block: var(--wa-space-s);
   }
@@ -576,6 +577,9 @@ tiny-tell {
   .meta {
     flex-direction: row;
   }
+  .cell ~ .cell .cell-body > wa-icon {
+    margin-inline: 0;
+  }
   /* A missing path can be any length, so on the 404 it truncates instead of wrapping the row. */
   :root:has(.way-back) .meta {
     flex-wrap: nowrap;
@@ -598,6 +602,10 @@ tiny-tell {
   display: inline-flex;
   max-inline-size: 100%;
   vertical-align: top;
+}
+/* Centered under the tell, which leaves the text lined up with the status line. */
+.cell-body > wa-icon {
+  margin-inline: calc(var(--type-tell) / 2 - 0.625em);
 }
 .is-quiet .cell-body {
   opacity: 0.85;
