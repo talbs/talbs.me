@@ -121,8 +121,7 @@
   --type-tell: 1.75rem;
   --type-small: var(--wa-font-size-xs);
   --type-name: var(--wa-font-size-s);
-  --stack-half: 6.5rem;
-  --stage-top: calc(50% - var(--stack-half));
+  --stage-top: 1fr;
   --page-block: 100dvh;
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
@@ -159,14 +158,12 @@
     --type-tell: 2.25rem;
     --type-small: var(--wa-font-size-s);
     --type-name: var(--wa-font-size-m);
-    --stack-half: 5.25rem;
   }
 }
 @media (width >= 40rem) {
   :root {
     --type-status: 1.25rem;
     --type-tell: 2.5rem;
-    --stack-half: 3.875rem;
   }
 }
 /* Shorter than about three rows of list (a phone on its side), fitting the open tray in the viewport would crop it to
@@ -333,8 +330,6 @@ main,
     transparent
   );
 }
-/* The card sits about centered (--stack-half is roughly half of it, closed). When the tray opens, the bottom gap gives
-   way first, then the top one. */
 main {
   display: grid;
   grid-template-rows:
