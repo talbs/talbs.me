@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 6 20 20" fill="currentColor"><rect fill="var(--hop-start, currentColor)" x="6" y="6" width="6" height="20" rx="2"/><path fill="var(--hop-middle, currentColor)" d="M12 14h8v4h-8z"/><rect fill="var(--hop-end, currentColor)" x="20" y="6" width="6" height="20" rx="2"/></svg>

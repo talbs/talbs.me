@@ -36,6 +36,13 @@ export const links = [
   },
   {
     section: 'Made',
+    title: 'Hue Hop',
+    note: 'side project: headings that hop a hue per letter',
+    url: 'https://huehop.dev/',
+    icon: 'hue-hop.svg',
+  },
+  {
+    section: 'Made',
     title: 'Cookbook',
     note: 'recipes I actually make',
     url: 'https://github.com/talbs/cookbook',

@@ -792,6 +792,11 @@ wa-icon[src='tiny-tells.svg'] {
   --eyes: #b8a0fe;
   color: #c5cad5;
 }
+wa-icon[src='hue-hop.svg'] {
+  --hop-start: #85d7ff;
+  --hop-middle: #619fff;
+  --hop-end: #6d89ff;
+}
 /* Brand marks take their product's own color, nudged lighter where the real one is too dark for the card. */
 wa-icon[name='web-awesome'] {
   color: #f46a45;
