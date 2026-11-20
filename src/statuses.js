@@ -14,10 +14,10 @@ const STORMLIGHT = book('Stormlight Archive', 'https://www.brandonsanderson.com/
 const COSMERE = book('the Cosmere', 'https://coppermind.net/wiki/Hoid');
 const CRADLE = book('Cradle', 'https://www.willwight.com/');
 const DCC = book('Dungeon Crawler Carl', 'https://mattdinniman.com/');
-const recipe = path => ({
+const recipe = slug => ({
   icon: 'pot-food',
   label: 'recipe',
-  url: `https://github.com/talbs/cookbook/blob/main/recipes/${path}.md`,
+  url: `https://cookbook.talbs.me/recipes/${slug}/`,
 });
 
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
@@ -163,19 +163,19 @@ export const pools = {
       text: 'Waiting on cookie dough to rest 36 hours…',
       state: 'warning',
       skin: 'blot',
-      with: recipe('desserts/chocolate-chip-cookies'),
+      with: recipe('chocolate-chip-cookies'),
     },
     { text: 'Waiting on the oven…', state: 'warning', skin: 'blot' },
     {
       text: 'Baking pumpkin cheesecake bars…',
       skin: 'blot',
       months: [10, 11],
-      with: recipe('desserts/pumpkin-cheesecake-bars'),
+      with: recipe('pumpkin-cheesecake-bars'),
     },
-    { text: 'Sous viding pots de crème at 158°F…', skin: 'blot', with: recipe('desserts/chocolate-pot-de-creme') },
-    { text: 'Wearing gloves for the ghost chilies…', skin: 'blot', with: recipe('food/pineapple-ghost-chili-sauce') },
-    { text: 'Cutting cold butter into biscuit dough…', skin: 'blot', with: recipe('food/buttermilk-biscuits') },
-    { text: 'Baking Milk Bar corn cookies…', skin: 'blot', with: recipe('desserts/corn-cookies') },
+    { text: 'Sous viding pots de crème at 158°F…', skin: 'blot', with: recipe('chocolate-pot-de-creme') },
+    { text: 'Wearing gloves for the ghost chilies…', skin: 'blot', with: recipe('pineapple-ghost-chile-sauce') },
+    { text: 'Cutting cold butter into biscuit dough…', skin: 'blot', with: recipe('buttermilk-biscuits') },
+    { text: 'Baking Milk Bar corn cookies…', skin: 'blot', with: recipe('corn-cookies') },
     { text: 'Hardening off seedlings on the porch…', months: [4, 5] },
     { text: 'Watering in a liquid feed…', skin: 'blot', months: [5, 6, 7, 8] },
     {
