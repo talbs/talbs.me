@@ -45,7 +45,7 @@ export const links = [
     section: 'Made',
     title: 'Cookbook',
     note: 'recipes I actually make',
-    url: 'https://github.com/talbs/cookbook',
+    url: 'https://cookbook.talbs.me',
     icon: 'hat-chef',
   },
   {
